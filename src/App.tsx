@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import * as React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Menu, X, Phone, Mail, MapPin, ArrowRight, 
-  ChevronRight, Download, Lock, Bell, MessageCircle,
-  Leaf, BarChart3, FileText, Globe, Users, Target, Briefcase
+  ChevronRight, Download, Lock, Bell, MessageCircle, CheckCircle2,
+  Leaf, BarChart3, FileText, Globe, Users, Target, Briefcase, ArrowLeft, ShieldCheck
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,6 +19,14 @@ import { toast } from 'sonner';
 import { SERVICES, SECTORS, DIFFERENTIALS, BLOG_POSTS, BRAZIL_STATES } from './constants';
 
 // --- Components ---
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const NotificationBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -36,6 +44,31 @@ const NotificationBanner = () => {
     </div>
   );
 };
+
+const Logo = ({ className = "", light = false }: { className?: string; light?: boolean }) => (
+  <div className={`flex items-center gap-3 ${className}`}>
+    <div className="relative flex items-center justify-center shrink-0">
+      <div className="relative">
+        <Globe className={`h-11 w-11 ${light ? 'text-primary-foreground' : 'text-primary'}`} />
+        <Leaf className={`absolute -right-2 -top-1.5 h-7 w-7 ${light ? 'text-primary-foreground fill-primary-foreground' : 'text-primary fill-primary'} rotate-[15deg] transition-transform group-hover:rotate-[25deg]`} />
+      </div>
+    </div>
+    <div className="flex flex-col leading-none">
+      <span className={`text-[12px] font-serif font-medium ${light ? 'text-primary-foreground/70' : 'text-muted-foreground/80'} italic mb-0.5`}>
+        Ecossistema
+      </span>
+      <span className={`text-3xl font-black tracking-tighter ${light ? 'text-primary-foreground' : 'text-primary'}`}>
+        GREENVERSE
+      </span>
+      <div className="flex items-center gap-2 mt-0.5">
+        <span className={`text-[9px] font-bold ${light ? 'text-primary-foreground/60' : 'text-muted-foreground/70'} whitespace-nowrap uppercase tracking-[0.12em]`}>
+          ESG · Facilities Verdes
+        </span>
+        <div className={`h-[1px] w-full min-w-[40px] ${light ? 'bg-primary-foreground/30' : 'bg-primary/30'}`} />
+      </div>
+    </div>
+  </div>
+);
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,12 +90,8 @@ const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md border-bottom py-3 shadow-sm' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="relative flex items-center justify-center">
-            <Globe className="h-8 w-8 text-primary" />
-            <Leaf className="h-4 w-4 text-primary absolute -left-1 -top-1 rotate-[-45deg] fill-primary" />
-          </div>
-          <span className="text-2xl font-bold tracking-tight text-foreground ml-1">Greenverse</span>
+        <Link to="/" className="group">
+          <Logo />
         </Link>
 
         {/* Desktop Nav */}
@@ -126,12 +155,8 @@ const Footer = () => (
     <div className="container mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
         <div className="col-span-1 md:col-span-1">
-          <Link to="/" className="flex items-center gap-2 mb-6">
-            <div className="relative flex items-center justify-center">
-              <Globe className="h-6 w-6 text-primary" />
-              <Leaf className="h-3 w-3 text-primary absolute -left-1 -top-1 rotate-[-45deg] fill-primary" />
-            </div>
-            <span className="text-xl font-bold tracking-tight">Greenverse</span>
+          <Link to="/" className="mb-6 block group">
+            <Logo light />
           </Link>
           <p className="text-background/60 text-sm leading-relaxed">
             Sua parceira estratégica em conformidade ambiental e sustentabilidade corporativa. Transformamos desafios regulatórios em vantagens competitivas.
@@ -140,9 +165,11 @@ const Footer = () => (
         <div>
           <h4 className="font-bold mb-6">Serviços</h4>
           <ul className="space-y-3 text-sm text-background/60">
-            <li>Licenciamento Ambiental</li>
+            <li>Gestão Ambiental e Soluções ESG</li>
             <li>Gestão de Resíduos</li>
-            <li>Outorgas de Água</li>
+            <li>Construção Civil</li>
+            <li>Compliance e Governança</li>
+            <li>Facilities e Operações</li>
             <li>Limpeza e Conservação</li>
             <li>Controle de Pragas</li>
             <li>Gestão Ambiental e PRAD</li>
@@ -177,6 +204,72 @@ const Footer = () => (
   </footer>
 );
 
+const AuthoritySection = () => (
+  <section className="py-24 bg-primary relative overflow-hidden">
+    {/* Decorative background Elements */}
+    <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+      <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-white/5 rounded-full blur-[100px]" />
+      <div className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-white/5 rounded-full blur-[100px]" />
+    </div>
+
+    <div className="container mx-auto px-4 relative z-10">
+      <div className="max-w-4xl mx-auto text-center space-y-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium backdrop-blur-sm border border-white/10"
+        >
+          <Target className="h-4 w-4" />
+          <span>Autoridade Greenverse</span>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+            Não somos apenas prestadores de serviço.
+          </h2>
+          <p className="text-2xl md:text-3xl text-white/90 font-medium italic">
+            "Somos parceiros estratégicos na evolução da sua empresa."
+          </p>
+          <div className="w-24 h-1 bg-white/30 mx-auto rounded-full" />
+          <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Transformamos desafios complexos em operações organizadas, sustentáveis e altamente eficientes.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3 }}
+          viewport={{ once: true }}
+          className="pt-8"
+        >
+          <div className="inline-grid grid-cols-2 md:grid-cols-3 gap-8 text-white/60 text-sm uppercase tracking-[0.2em] font-bold">
+            <div className="flex flex-col items-center gap-2 text-center">
+              <span className="text-white text-2xl">01</span>
+              <span>Inteligência</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 text-center">
+              <span className="text-white text-2xl">02</span>
+              <span>Estratégia</span>
+            </div>
+            <div className="flex flex-col items-center gap-2 text-center col-span-2 md:col-span-1">
+              <span className="text-white text-2xl">03</span>
+              <span>Execução</span>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  </section>
+);
+
 // --- Pages ---
 
 const HomePage = () => {
@@ -208,20 +301,21 @@ const HomePage = () => {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="max-w-3xl"
             >
               <Badge variant="outline" className="mb-6 border-primary text-primary px-4 py-1">
                 Líder em Consultoria Ambiental
               </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 leading-[1.1]">
-                Segurança jurídica e <span className="text-primary">ambiental</span> para o seu negócio.
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6 leading-[1.1]">
+                Transforme sua operação em um modelo de eficiência, <span className="text-primary">sustentabilidade</span> e alta performance.
               </h1>
-              <p className="text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
-                Atuamos como a ponte estratégica entre sua empresa e os órgãos reguladores, garantindo agilidade e conformidade técnica total.
+              <p className="text-lg text-muted-foreground mb-10 max-w-2xl leading-relaxed">
+                O Ecossistema Greenverse integra soluções estratégicas para empresas que não querem apenas operar — querem crescer com inteligência, conformidade e excelência.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" className="h-14 px-8 text-lg gap-2">
@@ -232,6 +326,37 @@ const HomePage = () => {
                   Conhecer Nossos Serviços
                 </Button>
               </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative hidden lg:block"
+            >
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group">
+                <img 
+                  src="https://images.unsplash.com/photo-1470434764173-b4a8a67284b3?q=80&w=1200&auto=format&fit=crop" 
+                  alt="Sustentabilidade e Mundo Verde" 
+                  className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                  <div className="flex items-center gap-4 text-white">
+                    <div className="p-2 bg-primary rounded-lg">
+                      <Leaf className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold uppercase tracking-wider">Impacto Positivo</p>
+                      <p className="text-xs opacity-80">Operações que respeitam o planeta</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Decorative Blur Backgrounds */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px] -z-10" />
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#A2B568]/20 rounded-full blur-[80px] -z-10" />
             </motion.div>
           </div>
         </div>
@@ -251,29 +376,26 @@ const HomePage = () => {
                 Sobre a Greenverse
               </Badge>
               <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
-                Transformando conformidade em <span className="text-primary">valor estratégico</span>.
+                Um ecossistema completo para <span className="text-primary">alta performance empresarial</span>.
               </h2>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                A Greenverse nasceu da necessidade de integrar o rigor técnico ambiental à agilidade do mundo corporativo. Somos uma consultoria especializada em gestão ambiental e sustentabilidade, focada em desburocratizar processos e garantir segurança jurídica para empresas de todos os portes.
-              </p>
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="bg-primary/10 p-3 rounded-xl h-fit">
-                    <Target className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-1">Nossa Missão</h4>
-                    <p className="text-muted-foreground text-sm">Promover o desenvolvimento econômico em harmonia com a preservação ambiental, através de soluções técnicas inovadoras.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="bg-primary/10 p-3 rounded-xl h-fit">
-                    <Briefcase className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl mb-1">Modelo de Negócio</h4>
-                    <p className="text-muted-foreground text-sm">Atuamos como parceiros estratégicos (B2B), oferecendo desde consultoria pontual até gestão ambiental completa (outsourcing).</p>
-                  </div>
+              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                <p>
+                  Gerenciar múltiplos fornecedores, garantir conformidade regulatória, reduzir impactos ambientais e ainda manter alta performance operacional não é simples — e você sabe disso.
+                </p>
+                <p className="font-semibold text-foreground">
+                  Foi para resolver essa complexidade que nasceu o Ecossistema Greenverse.
+                </p>
+                <p>
+                  Somos uma plataforma empresarial de soluções integradas que centraliza, otimiza e potencializa todas as áreas críticas da sua operação.
+                </p>
+                <p>
+                  Mais do que prestar serviços, atuamos como um parceiro estratégico, unindo estrutura, inteligência e alta capacidade de execução para transformar desafios empresariais em resultados concretos.
+                </p>
+                <div className="pt-4 border-t border-primary/10">
+                  <p className="text-sm font-bold uppercase tracking-wider text-primary mb-2">Compromisso com a Excelência</p>
+                  <p className="text-base">
+                    Com atuação orientada por <strong>ESG, Compliance, Governança Corporativa e Inovação Sustentável</strong>, entregamos eficiência, conformidade e performance em um único ecossistema.
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -335,9 +457,11 @@ const HomePage = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="link" className="p-0 h-auto text-primary gap-1 group/btn">
-                      Saiba Mais <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
+                    <Link to={`/servicos/${service.id}`}>
+                      <Button variant="link" className="p-0 h-auto text-primary gap-1 group/btn">
+                        Saiba Mais <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -385,12 +509,17 @@ const HomePage = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">Por que escolher a Greenverse?</h2>
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">Por que o Ecossistema Greenverse é diferente?</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {DIFFERENTIALS.map((diff) => (
-                  <div key={diff.title} className="space-y-2">
-                    <h4 className="text-xl font-bold">{diff.title}</h4>
-                    <p className="text-primary-foreground/70 text-sm">{diff.description}</p>
+                  <div key={diff.title} className="space-y-2 group">
+                    <div className="flex items-center gap-3">
+                      <div className="bg-white/10 p-1 rounded-md group-hover:bg-primary transition-colors">
+                        <CheckCircle2 className="h-4 w-4 text-white" />
+                      </div>
+                      <h4 className="text-xl font-bold">{diff.title}</h4>
+                    </div>
+                    <p className="text-primary-foreground/70 text-sm pl-8">{diff.description}</p>
                   </div>
                 ))}
               </div>
@@ -431,6 +560,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      <AuthoritySection />
 
       {/* Blog Preview */}
       <section className="py-24">
@@ -519,8 +650,11 @@ const HomePage = () => {
                           <SelectValue placeholder="Selecione" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="licenciamento">Licenciamento</SelectItem>
+                          <SelectItem value="licenciamento">Gestão Ambiental e Soluções ESG</SelectItem>
                           <SelectItem value="residuos">Resíduos</SelectItem>
+                          <SelectItem value="construcao">Construção Civil</SelectItem>
+                          <SelectItem value="compliance">Compliance e Governança</SelectItem>
+                          <SelectItem value="facilities">Facilities e Operações</SelectItem>
                           <SelectItem value="outorgas">Outorgas</SelectItem>
                           <SelectItem value="limpeza">Limpeza e Conservação</SelectItem>
                           <SelectItem value="pragas">Controle de Pragas</SelectItem>
@@ -565,7 +699,7 @@ const HomePage = () => {
               <FileText className="h-10 w-10 text-primary" />
             </div>
             <div>
-              <h3 className="text-xl font-bold">Check-list para Licença de Operação</h3>
+              <h3 className="text-xl font-bold">Guia de Gestão Ambiental e ESG</h3>
               <p className="text-sm text-muted-foreground">Baixe gratuitamente nosso guia completo de conformidade.</p>
             </div>
           </div>
@@ -637,16 +771,122 @@ const ClientAreaPage = () => (
   </div>
 );
 
+const ServiceDetailPage = () => {
+  const { serviceId } = useParams();
+  const navigate = useNavigate();
+  const service = SERVICES.find((s) => s.id === serviceId);
+
+  if (!service) {
+    return (
+      <div className="pt-32 pb-24 min-h-screen container mx-auto px-4 text-center">
+        <h2 className="text-2xl font-bold mb-4">Serviço não encontrado</h2>
+        <Button onClick={() => navigate('/')}>Voltar para Início</Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="pt-32 pb-24 min-h-screen">
+      <div className="container mx-auto px-4">
+        <Button 
+          variant="ghost" 
+          className="mb-8 gap-2 hover:bg-primary/5 text-muted-foreground hover:text-primary transition-colors"
+          onClick={() => navigate('/')}
+        >
+          <ArrowLeft className="h-4 w-4" /> Voltar para Início
+        </Button>
+
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row items-start gap-8 mb-16">
+            <div className="bg-primary/10 p-6 rounded-2xl">
+              <service.icon className="h-12 w-12 text-primary" />
+            </div>
+            <div>
+              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20 border-none px-3 py-1">Solução Especializada</Badge>
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{service.title}</h1>
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
+                {service.description}
+              </p>
+            </div>
+          </div>
+
+          {service.details ? (
+            <div className="space-y-12">
+              <div className="bg-primary/5 rounded-3xl p-8 border border-primary/10">
+                <h3 className="text-xl font-bold mb-2 flex items-center gap-3">
+                  <FileText className="h-5 w-5 text-primary" />
+                  Escopo Detalhado do Serviço
+                </h3>
+                <p className="text-muted-foreground text-sm uppercase tracking-wider font-semibold">
+                  Lista completa de especificações técnicas
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                {service.details.map((section: any, idx: number) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.05 }}
+                    viewport={{ once: true }}
+                    className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md"
+                  >
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold">
+                        {idx + 1}
+                      </span>
+                      {section.category}
+                    </h4>
+                    <ul className="space-y-3">
+                      {section.items.map((item: string, itemIdx: number) => (
+                        <li key={itemIdx} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/40 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+              
+              <div className="mt-16 bg-foreground text-background rounded-3xl p-12 text-center">
+                <h3 className="text-3xl font-bold mb-6">Precisa de um orçamento específico?</h3>
+                <p className="text-background/70 mb-8 max-w-xl mx-auto">Nossos engenheiros e consultores estão prontos para analisar seu projeto e entregar uma proposta personalizada sob medida.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button size="lg" className="h-14 px-8 bg-primary hover:bg-primary/90 text-white" onClick={() => navigate('/#contato')}>
+                    Solicitar Proposta Agora
+                  </Button>
+                  <Button size="lg" variant="outline" className="h-14 px-8 border-white/20 bg-transparent hover:bg-white/10 text-white">
+                    Falar com Especialista
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-muted/50 rounded-3xl p-12 text-center border-2 border-dashed border-border">
+              <p className="text-muted-foreground">Conteúdo detalhado em desenvolvimento para este serviço.</p>
+              <Button variant="link" className="mt-4 text-primary" onClick={() => navigate('/')}>Consultar nossa equipe</Button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- Main App ---
 
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-background font-sans selection:bg-primary/20 selection:text-primary">
         <Navbar />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/servicos/:serviceId" element={<ServiceDetailPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/area-cliente" element={<ClientAreaPage />} />
           </Routes>

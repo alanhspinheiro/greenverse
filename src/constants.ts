@@ -1,10 +1,10 @@
-import { ShieldCheck, Leaf, Recycle, Droplets, FileText, BarChart3, Factory, Tractor, Building2, Sparkles, Bug, Sprout, Truck, Shield } from 'lucide-react';
+import { ShieldCheck, Leaf, Recycle, Droplets, FileText, BarChart3, Factory, Tractor, Building2, Sparkles, Bug, Sprout, Truck, Shield, HardHat } from 'lucide-react';
 
 export const SERVICES = [
   {
     id: 'licenciamento',
-    title: 'Licenciamento Ambiental',
-    description: 'Assessoria completa para obtenção de LP, LI e LO, garantindo conformidade com órgãos ambientais.',
+    title: 'Gestão Ambiental e Soluções ESG',
+    description: 'Consultoria estratégica para conformidade normativa e implementação de práticas ESG de alto impacto.',
     icon: ShieldCheck,
   },
   {
@@ -26,10 +26,164 @@ export const SERVICES = [
     icon: FileText,
   },
   {
+    id: 'construcao',
+    title: 'Construção Civil',
+    description: 'Suporte especializado em conformidade e gestão ambiental para canteiros de obras e empreendimentos.',
+    icon: HardHat,
+    details: [
+      {
+        category: '1. PROJETOS E ENGENHARIA',
+        items: [
+          'Projetos arquitetônicos', 'Projetos estruturais (concreto, metálica, madeira)', 'Projetos elétricos (baixa, média e alta tensão)',
+          'Projetos hidrossanitários', 'Projetos de drenagem pluvial', 'Projetos de terraplenagem', 'Projetos de fundações',
+          'Projetos de contenção (muros de arrimo, cortinas)', 'Projetos de prevenção e combate a incêndio (PPCI)', 'Projetos de SPDA (para-raios)',
+          'Projetos de climatização (HVAC)', 'Projetos de gás (GLP/GN)', 'Projetos de automação predial', 'Projetos de telecomunicações e lógica',
+          'Projetos de acessibilidade (NBR 9050)', 'Modelagem BIM (Building Information Modeling)', 'Compatibilização de projetos', 'Regularização e aprovação em órgãos públicos'
+        ]
+      },
+      {
+        category: '2. FUNDAÇÕES E INFRAESTRUTURA',
+        items: [
+          'Sondagem de solo (SPT, CPT)', 'Estaqueamento (hélice contínua, Strauss, pré-moldada)', 'Tubulões', 'Radier', 'Sapatas isoladas e corridas',
+          'Blocos de fundação', 'Execução de baldrames', 'Impermeabilização de fundações', 'Reforço de fundações'
+        ]
+      },
+      {
+        category: '3. TERRAPLENAGEM E MOVIMENTO DE TERRA',
+        items: [
+          'Limpeza de terreno', 'Supressão vegetal', 'Escavações', 'Aterros e compactação', 'Nivelamento e regularização',
+          'Corte e transporte de solo', 'Estabilização de solo', 'Drenagem superficial e profunda', 'Execução de taludes'
+        ]
+      },
+      {
+        category: '4. ESTRUTURA',
+        items: [
+          'Estrutura em concreto armado', 'Estrutura metálica', 'Estrutura pré-moldada', 'Estrutura em madeira',
+          'Lajes (maciças, nervuradas, protendidas)', 'Pilares, vigas e fundações', 'Protensão', 'Recuperação estrutural'
+        ]
+      },
+      {
+        category: '5. ALVENARIA E VEDAÇÕES',
+        items: [
+          'Alvenaria estrutural', 'Alvenaria de vedação', 'Drywall (gesso acartonado)', 'Divisórias modulares',
+          'Painéis pré-fabricados', 'Tijolos cerâmicos, blocos de concreto, AAC'
+        ]
+      },
+      {
+        category: '6. COBERTURA E TELHADOS',
+        items: [
+          'Estrutura de telhado (madeira/metálica)', 'Instalação de telhas (cerâmica, metálica, fibrocimento, sanduíche)',
+          'Calhas e rufos', 'Isolamento térmico e acústico', 'Impermeabilização de cobertura', 'Telhado verde'
+        ]
+      },
+      {
+        category: '7. INSTALAÇÕES ELÉTRICAS',
+        items: [
+          'Instalações residenciais, comerciais e industriais', 'Entrada de energia', 'Subestações', 'Quadros de distribuição',
+          'Cabeamento elétrico', 'Iluminação interna e externa', 'Sistemas de aterramento', 'SPDA (para-raios)', 'Automação elétrica'
+        ]
+      },
+      {
+        category: '8. INSTALAÇÕES HIDRÁULICAS E SANITÁRIAS',
+        items: [
+          'Água fria e quente', 'Esgoto sanitário', 'Drenagem pluvial', 'Reuso de água', 'Sistemas de bombeamento',
+          'Instalação de caixas d’água e reservatórios', 'Estações de tratamento (ETE/ETA)'
+        ]
+      },
+      {
+        category: '9. INSTALAÇÕES DE GÁS',
+        items: [ 'Rede de gás GLP/GN', 'Centrais de gás', 'Tubulações e reguladores', 'Testes de estanqueidade' ]
+      },
+      {
+        category: '10. CLIMATIZAÇÃO E VENTILAÇÃO',
+        items: [ 'Ar-condicionado (split, VRF, central)', 'Ventilação mecânica', 'Exaustão industrial', 'Pressurização de escadas', 'Qualidade do ar interno' ]
+      },
+      {
+        category: '11. ACABAMENTOS',
+        items: [
+          'Reboco e emboço', 'Gesso liso e decorativo', 'Pintura interna e externa', 'Texturas e revestimentos especiais',
+          'Pisos (cerâmica, porcelanato, madeira, vinílico, epóxi)', 'Revestimentos de paredes', 'Forros (gesso, PVC, mineral)',
+          'Rodapés e acabamentos finais'
+        ]
+      },
+      {
+        category: '12. ESQUADRIAS E VIDROS',
+        items: [ 'Portas e janelas', 'Esquadrias de alumínio, PVC e madeira', 'Vidros temperados e laminados', 'Fachadas glazing' ]
+      },
+      {
+        category: '13. URBANIZAÇÃO E OBRAS EXTERNAS',
+        items: [
+          'Pavimentação (asfalto, paver, concreto)', 'Calçadas e acessos', 'Meio-fio e sarjetas', 'Paisagismo', 'Iluminação pública',
+          'Redes externas (água, esgoto, energia)', 'Muros e cercamentos'
+        ]
+      },
+      {
+        category: '14. OBRAS INDUSTRIAIS E ESPECIAIS',
+        items: [
+          'Galpões industriais', 'Plantas industriais', 'Bases para equipamentos', 'Obras de infraestrutura pesada',
+          'Obras de saneamento', 'Barragens e contenções', 'Obras portuárias'
+        ]
+      },
+      {
+        category: '15. REFORMAS E MANUTENÇÃO',
+        items: [
+          'Reformas gerais', 'Retrofit', 'Manutenção preventiva', 'Manutenção corretiva', 'Manutenção predial',
+          'Reforço estrutural', 'Recuperação de fachadas'
+        ]
+      },
+      {
+        category: '16. SERVIÇOS TÉCNICOS E ESPECIALIZADOS',
+        items: [
+          'Perícias técnicas', 'Laudos de engenharia', 'Vistorias técnicas', 'Avaliações imobiliárias', 'Inspeções prediais',
+          'Diagnóstico estrutural', 'Ensaios tecnológicos (concreto, solo)', 'Controle de qualidade'
+        ]
+      },
+      {
+        category: '17. GESTÃO E CONSULTORIA',
+        items: [
+          'Gerenciamento de obras', 'Planejamento e cronograma (PERT/CPM)', 'Orçamentação', 'Controle de custos',
+          'Gestão de contratos', 'Gestão de riscos', 'Compliance e governança', 'Licitações'
+        ]
+      },
+      {
+        category: '18. SEGURANÇA DO TRABALHO (NRs)',
+        items: [
+          'NR-01 (Gestão de riscos)', 'NR-10 (Instalações elétricas)', 'NR-12 (Máquinas e equipamentos)', 'NR-18 (Construção civil)',
+          'NR-35 (Trabalho em altura)', 'Programas: PGR, PCMSO, LTCAT', 'Treinamentos e capacitações'
+        ]
+      },
+      {
+        category: '19. SUSTENTABILIDADE E ESG',
+        items: [
+          'Gestão de resíduos (PGRCC)', 'Licenciamento ambiental', 'Auditorias ESG', 'Construção sustentável',
+          'Certificações (LEED, AQUA)', 'Eficiência energética', 'Energia solar'
+        ]
+      },
+      {
+        category: '20. TECNOLOGIA E INOVAÇÃO',
+        items: [
+          'BIM e digital twin', 'Drones para inspeção', 'IoT em obras', 'Automação e smart buildings', 'Monitoramento remoto', 'Sistemas de gestão integrada'
+        ]
+      }
+    ]
+  },
+  {
     id: 'limpeza',
     title: 'Limpeza e Conservação',
     description: 'Serviços especializados de manutenção e conservação de ambientes corporativos e industriais.',
     icon: Sparkles,
+  },
+  {
+    id: 'compliance',
+    title: 'Compliance e Governança',
+    description: 'Estruturação de programas de integridade e governança para garantir segurança institucional.',
+    icon: Shield,
+  },
+  {
+    id: 'facilities',
+    title: 'Facilities e Operações',
+    description: 'Gestão integrada de serviços e infraestrutura para otimizar o ambiente corporativo e industrial.',
+    icon: Building2,
   },
   {
     id: 'pragas',
@@ -83,20 +237,28 @@ export const SECTORS = [
 
 export const DIFFERENTIALS = [
   {
-    title: 'Equipe Multidisciplinar',
-    description: 'Engenheiros, biólogos e advogados trabalhando em sinergia.',
+    title: 'Integração completa de serviços',
+    description: 'Centralização de todas as necessidades da sua operação em um único parceiro estratégico.',
   },
   {
-    title: 'Tecnologia GIS',
-    description: 'Mapeamento de precisão e análise de dados geoespaciais.',
+    title: 'Alta eficiência operacional',
+    description: 'Otimização de processos e gestão eficiente para reduzir custos e maximizar resultados.',
   },
   {
-    title: 'Agilidade Regulatória',
-    description: 'Experiência consolidada junto aos principais órgãos públicos.',
+    title: 'Conformidade e Redução de Riscos',
+    description: 'Segurança jurídica total com atendimento rigoroso às leis e mitigação de passivos ambientais.',
   },
   {
-    title: 'Visão ESG',
-    description: 'Alinhamento com as melhores práticas de governança e sustentabilidade.',
+    title: 'Foco estratégico em ESG',
+    description: 'Implementação de práticas ambientais, sociais e de governança para um posicionamento sustentável.',
+  },
+  {
+    title: 'Controle e Previsibilidade',
+    description: 'Maior visibilidade da operação através de relatórios inteligentes e monitoramento constante.',
+  },
+  {
+    title: 'Crescimento Estruturado e Escalável',
+    description: 'Inteligência técnica e estrutural que acompanha a evolução e expansão do seu negócio.',
   },
 ];
 
