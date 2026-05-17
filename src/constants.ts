@@ -6,12 +6,87 @@ export const SERVICES = [
     title: 'Gestão Ambiental e Soluções ESG',
     description: 'Consultoria estratégica para conformidade normativa e implementação de práticas ESG de alto impacto.',
     icon: ShieldCheck,
+    details: [
+      {
+        category: '1. GESTÃO E REGULARIZAÇÃO AMBIENTAL',
+        items: [
+          'Licenciamento ambiental (LP, LI, LO)', 'Renovação de licenças', 'Outorgas de uso de água', 'Cadastro Técnico Federal (CTF/IBAMA)',
+          'Cadastro Ambiental Rural (CAR)', 'Relatórios ambientais obrigatórios', 'Atendimento a órgãos: IBAMA, IAP, CONAMA'
+        ]
+      },
+      {
+        category: '2. ESTUDOS E LAUDOS TÉCNICOS',
+        items: [
+          'EIA/RIMA (Estudo de Impacto Ambiental)', 'PCA (Plano de Controle Ambiental)', 'PGRS (Plano de Gerenciamento de Resíduos Sólidos)',
+          'PRAD (Plano de Recuperação de Áreas Degradadas)', 'Inventário de emissões (GEE)', 'Relatório ESG corporativo', 'Due diligence ambiental'
+        ]
+      },
+      {
+        category: '3. SUSTENTABILIDADE E ESG',
+        items: [
+          'Implantação de políticas ESG', 'Inventário de carbono (GEE Protocol)', 'Certificações ambientais (ISO 14001)',
+          'Programas de sustentabilidade corporativa', 'Relatórios de sustentabilidade', 'Economia circular'
+        ]
+      },
+      {
+        category: '4. AUDITORIA E COMPLIANCE',
+        items: [
+          'Auditorias ambientais', 'Auditorias ESG', 'Programas de compliance ambiental', 'Antifraude ambiental',
+          'Gestão de riscos ambientais', 'Adequação à legislação ambiental brasileira'
+        ]
+      },
+      {
+        category: '5. RECUPERAÇÃO E MONITORAMENTO',
+        items: [
+          'Recuperação de áreas degradadas', 'Reflorestamento técnico', 'Monitoramento de fauna e flora',
+          'Controle de erosão', 'Contenção de encostas', 'Monitoramento de qualidade do ar, solo e água'
+        ]
+      },
+      {
+        category: '6. SERVIÇOS ESTRATÉGICOS DIFERENCIADOS',
+        items: [
+          'Diagnóstico Ambiental Inteligente (Varredura de riscos)', 'Sensores ambientais IoT', 'Monitoramento remoto e Dashboards',
+          'Terceirização completa do setor ambiental', 'Gestão ambiental de obras (NR-18)'
+        ]
+      },
+      {
+        category: '7. CAPTAÇÃO E APROVEITAMENTO DE ÁGUA DA CHUVA',
+        items: [
+          'Dimensionamento de sistemas pluviais (NBR 15527)', 'Tratamento de água (Filtração, UV, Cloração, Ozônio)',
+          'Uso em descargas, lavagem e irrigação', 'Reuso industrial e em torres de resfriamento',
+          'Automação e monitoramento remoto (IoT)', 'Gestão Inteligente de Recursos Hídricos'
+        ]
+      }
+    ]
   },
   {
     id: 'residuos',
     title: 'Gestão de Resíduos',
     description: 'Planos de Gerenciamento de Resíduos Sólidos (PGRS) e soluções para logística reversa.',
     icon: Recycle,
+    details: [
+      {
+        category: '1. COLETA E GERENCIAMENTO',
+        items: [
+          'Coleta de resíduos industriais, urbanos e hospitalares (RSS)', 'Coleta de resíduos perigosos (Classe I)',
+          'PGRS completo', 'Segregação e classificação (NBR 10004)', 'Transporte licenciado e rastreabilidade total'
+        ]
+      },
+      {
+        category: '2. TRATAMENTO E DESTINAÇÃO',
+        items: [
+          'Incineração e autoclavagem', 'Coprocessamento e compostagem', 'Reciclagem e economia circular',
+          'Tratamento de efluentes industriais', 'Reuso de água e estações ETE/ETA'
+        ]
+      },
+      {
+        category: '3. DOCUMENTAÇÃO E CONFORMIDADE',
+        items: [
+          'MTR (Manifesto de Transporte)', 'CADRI e inventário de resíduos', 'Certificados de destinação final',
+          'Créditos de reciclagem e valorização de resíduos'
+        ]
+      }
+    ]
   },
   {
     id: 'outorgas',
@@ -190,6 +265,29 @@ export const SERVICES = [
     title: 'Controle de Pragas',
     description: 'Monitoramento e controle integrado de pragas com foco em segurança e saúde ambiental.',
     icon: Bug,
+    details: [
+      {
+        category: '1. CONTROLE INTEGRADO (CIP)',
+        items: [
+          'Desinsetização, desratização e descupinização', 'Controle de baratas, formigas, moscas e mosquitos',
+          'Controle de escorpiões, aranhas e pombos urbanos', 'Mapeamento de infestação e Plano de Manejo (PMI)'
+        ]
+      },
+      {
+        category: '2. CONTROLE TÉCNICO INDUSTRIAL',
+        items: [
+          'Controle em indústrias alimentícias e hospitais', 'Monitoramento com armadilhas inteligentes',
+          'Controle biológico e térmico', 'Nebulização (ULV) e atomização'
+        ]
+      },
+      {
+        category: '3. NORMAS E SEGURANÇA',
+        items: [
+          'Adequação à ANVISA e auditorias sanitárias', 'Gestão de riscos (NR-01, NR-07)',
+          'Relatórios técnicos com rastreabilidade total'
+        ]
+      }
+    ]
   },
   {
     id: 'gestao-prad',
@@ -202,6 +300,84 @@ export const SERVICES = [
     title: 'Logística e Transporte',
     description: 'Soluções logísticas integradas e transporte seguro com foco em eficiência operacional.',
     icon: Truck,
+    details: [
+      {
+        category: '1. GESTÃO E OPERAÇÕES LOGÍSTICAS',
+        items: [
+          'Gestão logística', 'Gestão de transportes', 'Logística integrada', 'Logística corporativa', 'Logística industrial',
+          'Logística empresarial', 'Logística operacional', 'Logística sustentável', 'Logística reversa', 'Supply chain management',
+          'Gestão da cadeia de suprimentos', 'Planejamento logístico', 'Coordenação logística', 'Operação logística',
+          'Gestão de distribuição', 'Gestão de armazenagem', 'Gestão de estoque', 'Controle de inventário'
+        ]
+      },
+      {
+        category: '2. INFRAESTRUTURA E ARMAZENAGEM',
+        items: [
+          'Centro de distribuição (CD)', 'Operação de centros logísticos', 'Armazenagem industrial', 'Movimentação de materiais',
+          'Gestão de cargas', 'Consolidação de cargas', 'Expedição de mercadorias', 'Recebimento de mercadorias',
+          'Operação de armazéns', 'Gestão de docas', 'Gestão de pátios'
+        ]
+      },
+      {
+        category: '3. MODAIS DE TRANSPORTE',
+        items: [
+          'Transporte rodoviário', 'Transporte ferroviário', 'Transporte marítimo', 'Transporte aéreo',
+          'Transporte intermodal', 'Transporte multimodal'
+        ]
+      },
+      {
+        category: '4. TRANSPORTES ESPECIAIS E CORPORATIVOS',
+        items: [
+          'Transporte corporativo', 'Transporte de resíduos', 'Transporte de cargas perigosas', 'Transporte de produtos químicos',
+          'Transporte refrigerado', 'Transporte urbano de cargas', 'Transporte executivo', 'Mobilidade corporativa',
+          'Gestão de viagens corporativas', 'Gestão de mobilidade urbana'
+        ]
+      },
+      {
+        category: '5. GESTÃO DE FROTAS',
+        items: [
+          'Gestão de frotas', 'Rastreamento de veículos', 'Monitoramento de frota', 'Telemetria veicular', 'Gestão de manutenção de frota',
+          'Planejamento de rotas', 'Roteirização inteligente', 'Controle operacional de transportes', 'Torre de controle logística',
+          'Gestão de motoristas', 'Gestão de abastecimento', 'Controle de combustível', 'Gestão de pneus', 'Eficiência energética em frotas'
+        ]
+      },
+      {
+        category: '6. COMPLIANCE E RISCOS',
+        items: [
+          'Gestão documental de transporte', 'Gestão de contratos logísticos', 'Gestão de fornecedores logísticos', 'Auditoria logística',
+          'Compliance logístico', 'Compliance em transportes', 'Gestão de riscos logísticos', 'Gerenciamento de risco no transporte',
+          'Segurança logística', 'Segurança de cargas', 'Controle de avarias', 'Gestão de ocorrências logísticas'
+        ]
+      },
+      {
+        category: '7. COMÉRCIO EXTERIOR E ESPECIALIZADO',
+        items: [
+          'Gestão aduaneira', 'Comércio exterior', 'Importação e exportação', 'Desembaraço aduaneiro', 'Logística portuária',
+          'Logística aeroportuária', 'Logística ferroviária', 'Logística urbana', 'Last mile delivery', 'Cross docking',
+          'Milk run', 'Fulfillment', 'E-commerce logistics', 'Logística hospitalar', 'Logística farmacêutica',
+          'Logística para construção civil', 'Logística industrial integrada', 'Logística para agronegócio', 'Logística de resíduos', 'Logística de facilities'
+        ]
+      },
+      {
+        category: '8. ESTRATÉGIA E TECNOLOGIA',
+        items: [
+          'Gestão de ativos logísticos', 'Gestão de infraestrutura logística', 'Planejamento de demanda', 'S&OP (Sales and Operations Planning)',
+          'KPI logísticos', 'BI logístico', 'Analytics logístico', 'Automação logística', 'Transformação digital logística',
+          'IoT aplicado à logística', 'Inteligência artificial aplicada à logística', 'WMS (Warehouse Management System)',
+          'TMS (Transportation Management System)', 'ERP logístico', 'RFID aplicado à logística', 'Gestão de cargas especiais',
+          'Gestão de cargas excedentes', 'Gestão de cargas fracionadas', 'Gestão de encomendas corporativas', 'Planejamento estratégico logístico',
+          'Eficiência logística', 'Redução de custos logísticos', 'Sustentabilidade logística', 'ESG aplicado à logística', 'Gestão de emissões no transporte'
+        ]
+      },
+      {
+        category: '9. CONSULTORIA E GESTÃO INTEGRADA',
+        items: [
+          'Planejamento de infraestrutura de transporte', 'Consultoria logística', 'Consultoria em transportes', 'Outsourcing logístico',
+          'Operador logístico', 'Gestão integrada de operações logísticas', 'Continuidade operacional logística', 'Gestão de contingência logística',
+          'Gestão de indicadores de performance logística', 'Desenvolvimento de soluções logísticas inteligentes'
+        ]
+      }
+    ]
   },
   {
     id: 'seguranca',
@@ -237,28 +413,28 @@ export const SECTORS = [
 
 export const DIFFERENTIALS = [
   {
-    title: 'Integração completa de serviços',
-    description: 'Centralização de todas as necessidades da sua operação em um único parceiro estratégico.',
+    title: 'Foco em ESG + GEE + Compliance',
+    description: 'Atuação técnica alinhada aos mais altos padrões de sustentabilidade e conformidade normativa.',
   },
   {
-    title: 'Alta eficiência operacional',
-    description: 'Otimização de processos e gestão eficiente para reduzir custos e maximizar resultados.',
+    title: 'Sistema Antifraude e Rastreabilidade',
+    description: 'Controle total da operação com transparência e segurança jurídica em todos os processos.',
   },
   {
-    title: 'Conformidade e Redução de Riscos',
-    description: 'Segurança jurídica total com atendimento rigoroso às leis e mitigação de passivos ambientais.',
+    title: 'Atendimento a Grandes Corporações',
+    description: 'Expertise comprovada no atendimento a setores de energia, indústria de base e construção civil.',
   },
   {
-    title: 'Foco estratégico em ESG',
-    description: 'Implementação de práticas ambientais, sociais e de governança para um posicionamento sustentável.',
+    title: 'Linguagem Técnica de Engenharia',
+    description: 'Relatórios e diagnósticos com rigor acadêmico e técnico, prontos para auditorias e certificações.',
   },
   {
-    title: 'Controle e Previsibilidade',
-    description: 'Maior visibilidade da operação através de relatórios inteligentes e monitoramento constante.',
+    title: 'Padronização Legal e de Normas',
+    description: 'Segurança total com atendimento rigoroso a todas as NRs, resoluções CONAMA e legislações locais.',
   },
   {
-    title: 'Crescimento Estruturado e Escalável',
-    description: 'Inteligência técnica e estrutural que acompanha a evolução e expansão do seu negócio.',
+    title: 'Visão Estratégica e Inteligência',
+    description: 'Transformação de dados operacionais em inteligência estratégica para o crescimento do seu negócio.',
   },
 ];
 

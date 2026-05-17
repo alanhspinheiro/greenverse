@@ -1,0 +1,17 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Simplified Globe Representation -->
+  <circle cx="26" cy="30" r="18" stroke="#166534" stroke-width="2"/>
+  <path d="M12 30H40" stroke="#166534" stroke-width="1.5"/>
+  <path d="M26 12V48" stroke="#166534" stroke-width="1.5"/>
+  <ellipse cx="26" cy="30" rx="8" ry="18" stroke="#166534" stroke-width="1.5"/>
+  
+  <!-- Leaf Overlay -->
+  <path d="M38 18C38 18 42 12 48 12C48 12 50 18 46 22C42 26 38 18 38 18Z" fill="#166534"/>
+  <path d="M38 18C38 18 34 22 34 28C34 28 40 30 44 26C48 22 38 18 38 18Z" fill="#166534" opacity="0.8"/>
+  
+  <!-- Text Elements -->
+  <text x="56" y="24" fill="#6B7280" font-family="serif" font-style="italic" font-size="8">Ecossistema</text>
+  <text x="56" y="46" fill="#166534" font-family="sans-serif" font-weight="900" font-size="20">GREENVERSE</text>
+  <text x="56" y="55" fill="#6B7280" font-family="sans-serif" font-weight="700" font-size="6">ESG · FACILITIES VERDES</text>
+  <line x1="140" y1="53" x2="190" y2="53" stroke="#166534" stroke-opacity="0.3"/>
+</svg>
