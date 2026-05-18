@@ -1,4 +1,4 @@
-import { ShieldCheck, Leaf, Recycle, Droplets, FileText, BarChart3, Factory, Tractor, Building2, Sparkles, Bug, Sprout, Truck, Shield, HardHat, Briefcase, Camera, Zap, Paintbrush, Wind, RefreshCcw, Mountain, Plane } from 'lucide-react';
+import { ShieldCheck, Leaf, Recycle, Droplets, FileText, BarChart3, Factory, Tractor, Building2, Sparkles, Bug, Sprout, Truck, Shield, HardHat, Briefcase, Camera, Zap, Paintbrush, Wind, RefreshCcw, Mountain, Plane, Warehouse, Home, Users, Wrench, Construction } from 'lucide-react';
 
 export const SERVICES = [
   {
@@ -640,12 +640,180 @@ export const SERVICES = [
     title: 'Compliance e Governança',
     description: 'Estruturação de programas de integridade e governança para garantir segurança institucional.',
     icon: Shield,
+    details: [
+      {
+        category: '1. ESG (ENVIRONMENTAL, SOCIAL AND GOVERNANCE)',
+        items: [
+          '1.1 Estruturação ESG Corporativa:', 'Implantação de estratégia ESG corporativa', 'Diagnóstico de maturidade ESG', 'Definição de políticas ambientais, sociais e de governança', 'Integração ESG ao planejamento estratégico empresarial', 'Estruturação de comitês ESG',
+          '1.2 Relatórios e Indicadores ESG:', 'Elaboração de relatórios ESG (padrões GRI, SASB, IFRS S1/S2)', 'Definição de KPIs ESG corporativos', 'Monitoramento de indicadores ambientais, sociais e de governança', 'Auditoria de performance ESG', 'Relatórios para investidores e stakeholders',
+          '1.3 Gestão Ambiental ESG:', 'Gestão de resíduos sólidos e efluentes', 'Eficiência energética e hídrica', 'Controle de emissões atmosféricas', 'Licenciamento ambiental e conformidade legal', 'Programas de compensação ambiental',
+          '1.4 Pilar Social (S do ESG):', 'Programas de responsabilidade social corporativa (RSC)', 'Saúde e segurança do trabalho (SST)', 'Inclusão social e diversidade', 'Relações comunitárias e impacto social', 'Programas de capacitação e desenvolvimento humano',
+          '1.5 Pilar Governança (G do ESG):', 'Estruturação de conselhos administrativos e consultivos', 'Código de ética e conduta corporativa', 'Políticas anticorrupção e integridade', 'Transparência corporativa e prestação de contas', 'Gestão de riscos corporativos'
+        ]
+      },
+      {
+        category: '2. GOVERNANÇA CORPORATIVA',
+        items: [
+          '2.1 Estrutura de Governança:', 'Implementação de modelo de governança corporativa', 'Definição de estatutos sociais e regulamentos internos', 'Estruturação de holdings e subsidiárias', 'Organização societária e planejamento estratégico', 'Governança em empresas familiares e grandes grupos',
+          '2.2 Gestão de Riscos:', 'Mapeamento de riscos corporativos (ERM – Enterprise Risk Management)', 'Gestão de riscos operacionais, financeiros e reputacionais', 'Planos de contingência e continuidade de negócios', 'Auditoria de riscos e controles internos', 'Monitoramento contínuo de riscos estratégicos',
+          '2.3 Transparência e Controles:', 'Auditorias internas e externas', 'Compliance regulatório e normativo', 'Controles financeiros e contábeis', 'Gestão de conflitos de interesse', 'Relatórios de governança corporativa'
+        ]
+      },
+      {
+        category: '3. COMPLIANCE CORPORATIVO',
+        items: [
+          '3.1 Programas de Compliance:', 'Implantação de programa de integridade', 'Código de ética e conduta', 'Canal de denúncias e ouvidoria', 'Políticas anticorrupção (Lei Anticorrupção / FCPA / UK Bribery Act)', 'Treinamentos de compliance corporativo',
+          '3.2 Compliance Regulatório:', 'Adequação a normas nacionais e internacionais', 'Conformidade com órgãos reguladores setoriais', 'Auditoria de contratos e operações', 'Due diligence de fornecedores e parceiros', 'Gestão de licenças e autorizações',
+          '3.3 Compliance Contratual:', 'Revisão de contratos corporativos', 'Gestão de riscos contratuais', 'Padronização de cláusulas de integridade', 'Controle de obrigações contratuais', 'Monitoramento de execução contratual'
+        ]
+      },
+      {
+        category: '4. GEE (GASES DE EFEITO ESTUFA) E CARBONO',
+        items: [
+          '4.1 Inventário de Emissões:', 'Inventário de GEE (Escopos 1, 2 e 3)', 'Mapeamento de fontes emissoras', 'Quantificação de emissões de carbono equivalente (CO₂e)', 'Relatórios de emissões corporativas', 'Auditoria de dados ambientais',
+          '4.2 Gestão de Carbono:', 'Planos de descarbonização corporativa', 'Estratégias de neutralização de carbono', 'Compensação de emissões (carbon offset)', 'Créditos de carbono e mercado regulado/voluntário', 'Monitoramento contínuo de emissões',
+          '4.3 Transição Energética e Sustentável:', 'Migração para energia renovável', 'Eficiência energética industrial e corporativa', 'Redução de pegada de carbono', 'Estratégias Net Zero e Carbon Neutral', 'Integração com Mercado Livre de Energia'
+        ]
+      },
+      {
+        category: '5. SUSTENTABILIDADE CORPORATIVA',
+        items: [
+          '5.1 Estratégia de Sustentabilidade:', 'Planejamento estratégico sustentável', 'Integração da sustentabilidade ao modelo de negócio', 'Análise de ciclo de vida de produtos e serviços', 'Economia circular e reaproveitamento de recursos', 'Inovação sustentável corporativa',
+          '5.2 Gestão Ambiental:', 'Licenciamento ambiental (LP, LI, LO)', 'Gestão de resíduos sólidos (PGRS)', 'Controle de poluição e emissões', 'Recuperação de áreas degradadas (PRAD)', 'Monitoramento ambiental contínuo',
+          '5.3 Sustentabilidade Operacional:', 'Eficiência hídrica e energética', 'Redução de desperdícios operacionais', 'Cadeia de suprimentos sustentável', 'Certificações ambientais (ISO 14001, LEED, AQUA)', 'Indicadores de desempenho ambiental'
+        ]
+      },
+      {
+        category: '6. AUDITORIA E CERTIFICAÇÕES',
+        items: [
+          'Auditorias ESG e de sustentabilidade', 'Certificação de sistemas de gestão ambiental', 'Auditorias de compliance e governança', 'Certificação de carbono neutro', 'Verificação independente de relatórios ESG', 'Due diligence ambiental e social'
+        ]
+      },
+      {
+        category: '7. CONSULTORIA ESTRATÉGICA INTEGRADA',
+        items: [
+          'Estruturação ESG para grandes corporações e holdings', 'Transformação corporativa sustentável', 'Integração ESG + Governança + Compliance + Energia', 'Gestão de reputação corporativa', 'Preparação para investidores e mercado financeiro', 'Estruturação de relatórios para IPO e fusões/aquisições'
+        ]
+      },
+      {
+        category: '8. TECNOLOGIA E MONITORAMENTO ESG',
+        items: [
+          'Sistemas digitais de gestão ESG', 'Plataformas de monitoramento de carbono', 'Dashboards corporativos de sustentabilidade', 'Inteligência de dados ambientais', 'Automação de relatórios ESG', 'Integração com ERP corporativo'
+        ]
+      }
+    ]
   },
   {
     id: 'facilities',
-    title: 'Facilities e Operações',
+    title: 'Gestão Integrada de Facilities',
     description: 'Gestão integrada de serviços e infraestrutura para otimizar o ambiente corporativo e industrial.',
     icon: Building2,
+    details: [
+      {
+        category: '1. FACILITIES MANAGEMENT (GESTÃO INTEGRADA DE FACILITIES)',
+        items: [
+          '1.1 Gestão Operacional Integrada:', 'Gestão completa de facilities corporativos', 'Administração operacional de unidades empresariais', 'Coordenação de serviços terceirizados', 'Gestão de contratos operacionais', 'Planejamento e controle de operações prediais',
+          '1.2 Gestão Administrativa de Facilities:', 'Administração de infraestrutura corporativa', 'Gestão de custos operacionais', 'Controle de fornecedores e prestadores', 'Gestão documental e compliance operacional', 'Indicadores de desempenho operacional (KPIs e SLAs)'
+        ]
+      },
+      {
+        category: '2. LIMPEZA, CONSERVAÇÃO E HIGIENIZAÇÃO',
+        items: [
+          '2.1 Limpeza Corporativa:', 'Limpeza predial e corporativa', 'Limpeza industrial pesada', 'Limpeza hospitalar e sanitária', 'Limpeza pós-obra e pós-reforma', 'Limpeza técnica especializada',
+          '2.2 Higienização Técnica:', 'Sanitização de ambientes', 'Controle microbiológico ambiental', 'Higienização de áreas críticas', 'Desinfecção de ambientes corporativos', 'Limpeza de áreas alimentícias e industriais'
+        ]
+      },
+      {
+        category: '3. MANUTENÇÃO PREDIAL E INFRAESTRUTURA',
+        items: [
+          '3.1 Manutenção Civil:', 'Reparos prediais gerais', 'Pintura predial e industrial', 'Pequenas reformas e retrofit', 'Manutenção de fachadas', 'Conservação estrutural predial',
+          '3.2 Manutenção Elétrica:', 'Manutenção elétrica preventiva e corretiva', 'Instalações elétricas prediais', 'Iluminação corporativa e industrial', 'Sistemas de energia e backup', 'Painéis elétricos e automação predial',
+          '3.3 Manutenção Hidrossanitária:', 'Manutenção hidráulica predial', 'Redes de água e esgoto', 'Sistemas de bombeamento', 'Caixas d’água e reservatórios', 'Sistemas de drenagem e saneamento'
+        ]
+      },
+      {
+        category: '4. PMOC E CLIMATIZAÇÃO',
+        items: [
+          'Gestão de PMOC (Lei 13.589/2018)', 'Manutenção de sistemas HVAC', 'Instalação de ar-condicionado', 'Limpeza e higienização de dutos', 'Climatização corporativa e industrial', 'Controle de qualidade do ar interno (QAI)'
+        ]
+      },
+      {
+        category: '5. SEGURANÇA E CONTROLE DE ACESSO',
+        items: [
+          '5.1 Segurança Patrimonial:', 'Vigilância patrimonial armada e desarmada', 'Monitoramento eletrônico (CFTV)', 'Controle de acesso e portarias', 'Rondas operacionais', 'Segurança de infraestrutura crítica',
+          '5.2 Controle Operacional:', 'Portaria física e remota', 'Gestão de visitantes e prestadores', 'Controle de entrada e saída de veículos', 'Sistemas biométricos e inteligentes', 'Monitoramento centralizado'
+        ]
+      },
+      {
+        category: '6. RECEPÇÃO E APOIO ADMINISTRATIVO',
+        items: [
+          'Recepção corporativa', 'Atendimento institucional', 'Serviços administrativos terceirizados', 'Gestão documental e arquivos', 'Apoio operacional de escritório', 'Secretariado e suporte executivo'
+        ]
+      },
+      {
+        category: '7. COPA, COZINHA E ALIMENTAÇÃO',
+        items: [
+          'Serviços de copa corporativa', 'Apoio em refeitórios industriais', 'Preparação e distribuição de alimentos leves', 'Organização de áreas de alimentação', 'Higienização de cozinhas e utensílios'
+        ]
+      },
+      {
+        category: '8. JARDINAGEM, PAISAGISMO E ÁREAS VERDES',
+        items: [
+          'Jardinagem corporativa', 'Paisagismo empresarial', 'Poda e manutenção de árvores', 'Irrigação e manejo de áreas verdes', 'Conservação de parques e jardins', 'PRAD e recuperação paisagística'
+        ]
+      },
+      {
+        category: '9. GESTÃO DE RESÍDUOS E SUSTENTABILIDADE',
+        items: [
+          '9.1 Gestão de Resíduos:', 'Coleta e gerenciamento de resíduos', 'Segregação e reciclagem', 'Destinação ambientalmente correta', 'Logística reversa', 'Gestão de resíduos industriais e hospitalares',
+          '9.2 ESG e Sustentabilidade:', 'Implantação de práticas ESG', 'Redução de consumo de água e energia', 'Facilities sustentáveis', 'Eficiência operacional ambiental', 'Certificações ambientais e ISO 14001'
+        ]
+      },
+      {
+        category: '10. APOIO LOGÍSTICO E OPERACIONAL',
+        items: [
+          'Controle de almoxarifado', 'Movimentação de materiais', 'Apoio logístico interno', 'Gestão de estoques operacionais', 'Expedição e recebimento de mercadorias', 'Apoio operacional em grandes eventos e operações'
+        ]
+      },
+      {
+        category: '11. GESTÃO DE OBRAS E INFRAESTRUTURA',
+        items: [
+          'Gestão operacional de obras', 'Apoio em canteiros de obras', 'Controle de fornecedores de engenharia', 'Coordenação de manutenção de ativos', 'Facilities para obras e empreendimentos', 'Gestão de infraestrutura corporativa integrada'
+        ]
+      },
+      {
+        category: '12. TECNOLOGIA E SMART FACILITIES',
+        items: [
+          'Sistemas CAFM e IWMS', 'Automação predial (BMS)', 'Monitoramento inteligente de ativos', 'IoT aplicado a facilities', 'Controle digital de ordens de serviço', 'Dashboards operacionais em tempo real'
+        ]
+      },
+      {
+        category: '13. GESTÃO DE CONTRATOS E TERCEIRIZAÇÃO',
+        items: [
+          'Administração de contratos terceirizados', 'Gestão de SLA e desempenho operacional', 'Homologação de fornecedores', 'Gestão de equipes terceirizadas', 'Auditoria operacional de serviços', 'Compliance trabalhista e operacional'
+        ]
+      },
+      {
+        category: '14. FACILITIES PARA SEGMENTOS ESPECÍFICOS',
+        items: [
+          '14.1 Facilities Industriais:', 'Gestão de plantas industriais', 'Facilities para mineração e energia', 'Operações integradas industriais', 'Apoio técnico-operacional pesado',
+          '14.2 Facilities Hospitalares:', 'Higienização hospitalar', 'Gestão de áreas críticas', 'Operação de suporte clínico e técnico', 'Controle sanitário especializado',
+          '14.3 Facilities Corporativos:', 'Gestão de escritórios e sedes administrativas', 'Operação de coworkings e centros empresariais', 'Gestão de espaços corporativos inteligentes'
+        ]
+      },
+      {
+        category: '15. CONSULTORIA ESTRATÉGICA EM FACILITIES',
+        items: [
+          'Diagnóstico operacional corporativo', 'Reestruturação de operações de facilities', 'Otimização de custos e eficiência', 'Planejamento estratégico operacional', 'Consultoria em infraestrutura corporativa', 'Gestão integrada de grandes operações'
+        ]
+      },
+      {
+        category: '16. PERFORMANCE E GOVERNANÇA OPERACIONAL',
+        items: [
+          'Indicadores de performance operacional', 'Auditoria de facilities management', 'Gestão integrada de riscos operacionais', 'Governança operacional corporativa', 'Monitoramento de produtividade e eficiência', 'Planejamento de continuidade operacional'
+        ]
+      }
+    ]
   },
   {
     id: 'pragas',
@@ -1549,29 +1717,433 @@ export const SERVICES = [
       }
     ]
   },
+  {
+    id: 'porto-seco',
+    title: 'Gestão de Porto Seco',
+    description: 'Operações logísticas integradas em recintos alfandegados para otimização do comércio exterior.',
+    icon: Warehouse,
+    details: [
+      {
+        category: '1. ADMINISTRAÇÃO E GESTÃO ADUANEIRA',
+        items: [
+          'Gestão de porto seco', 'Administração de EADI (Estação Aduaneira do Interior)', 'Operação aduaneira', 'Gestão aduaneira', 'Gestão logística integrada', 'Gestão de armazenagem alfandegada', 'Armazenagem aduaneira', 'Controle de cargas alfandegadas', 'Gestão operacional logística'
+        ]
+      },
+      {
+        category: '2. COMPLIANCE E DOCUMENTAÇÃO',
+        items: [
+          'Compliance aduaneiro', 'Compliance regulatório aduaneiro', 'Gestão documental aduaneira', 'Controle documental de cargas', 'Auditoria aduaneira', 'Auditoria logística', 'Gestão de licenças e autorizações'
+        ]
+      },
+      {
+        category: '3. INSPEÇÃO E CONTROLE OPERACIONAL',
+        items: [
+          'Conferência aduaneira', 'Inspeção de cargas', 'Gestão de pátio alfandegado', 'Gestão de terminais logísticos', 'Operação de centros logísticos alfandegados', 'Gestão de operações portuárias secas', 'Gestão de docas', 'Gestão de fluxo operacional'
+        ]
+      },
+      {
+        category: '4. TRANSPORTE E LOGÍSTICA ADUANEIRA',
+        items: [
+          'Gestão de transporte aduaneiro', 'Transporte de cargas alfandegadas', 'Gestão de trânsito aduaneiro', 'Consolidação e desconsolidação de cargas', 'Cross docking aduaneiro'
+        ]
+      },
+      {
+        category: '5. ESTOQUE E MONITORAMENTO',
+        items: [
+          'Controle de estoque alfandegado', 'Inventário aduaneiro', 'Rastreamento de cargas', 'Monitoramento logístico'
+        ]
+      },
+      {
+        category: '6. SEGURANÇA E RISCO',
+        items: [
+          'Gestão de riscos aduaneiros', 'Gestão de segurança patrimonial', 'Segurança de cargas', 'Segurança portuária e aduaneira', 'Controle de acesso alfandegado', 'Monitoramento eletrônico', 'CFTV', 'Segurança integrada de instalações alfandegadas'
+        ]
+      },
+      {
+        category: '7. REGIMES ESPECIAIS E TRIBUTAÇÃO',
+        items: [
+          'Gestão tributária aduaneira', 'Regimes aduaneiros especiais', 'Drawback', 'Entreposto aduaneiro', 'Admissão temporária', 'Exportação temporária', 'Classificação fiscal de mercadorias', 'Gestão de NCM', 'Gestão de impostos de importação e exportação'
+        ]
+      },
+      {
+        category: '8. CARGAS ESPECIAIS E OPERAÇÕES',
+        items: [
+          'Gestão de importação e exportação', 'Desembaraço aduaneiro', 'Gestão de cargas especiais', 'Gestão de cargas perigosas', 'Gestão de cargas refrigeradas', 'Gestão de contêineres'
+        ]
+      },
+      {
+        category: '9. TECNOLOGIA E TRANSFORMAÇÃO DIGITAL',
+        items: [
+          'KPI logísticos e aduaneiros', 'BI logístico', 'Analytics logístico', 'WMS (Warehouse Management System)', 'TMS (Transportation Management System)', 'ERP logístico', 'Automação logística', 'Transformação digital logística', 'IoT aplicado à logística alfandegada', 'Inteligência artificial aplicada à logística', 'Operação inteligente de porto seco', 'Smart logistics operations'
+        ]
+      },
+      {
+        category: '10. CONFORMIDADE E RELAÇÕES INSTITUCIONAIS',
+        items: [
+          'Gestão de compliance fiscal', 'Gestão de conformidade regulatória', 'Gestão de obrigações legais aduaneiras', 'Interface com Receita Federal', 'Interface com órgãos anuentes'
+        ]
+      },
+      {
+        category: '11. CONTINGÊNCIA E SINISTROS',
+        items: [
+          'Gestão de armazenagem temporária', 'Gestão de cargas retidas', 'Gestão de cargas em perdimento', 'Gestão de avarias e sinistros', 'Gestão de ocorrências logísticas', 'Gestão de seguros logísticos', 'Gestão de continuidade operacional', 'Plano de contingência logística'
+        ]
+      },
+      {
+        category: '12. SUSTENTABILIDADE E ESTRATÉGIA',
+        items: [
+          'Gestão ambiental em porto seco', 'Gestão de resíduos operacionais', 'Sustentabilidade logística', 'ESG aplicado à logística aduaneira', 'Eficiência operacional logística', 'Planejamento estratégico logístico', 'Desenvolvimento de infraestrutura logística', 'Planejamento de expansão operacional aduaneira', 'Gestão estratégica de operações logísticas e alfandegárias', 'Planejamento operacional aduaneiro'
+        ]
+      },
+      {
+        category: '13. CONSULTORIA E GESTÃO PATRIMONIAL',
+        items: [
+          'Operador logístico alfandegado', 'Outsourcing logístico aduaneiro', 'Consultoria em porto seco', 'Consultoria aduaneira', 'Consultoria logística integrada', 'Gestão integrada de operações alfandegadas', 'Coordenação multisserviços logísticos', 'Gestão patrimonial de áreas alfandegadas', 'Gestão de ativos logísticos', 'Gestão de facilities logísticos', 'Gestão de contratos logísticos', 'Gestão de fornecedores logísticos'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'paisagismo',
+    title: 'Paisagismo, Jardinagem e PRAD',
+    description: 'Projetos e execução de paisagismo, manutenção de jardins e recuperação de áreas degradadas (PRAD).',
+    icon: Sprout,
+    details: [
+      {
+        category: '1. PAISAGISMO (PROJETO E EXECUÇÃO)',
+        items: [
+          '1.1 Paisagismo Urbano e Corporativo:', 'Projetos paisagísticos para áreas urbanas', 'Paisagismo de condomínios residenciais e comerciais', 'Paisagismo para shoppings, hotéis e empresas', 'Integração paisagística em empreendimentos imobiliários', 'Requalificação estética de áreas externas',
+          '1.2 Paisagismo Residencial:', 'Projetos de jardins residenciais', 'Criação de áreas verdes e jardins temáticos', 'Implantação de jardins verticais e telhados verdes', 'Espaços de lazer e convivência ao ar livre', 'Ornamentação de áreas externas',
+          '1.3 Paisagismo Industrial e Infraestrutura:', 'Paisagismo em áreas industriais', 'Barreiras verdes e cinturões ecológicos', 'Recuperação paisagística de áreas operacionais', 'Integração verde em rodovias, portos e aeroportos', 'Mitigação de impacto ambiental visual'
+        ]
+      },
+      {
+        category: '2. JARDINAGEM (EXECUÇÃO E MANUTENÇÃO)',
+        items: [
+          '2.1 Implantação de Jardins:', 'Plantio de árvores, arbustos e gramados', 'Preparação e correção de solo para plantio', 'Instalação de sistemas de irrigação automatizada', 'Criação de jardins ornamentais e funcionais', 'Plantio de espécies nativas e exóticas',
+          '2.2 Manutenção de Áreas Verdes:', 'Poda de árvores e arbustos', 'Corte e manutenção de gramados', 'Adubação e controle fitossanitário', 'Replantio e substituição de espécies', 'Limpeza e conservação de áreas verdes',
+          '2.3 Jardinagem Técnica:', 'Controle de pragas e doenças em plantas', 'Manejo de vegetação urbana', 'Arborização de vias públicas', 'Tratamento de solos degradados', 'Gestão de áreas verdes institucionais'
+        ]
+      },
+      {
+        category: '3. PRAD (PLANO DE RECUPERAÇÃO DE ÁREAS DEGRADADAS)',
+        items: [
+          '3.1 Diagnóstico Ambiental:', 'Avaliação de áreas degradadas', 'Identificação de impactos ambientais', 'Estudos de solo e vegetação', 'Mapeamento de erosão e assoreamento', 'Análise de recuperação ecológica',
+          '3.2 Recuperação Ambiental:', 'Reflorestamento de áreas degradadas', 'Reintrodução de espécies nativas', 'Estabilização de solos erodidos', 'Controle de processos erosivos', 'Recuperação de matas ciliares',
+          '3.3 Reabilitação de Áreas Impactadas:', 'Recuperação de áreas de mineração', 'Recuperação de áreas industriais desativadas', 'Recuperação de margens de rios e encostas', 'Recuperação de áreas de obras civis', 'Recuperação de áreas de disposição de resíduos',
+          '3.4 Monitoramento Ambiental:', 'Monitoramento da regeneração vegetal', 'Indicadores de recuperação ambiental', 'Controle de biodiversidade local', 'Relatórios ambientais periódicos', 'Adequação a órgãos ambientais'
+        ]
+      },
+      {
+        category: '4. ARBORIZAÇÃO URBANA E FLORESTAMENTO',
+        items: [
+          'Planejamento de arborização urbana', 'Plantio e manejo de árvores em vias públicas', 'Inventário arbóreo urbano', 'Substituição de árvores em risco', 'Criação de corredores ecológicos urbanos', 'Reflorestamento urbano e periurbano'
+        ]
+      },
+      {
+        category: '5. SISTEMAS DE IRRIGAÇÃO E TECNOLOGIA VERDE',
+        items: [
+          'Instalação de sistemas de irrigação automatizada', 'Irrigação por gotejamento e aspersão', 'Sistemas inteligentes de controle hídrico', 'Eficiência hídrica em áreas verdes', 'Monitoramento remoto de irrigação', 'Reuso de água para irrigação'
+        ]
+      },
+      {
+        category: '6. ENGENHARIA PAISAGÍSTICA E AMBIENTAL',
+        items: [
+          'Projetos integrados de paisagismo e urbanismo', 'Compatibilização com obras civis e infraestrutura', 'Modelagem de espaços verdes urbanos', 'Planejamento ambiental de empreendimentos', 'Integração com drenagem e urbanização'
+        ]
+      },
+      {
+        category: '7. RECUPERAÇÃO ECOLÓGICA E CONSERVAÇÃO',
+        items: [
+          'Recuperação de ecossistemas naturais', 'Conservação de áreas de preservação permanente (APP)', 'Recuperação de nascentes e cursos d’água', 'Controle de espécies invasoras', 'Restauração ecológica de longo prazo'
+        ]
+      },
+      {
+        category: '8. SUSTENTABILIDADE E INFRAESTRUTURA VERDE',
+        items: [
+          'Criação de áreas verdes sustentáveis', 'Jardins filtrantes e biorretenção', 'Telhados verdes e paredes vivas', 'Soluções baseadas na natureza (SbN)', 'Redução de ilhas de calor urbanas', 'Certificações ambientais (LEED, AQUA)'
+        ]
+      },
+      {
+        category: '9. MANEJO AMBIENTAL E SERVIÇOS CORRELATOS',
+        items: [
+          'Supressão vegetal controlada com licenciamento', 'Remoção e destinação de resíduos verdes', 'Compostagem de resíduos orgânicos', 'Controle de erosão e drenagem natural', 'Limpeza de áreas verdes degradadas'
+        ]
+      },
+      {
+        category: '10. CONSULTORIA E GESTÃO AMBIENTAL VERDE',
+        items: [
+          'Planos de gestão de áreas verdes corporativas', 'Auditoria ambiental de paisagismo', 'Licenciamento ambiental para intervenções vegetais', 'Planejamento de sustentabilidade urbana', 'Integração ESG com áreas verdes', 'Gestão de projetos de compensação ambiental'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'gestao-imobiliaria',
+    title: 'Gestão Imobiliária',
+    description: 'Soluções completas para gestão, regularização e valorização de ativos imobiliários.',
+    icon: Home,
+    details: [
+      {
+        category: '1. GESTÃO IMOBILIÁRIA (ASSET MANAGEMENT IMOBILIÁRIO)',
+        items: [
+          '1.1 Administração de Imóveis:', 'Gestão de imóveis residenciais, comerciais e industriais', 'Administração de locações (locação tradicional e corporativa)', 'Gestão de contratos de aluguel', 'Controle de inadimplência e cobrança', 'Gestão de manutenção e conservação de imóveis',
+          '1.2 Gestão Patrimonial Imobiliária:', 'Administração de carteiras imobiliárias (portfólio de ativos)', 'Otimização de rentabilidade de imóveis', 'Avaliação de desempenho de ativos imobiliários', 'Planejamento de valorização imobiliária', 'Gestão de holdings patrimoniais'
+        ]
+      },
+      {
+        category: '2. COMPRA, VENDA E INTERMEDIAÇÃO DE IMÓVEIS',
+        items: [
+          '2.1 Comercialização Imobiliária:', 'Intermediação na compra e venda de imóveis', 'Venda de imóveis residenciais', 'Venda de imóveis comerciais', 'Venda de imóveis industriais e logísticos', 'Venda de terrenos urbanos e rurais',
+          '2.2 Prospecção e Captação:', 'Captação de imóveis para venda e locação', 'Avaliação de mercado imobiliário', 'Estudo de viabilidade de venda', 'Precificação estratégica de imóveis', 'Marketing imobiliário e divulgação'
+        ]
+      },
+      {
+        category: '3. INCORPORAÇÃO E DESENVOLVIMENTO IMOBILIÁRIO',
+        items: [
+          '3.1 Incorporação Imobiliária:', 'Desenvolvimento de empreendimentos residenciais', 'Desenvolvimento de empreendimentos comerciais', 'Planejamento de loteamentos e condomínios', 'Estruturação de projetos imobiliários', 'Gestão de viabilidade técnica e econômica',
+          '3.2 Desenvolvimento de Projetos:', 'Estudos urbanísticos e arquitetônicos', 'Coordenação de projetos de engenharia', 'Aprovação em órgãos públicos', 'Regularização de empreendimentos', 'Planejamento de obras imobiliárias'
+        ]
+      },
+      {
+        category: '4. LOCAÇÃO E ADMINISTRAÇÃO DE ALUGUÉIS',
+        items: [
+          'Locação residencial e comercial', 'Locação de imóveis industriais e galpões', 'Gestão de contratos de locação', 'Renovação e reajuste contratual', 'Garantias locatícias (fiador, seguro-fiança, caução)', 'Administração de condomínios alugados'
+        ]
+      },
+      {
+        category: '5. AVALIAÇÃO E CONSULTORIA IMOBILIÁRIA',
+        items: [
+          'Avaliação mercadológica de imóveis (laudos técnicos)', 'Avaliação para compra, venda e locação', 'Análise de valorização imobiliária', 'Due diligence imobiliária', 'Consultoria em investimentos imobiliários', 'Análise de viabilidade de empreendimentos'
+        ]
+      },
+      {
+        category: '6. GESTÃO DE CONDOMÍNIOS',
+        items: [
+          '6.1 Administração Condominial:', 'Gestão financeira de condomínios', 'Controle de taxas condominiais', 'Prestação de contas condominial', 'Gestão de fornecedores e contratos', 'Organização de assembleias',
+          '6.2 Operação Condominial:', 'Manutenção predial', 'Segurança e portaria', 'Limpeza e conservação', 'Gestão de facilities', 'Controle de áreas comuns'
+        ]
+      },
+      {
+        category: '7. REGULARIZAÇÃO E DOCUMENTAÇÃO IMOBILIÁRIA',
+        items: [
+          'Regularização de imóveis urbanos e rurais', 'Averbação e escrituração imobiliária', 'Registro de imóveis em cartório', 'Legalização de construções', 'Desmembramento e unificação de terrenos', 'Certidões e documentação imobiliária'
+        ]
+      },
+      {
+        category: '8. MARKETING IMOBILIÁRIO E VENDAS',
+        items: [
+          'Estratégias de venda de imóveis', 'Marketing digital imobiliário', 'Captação de leads imobiliários', 'Produção de material publicitário', 'Tour virtual e imagens aéreas (drone)', 'Gestão de funil de vendas imobiliário'
+        ]
+      },
+      {
+        category: '9. INVESTIMENTOS IMOBILIÁRIOS',
+        items: [
+          'Estruturação de portfólios imobiliários', 'Fundos imobiliários (FIIs – estrutura consultiva)', 'Análise de retorno sobre investimento (ROI)', 'Compra estratégica para valorização', 'Desenvolvimento de ativos de renda', 'Gestão de patrimônio imobiliário corporativo'
+        ]
+      },
+      {
+        category: '10. ENGENHARIA E APOIO TÉCNICO IMOBILIÁRIO',
+        items: [
+          'Avaliação estrutural de imóveis', 'Inspeção predial e laudos técnicos', 'Vistorias de entrada e saída de imóveis', 'Compatibilização de projetos arquitetônicos', 'Reformas e retrofit imobiliário', 'Gestão de obras vinculadas a imóveis'
+        ]
+      },
+      {
+        category: '11. TECNOLOGIA IMOBILIÁRIA (PROPTECH)',
+        items: [
+          'Sistemas de gestão imobiliária (CRM imobiliário)', 'Plataformas digitais de venda de imóveis', 'Assinatura eletrônica de contratos', 'Visitas virtuais e realidade aumentada', 'Big data imobiliário e precificação inteligente', 'Automação de gestão de imóveis'
+        ]
+      },
+      {
+        category: '12. SUSTENTABILIDADE IMOBILIÁRIA',
+        items: [
+          'Imóveis sustentáveis e verdes', 'Certificações ambientais (LEED, AQUA)', 'Eficiência energética em edificações', 'Gestão de resíduos em empreendimentos', 'Construção sustentável aplicada ao mercado imobiliário', 'Valorização de imóveis sustentáveis'
+        ]
+      },
+      {
+        category: '13. CONSULTORIA ESTRATÉGICA IMOBILIÁRIA',
+        items: [
+          'Estruturação de empresas imobiliárias', 'Planejamento de expansão imobiliária', 'Reestruturação de carteiras de imóveis', 'Estratégia de investimento e desinvestimento', 'Consultoria para incorporadoras e holdings', 'Gestão de grandes portfólios imobiliários'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'servicos-gerais',
+    title: 'Serviços Gerais Terceirizados',
+    description: 'Soluções em mão de obra especializada para suporte operacional e administrativo.',
+    icon: Users,
+    details: [
+      {
+        category: '1. SERVIÇOS GERAIS TERCEIRIZADOS (FACILITIES MANAGEMENT)',
+        items: [
+          '1.1 Limpeza e Conservação:', 'Limpeza predial corporativa', 'Limpeza industrial pesada', 'Limpeza hospitalar e clínica (sanitária)', 'Limpeza pós-obra e pós-reforma', 'Limpeza de fachadas e vidros em altura', 'Conservação contínua de ambientes internos e externos',
+          '1.2 Higienização Técnica:', 'Higienização de ambientes críticos', 'Sanitização de áreas corporativas', 'Desinfecção de superfícies e ambientes', 'Controle microbiológico ambiental', 'Limpeza de áreas alimentícias (conformidade ANVISA)'
+        ]
+      },
+      {
+        category: '2. PORTARIA E CONTROLE DE ACESSO',
+        items: [
+          'Portaria presencial 24h', 'Portaria remota e virtual', 'Controle de entrada e saída de pessoas', 'Controle de veículos e cargas', 'Cadastro de visitantes e prestadores', 'Monitoramento de fluxo de acesso'
+        ]
+      },
+      {
+        category: '3. RECEPÇÃO E ATENDIMENTO CORPORATIVO',
+        items: [
+          'Recepção administrativa e institucional', 'Atendimento ao público em empresas', 'Apoio administrativo em portarias e escritórios', 'Triagem de visitantes e correspondências', 'Gestão de agendamentos e fluxo interno'
+        ]
+      },
+      {
+        category: '4. COPA, COZINHA E APOIO OPERACIONAL',
+        items: [
+          'Serviços de copa corporativa', 'Preparação e distribuição de café e refeições leves', 'Apoio em eventos internos', 'Organização de áreas de alimentação', 'Higienização de utensílios e áreas de apoio'
+        ]
+      },
+      {
+        category: '5. JARDINAGEM E ÁREAS VERDES',
+        items: [
+          'Manutenção de jardins corporativos', 'Corte de grama e poda de árvores', 'Paisagismo de áreas externas', 'Irrigação e conservação de plantas', 'Limpeza de áreas verdes e pátios', 'Controle básico de pragas vegetais'
+        ]
+      },
+      {
+        category: '6. MANUTENÇÃO PREDIAL BÁSICA',
+        items: [
+          'Pequenos reparos elétricos', 'Pequenos reparos hidráulicos', 'Manutenção civil leve', 'Pintura de manutenção', 'Substituição de peças e componentes simples', 'Conservação de instalações prediais'
+        ]
+      },
+      {
+        category: '7. APOIO LOGÍSTICO E OPERACIONAL',
+        items: [
+          'Movimentação interna de materiais', 'Carga e descarga de mercadorias', 'Organização de almoxarifados', 'Apoio em expedição e recebimento', 'Controle básico de estoque operacional'
+        ]
+      },
+      {
+        category: '8. SERVIÇOS DE APOIO ADMINISTRATIVO',
+        items: [
+          'Digitação e suporte administrativo', 'Arquivamento físico e digital', 'Organização documental', 'Apoio em rotinas administrativas', 'Controle de planilhas e registros internos'
+        ]
+      },
+      {
+        category: '9. LIMPEZA TÉCNICA ESPECIALIZADA',
+        items: [
+          'Limpeza de dutos de ar-condicionado (PMOC)', 'Limpeza de caixas d’água e reservatórios', 'Limpeza industrial pesada', 'Limpeza de áreas contaminadas', 'Limpeza de equipamentos e maquinários', 'Desengraxe e desinfecção técnica'
+        ]
+      },
+      {
+        category: '10. SERVIÇOS DE APOIO EM OBRAS',
+        items: [
+          'Apoio operacional em canteiros de obras', 'Limpeza de obra e organization de materiais', 'Apoio logístico para engenharia e construção', 'Controle de acesso de trabalhadores', 'Apoio à segurança operacional de obra'
+        ]
+      },
+      {
+        category: '11. SERVIÇOS DE SEGURANÇA DE APOIO (NÃO ARMADA)',
+        items: [
+          'Rondas de apoio operacional', 'Controle de acesso básico', 'Monitoramento visual de áreas', 'Apoio à segurança patrimonial', 'Comunicação com equipes de segurança principal'
+        ]
+      },
+      {
+        category: '12. SERVIÇOS DE MANUTENÇÃO E FACILITIES INTEGRADOS',
+        items: [
+          'Gestão integrada de facilities (FM)', 'Planejamento de manutenção predial', 'Coordenação de serviços terceirizados', 'Controle de qualidade operacional', 'Gestão de contratos de facilities', 'Otimização de custos operacionais'
+        ]
+      },
+      {
+        category: '13. SERVIÇOS DE HIGIENE E SAÚDE AMBIENTAL',
+        items: [
+          'Higienização de ambientes corporativos', 'Controle sanitário de áreas comuns', 'Apoio em biossegurança', 'Desinfecção preventiva de ambientes', 'Conformidade com normas sanitárias'
+        ]
+      },
+      {
+        category: '14. TERCEIRIZAÇÃO DE MÃO DE OBRA ESPECIALIZADA',
+        items: [
+          'Alocação de profissionais operacionais', 'Terceirização de equipes de facilities', 'Fornecimento de mão de obra contínua', 'Gestão de equipes multi-serviços', 'Substituição e cobertura de postos de trabalho', 'Treinamento e padronização de equipes'
+        ]
+      },
+      {
+        category: '15. QUALIDADE, CERTIFICAÇÃO E HOMOLOGAÇÃO',
+        items: [
+          'Certificação de processos operacionais', 'Padronização de serviços terceirizados', 'Auditoria de qualidade em facilities', 'Conformidade com normas trabalhistas e técnicas', 'Homologação de fornecedores e prestadores', 'Indicadores de desempenho (SLAs e KPIs)'
+        ]
+      },
+      {
+        category: '16. TECNOLOGIA APLICADA A SERVIÇOS GERAIS',
+        items: [
+          'Sistemas de gestão de facilities (CAFM)', 'Controle digital de ordens de serviço', 'Monitoramento de equipes em tempo real', 'Aplicativos de gestão operacional', 'Automação de tarefas administrativas', 'Relatórios digitais de desempenho'
+        ]
+      },
+      {
+        category: '17. SUSTENTABILIDADE EM SERVIÇOS GERAIS',
+        items: [
+          'Limpeza ecológica (produtos biodegradáveis)', 'Redução de consumo de água e energia', 'Gestão sustentável de resíduos operacionais', 'Práticas ESG em facilities', 'Eficiência operacional sustentável', 'Certificações ambientais aplicadas a serviços gerais'
+        ]
+      }
+    ]
+  },
 ];
 
 export const SECTORS = [
   {
-    id: 'industria',
-    title: 'Indústria',
-    description: 'Soluções para o setor fabril, focadas em continuidade operacional e redução de riscos.',
-    icon: Factory,
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
+    id: 'infraestrutura',
+    title: 'Infraestrutura',
+    description: 'Gestão e operação de grandes projetos de infraestrutura urbana e industrial.',
+    icon: Construction,
+    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800',
   },
   {
-    id: 'agro',
-    title: 'Agronegócio',
-    description: 'Regularização de propriedades rurais, CAR e gestão sustentável da produção.',
-    icon: Tractor,
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=800',
+    id: 'engenharia',
+    title: 'Engenharia',
+    description: 'Soluções técnicas de engenharia civil, elétrica e ambiental para diversos segmentos.',
+    icon: HardHat,
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800',
   },
   {
-    id: 'imobiliario',
-    title: 'Imobiliário',
-    description: 'Licenciamento para loteamentos e construções civis com agilidade e segurança.',
+    id: 'facilities',
+    title: 'Facilities',
+    description: 'Gestão completa de serviços e manutenção para ambientes corporativos e industriais.',
     icon: Building2,
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'energia',
+    title: 'Energia',
+    description: 'Eficiência energética e gestão de ativos para o setor de energia e utilities.',
+    icon: Zap,
+    image: 'https://images.unsplash.com/photo-1466611653911-95281773ad92?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'logistica',
+    title: 'Logística',
+    description: 'Soluções integradas para armanezamento, movimentação e distribuição de materiais.',
+    icon: Truck,
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'seguranca',
+    title: 'Segurança',
+    description: 'Monitoramento e controle de acesso para garantir a integridade de ativos e pessoas.',
+    icon: Shield,
+    image: 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'manutencao',
+    title: 'Manutenção',
+    description: 'Programas de manutenção preventiva e corretiva de alta performance operacional.',
+    icon: Wrench,
+    image: 'https://images.unsplash.com/photo-1530124560676-43699b61f748?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'consultoria',
+    title: 'Consultoria',
+    description: 'Assessoria estratégica em ESG, compliance e processos administrativos complexos.',
+    icon: Briefcase,
+    image: 'https://images.unsplash.com/photo-1454165833014-ef84242106e0?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'gestao',
+    title: 'Gestão',
+    description: 'Inteligência de dados e gestão executiva para otimização de resultados empresariais.',
+    icon: BarChart3,
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
   },
 ];
 

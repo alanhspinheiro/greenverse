@@ -265,74 +265,30 @@ const HomePage = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000" 
-            alt="Nature" 
-            className="w-full h-full object-cover opacity-20"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
-        </div>
-
+      <section className="relative min-h-[80vh] flex items-center pt-20 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col items-center justify-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl"
+              className="max-w-4xl text-center"
             >
-              <Badge variant="outline" className="mb-6 border-primary text-primary px-4 py-1">
-                Líder em Consultoria Ambiental
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6 leading-[1.1]">
-                Transforme sua operação em um modelo de eficiência, <span className="text-primary">sustentabilidade</span> e alta performance.
+              <h1 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6 leading-[1.1]">
+                Um ecossistema. Múltiplos serviços. Gestão Inteligente. <span className="text-primary">Operações Integradas</span>.
               </h1>
-              <p className="text-lg text-muted-foreground mb-10 max-w-2xl leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
                 O Ecossistema Greenverse integra soluções estratégicas para empresas que não querem apenas operar — querem crescer com inteligência, conformidade e excelência.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="h-14 px-8 text-lg gap-2">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button size="lg" className="h-14 px-10 text-lg gap-2">
                   Solicitar Diagnóstico Gratuito
                   <ArrowRight className="h-5 w-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="h-14 px-8 text-lg">
+                <Button size="lg" variant="outline" className="h-14 px-10 text-lg">
                   Conhecer Nossos Serviços
                 </Button>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group">
-                <img 
-                  src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=1200&auto=format&fit=crop" 
-                  alt="Sustentabilidade e Mundo Verde" 
-                  className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
-                  <div className="flex items-center gap-4 text-white">
-                    <div className="p-2 bg-primary rounded-lg">
-                      <Leaf className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold uppercase tracking-wider">Impacto Positivo</p>
-                      <p className="text-xs opacity-80">Operações que respeitam o planeta</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Decorative Blur Backgrounds */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-[80px] -z-10" />
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#A2B568]/20 rounded-full blur-[80px] -z-10" />
             </motion.div>
           </div>
         </div>
@@ -456,23 +412,25 @@ const HomePage = () => {
             </div>
             <Button variant="outline">Ver Todos os Setores</Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {SECTORS.map((sector) => (
-              <div key={sector.id} className="group relative overflow-hidden rounded-2xl aspect-[4/5]">
+              <div key={sector.id} className="group relative overflow-hidden rounded-xl aspect-[4/5] md:aspect-square shadow-sm">
                 <img 
                   src={sector.image} 
                   alt={sector.title} 
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <div className="bg-primary/20 backdrop-blur-sm w-10 h-10 rounded-lg flex items-center justify-center mb-4">
-                    <sector.icon className="h-5 w-5 text-white" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <div className="bg-primary/30 backdrop-blur-sm w-8 h-8 rounded-lg flex items-center justify-center mb-2">
+                    <sector.icon className="h-4 w-4 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{sector.title}</h3>
-                  <p className="text-white/70 text-sm mb-6">{sector.description}</p>
-                  <Button variant="secondary" size="sm" className="w-full">Falar com Especialista</Button>
+                  <h3 className="text-sm md:text-base font-bold text-white mb-1">{sector.title}</h3>
+                  <p className="text-white/70 text-[10px] md:text-xs line-clamp-2 mb-2 group-hover:line-clamp-none transition-all">
+                    {sector.description}
+                  </p>
+                  <Button variant="secondary" size="sm" className="w-full h-8 text-[10px] md:text-xs px-2">Especialista</Button>
                 </div>
               </div>
             ))}
