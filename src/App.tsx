@@ -84,9 +84,6 @@ const Navbar = () => {
               Área do Cliente
             </Button>
           </Link>
-          <Button size="sm" className="bg-primary hover:bg-primary/90">
-            Diagnóstico Gratuito
-          </Button>
         </div>
 
         {/* Mobile Nav */}
@@ -105,7 +102,6 @@ const Navbar = () => {
                 <Link to="/area-cliente" className="text-lg font-semibold hover:text-primary transition-colors">
                   Área do Cliente
                 </Link>
-                <Button className="w-full">Diagnóstico Gratuito</Button>
               </div>
             </SheetContent>
           </Sheet>
@@ -117,7 +113,7 @@ const Navbar = () => {
 
 const WhatsAppButton = () => (
   <a 
-    href="https://wa.me/5500000000000" 
+    href="https://wa.me/554899303323" 
     target="_blank" 
     rel="noreferrer"
     className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform flex items-center justify-center"
@@ -154,9 +150,9 @@ const Footer = () => (
         <div>
           <h4 className="font-bold mb-6">Contato</h4>
           <ul className="space-y-3 text-sm text-background/60">
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> (48) 99930-3323</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> (48) 9930-3323</li>
             <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> contato@greenverse.com.br</li>
-            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Florianópolis, SC</li>
+            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Palhoça, SC</li>
           </ul>
         </div>
         <div>
@@ -281,11 +277,7 @@ const HomePage = () => {
                 O Ecossistema Greenverse integra soluções estratégicas para empresas que não querem apenas operar — querem crescer com inteligência, conformidade e excelência.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="h-14 px-10 text-lg gap-2">
-                  Solicitar Diagnóstico Gratuito
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
-                <Button size="lg" variant="outline" className="h-14 px-10 text-lg">
+                <Button size="lg" className="h-14 px-10 text-lg bg-primary hover:bg-primary/90 text-primary-foreground">
                   Conhecer Nossos Serviços
                 </Button>
               </div>
@@ -338,13 +330,62 @@ const HomePage = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-tr from-green-900 via-green-600 to-green-400 p-4 flex items-center justify-center border border-primary/20 group relative">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] opacity-30 from-white/20" />
                 <img 
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Escritório Greenverse" 
-                  className="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=1200" 
+                  alt="Mapa de Integração Nacional Greenverse" 
+                  className="w-full h-full object-cover rounded-2xl mix-blend-luminosity opacity-40 group-hover:opacity-60 transition-all duration-700 brightness-110 contrast-125"
                   referrerPolicy="no-referrer"
                 />
+                
+                {/* Simulated Integration Points */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {[
+                    { top: '25%', left: '35%' }, 
+                    { top: '35%', left: '60%' },
+                    { top: '40%', left: '45%' },
+                    { top: '55%', left: '25%' },
+                    { top: '50%', left: '75%' },
+                    { top: '65%', left: '40%' },
+                    { top: '80%', left: '50%' },
+                    { top: '15%', left: '40%' },
+                    { top: '45%', left: '85%' },
+                    { top: '70%', left: '65%' },
+                  ].map((pos, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2.5 h-2.5 bg-emerald-300 rounded-full shadow-[0_0_15px_rgba(110,231,183,0.8)]"
+                      style={pos}
+                      animate={{
+                        scale: [1, 1.8, 1],
+                        opacity: [0.7, 1, 0.7],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: i * 0.3,
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-75" />
+                      <div className="absolute inset-0 bg-white blur-[2px] opacity-40 rounded-full" />
+                    </motion.div>
+                  ))}
+                  
+                  {/* Connection Lines (SVG) */}
+                  <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 100 100">
+                    <motion.path
+                      d="M35 25 L45 40 L60 35 L75 50 L85 45 L65 70 L50 80 L40 65 L25 55 Z M45 40 L40 15 L35 25 M60 35 L40 15"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="0.3"
+                      className="text-emerald-300"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 1 }}
+                      transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                  </svg>
+                </div>
               </div>
               <div className="absolute -bottom-8 -left-8 bg-white p-8 rounded-3xl shadow-xl hidden md:block border border-border">
                 <div className="flex items-center gap-4">
@@ -363,7 +404,7 @@ const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-24 bg-[#A2B568]/10">
+      <section id="servicos" className="py-24 bg-secondary/10">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossas Soluções</h2>
@@ -439,7 +480,7 @@ const HomePage = () => {
       </section>
 
       {/* Differentials Section */}
-      <section id="diferenciais" className="py-24 bg-[#114643] text-white">
+      <section id="diferenciais" className="py-24 bg-chart-5 text-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -529,7 +570,7 @@ const HomePage = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-24 bg-[#697431]/10">
+      <section className="py-24 bg-accent/10">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto bg-background rounded-3xl overflow-hidden shadow-2xl flex flex-col md:row">
             <div className="grid grid-cols-1 md:grid-cols-2">
@@ -540,7 +581,7 @@ const HomePage = () => {
                   <div className="space-y-6">
                     <div className="flex items-center gap-4">
                       <div className="bg-white/10 p-2 rounded-lg"><Phone className="h-5 w-5" /></div>
-                      <span>(48) 99930-3323</span>
+                      <span>(48) 9930-3323</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="bg-white/10 p-2 rounded-lg"><Mail className="h-5 w-5" /></div>

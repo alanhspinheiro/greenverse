@@ -55,23 +55,23 @@
     --card-foreground: #15282F;
     --popover: oklch(1 0 0);
     --popover-foreground: #15282F;
-    --primary: #068176;
+    --primary: #2E8B57;
     --primary-foreground: oklch(0.98 0.01 115);
-    --secondary: #A2B568;
+    --secondary: #8FBC8F;
     --secondary-foreground: #15282F;
     --muted: oklch(0.95 0.02 115);
-    --muted-foreground: #475D2E;
-    --accent: #697431;
+    --muted-foreground: #1B4D3E;
+    --accent: #20B2AA;
     --accent-foreground: oklch(0.98 0.01 115);
     --destructive: oklch(0.6 0.18 25);
     --border: oklch(0.9 0.02 115);
     --input: oklch(0.9 0.02 115);
-    --ring: #068176;
-    --chart-1: #068176;
-    --chart-2: #A2B568;
-    --chart-3: #697431;
-    --chart-4: #475D2E;
-    --chart-5: #114643;
+    --ring: #2E8B57;
+    --chart-1: #2E8B57;
+    --chart-2: #8FBC8F;
+    --chart-3: #20B2AA;
+    --chart-4: #1B4D3E;
+    --chart-5: #0D2B21;
     --radius: 0.75rem;
 }
 
@@ -129,10 +129,10 @@
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(6, 129, 118, 0.2);
+    background-color: rgba(46, 139, 87, 0.2);
     border-radius: 20px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(6, 129, 118, 0.4);
+    background-color: rgba(46, 139, 87, 0.4);
   }
 }

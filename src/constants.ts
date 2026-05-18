@@ -705,7 +705,7 @@ export const SERVICES = [
   },
   {
     id: 'facilities',
-    title: 'Gestão Integrada de Facilities',
+    title: 'Facilities e Gestão Integrada',
     description: 'Gestão integrada de serviços e infraestrutura para otimizar o ambiente corporativo e industrial.',
     icon: Building2,
     details: [
@@ -2087,7 +2087,7 @@ export const SECTORS = [
     title: 'Infraestrutura',
     description: 'Gestão e operação de grandes projetos de infraestrutura urbana e industrial.',
     icon: Construction,
-    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1590487988256-9ed24133863e?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'engenharia',
@@ -2108,7 +2108,7 @@ export const SECTORS = [
     title: 'Energia',
     description: 'Eficiência energética e gestão de ativos para o setor de energia e utilities.',
     icon: Zap,
-    image: 'https://images.unsplash.com/photo-1466611653911-95281773ad92?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'logistica',
@@ -2129,14 +2129,14 @@ export const SECTORS = [
     title: 'Manutenção',
     description: 'Programas de manutenção preventiva e corretiva de alta performance operacional.',
     icon: Wrench,
-    image: 'https://images.unsplash.com/photo-1530124560676-43699b61f748?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'consultoria',
     title: 'Consultoria',
     description: 'Assessoria estratégica em ESG, compliance e processos administrativos complexos.',
     icon: Briefcase,
-    image: 'https://images.unsplash.com/photo-1454165833014-ef84242106e0?auto=format&fit=crop&q=80&w=800',
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'gestao',
