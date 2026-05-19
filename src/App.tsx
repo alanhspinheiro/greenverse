@@ -261,7 +261,7 @@ const HomePage = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center pt-20 overflow-hidden">
+      <section className="relative min-h-[80vh] flex items-center pt-32 md:pt-40 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col items-center justify-center">
             <motion.div
@@ -270,11 +270,11 @@ const HomePage = () => {
               transition={{ duration: 0.6 }}
               className="max-w-4xl text-center"
             >
-              <h1 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6 leading-[1.1]">
-                Um ecossistema. Múltiplos serviços. Gestão Inteligente. <span className="text-primary">Operações Integradas</span>.
+              <h1 className="text-3xl md:text-6xl font-bold tracking-tighter mb-6 leading-[1.1]">
+                Eficiência máxima, conformidade total e crescimento estratégico. <span className="text-primary">Tudo em um só ecossistema com múltiplos serviços</span>.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-                O Ecossistema Greenverse integra soluções estratégicas para empresas que não querem apenas operar — querem crescer com inteligência, conformidade e excelência.
+                Unimos inteligência corporativa, ESG e alta capacidade de execução para gerenciar os desafios da sua empresa. Da governança complexa à infraestrutura pesada, o Ecossistema Greenverse entrega resultados concretos.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="h-14 px-10 text-lg bg-primary hover:bg-primary/90 text-primary-foreground">
@@ -299,26 +299,24 @@ const HomePage = () => {
               <Badge variant="outline" className="mb-6 border-primary text-primary px-4 py-1">
                 Sobre a Greenverse
               </Badge>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
-                Um ecossistema completo para <span className="text-primary">alta performance empresarial</span>.
+              <h2 className="text-2xl md:text-4xl font-bold mb-8 leading-tight">
+                Gerenciar múltiplos fornecedores está <span className="text-primary">freando o crescimento da sua empresa?</span>
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                 <p>
-                  Gerenciar múltiplos fornecedores, garantir conformidade regulatória, reduzir impactos ambientais e ainda manter alta performance operacional não é simples — e você sabe disso.
+                  No cenário corporativo atual, fragmentar operações entre dezenas de contratos gera ruído de comunicação, riscos de compliance e perda de eficiência. Sua empresa precisa de crescimento, mas acaba gastando tempo apagando incêndios operacionais.
                 </p>
-                <p className="font-semibold text-foreground">
-                  Foi para resolver essa complexidade que nasceu o Ecossistema Greenverse.
+                <p className="font-semibold text-xl text-foreground">
+                  A solução não é contratar mais serviços. É integrar a sua gestão.
                 </p>
-                <p>
-                  Somos uma plataforma empresarial de soluções integradas que centraliza, otimiza e potencializa todas as áreas críticas da sua operação.
-                </p>
-                <p>
-                  Mais do que prestar serviços, atuamos como um parceiro estratégico, unindo estrutura, inteligência e alta capacidade de execução para transformar desafios empresariais em resultados concretos.
-                </p>
-                <div className="pt-4 border-t border-primary/10">
-                  <p className="text-sm font-bold uppercase tracking-wider text-primary mb-2">Compromisso com a Excelência</p>
-                  <p className="text-base">
-                    Com atuação orientada por <strong>ESG, Compliance, Governança Corporativa e Inovação Sustentável</strong>, entregamos eficiência, conformidade e performance em um único ecossistema.
+                
+                <div className="pt-4 border-t border-primary/10 !mt-4">
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Conheça o Ecossistema Greenverse</h3>
+                  <p className="text-base md:text-lg mb-4">
+                    O Greenverse é uma plataforma empresarial de soluções integradas desenhada para organizações que buscam excelência operacional, sustentabilidade real e alta performance.
+                  </p>
+                  <p className="text-base md:text-lg">
+                    Fundamentados nos pilares de <strong>ESG, Compliance, Governança Corporativa e Inovação Sustentável</strong>, nós assumimos a complexidade das suas operações para que você foque no seu core business.
                   </p>
                 </div>
               </div>
