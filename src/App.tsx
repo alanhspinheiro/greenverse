@@ -333,8 +333,8 @@ const HomePage = () => {
               <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-tr from-green-900 via-green-600 to-green-400 p-4 flex items-center justify-center border border-primary/20 group relative">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] opacity-30 from-white/20" />
                 <img 
-                  src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Mapa de Integração Nacional Greenverse" 
+                  src="/img001.png" 
+                  alt="Ecossistema de Integração Greenverse" 
                   className="w-full h-full object-cover rounded-2xl mix-blend-luminosity opacity-40 group-hover:opacity-60 transition-all duration-700 brightness-110 contrast-125"
                   referrerPolicy="no-referrer"
                 />
