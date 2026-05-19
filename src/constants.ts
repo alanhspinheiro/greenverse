@@ -297,7 +297,7 @@ export const SERVICES = [
   },
   {
     id: 'projetos',
-    title: 'AEROFOTOGRAMETRIA COM DRONES (UAVs)',
+    title: 'Aerofotogrametria com drones (UAVs)',
     description: 'Levantamentos aéreos de alta precisão, mapeamento 2D/3D e monitoramento técnico com drones.',
     icon: Camera,
     details: [
