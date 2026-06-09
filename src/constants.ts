@@ -2079,6 +2079,43 @@ export const SERVICES = [
       }
     ]
   },
+  {
+    id: 'engenharia-industrial',
+    title: 'Engenharia Industrial',
+    description: 'Soluções técnicas aplicadas à eficiência de processos, otimização de sistemas de produção e conformidade em plantas industriais.',
+    icon: Factory,
+    details: [
+      {
+        category: '1. OTIMIZAÇÃO DE PROCESSOS E PRODUÇÃO',
+        items: [
+          '1.1 Mapeamento e Análise de Processos:', 'Estudos de tempos e métodos', 'Mapeamento de fluxo de valor (VSM)', 'Identificação e eliminação de gargalos produtivos', 'Padronização de processos de fabricação', 'Desenho de novos fluxos operacionais',
+          '1.2 Manufatura Enxuta (Lean Manufacturing):', 'Aplicação de metodologia 5S', 'Sistemas Kaizen para melhoria contínua', 'Implantação de fluxo unitário e Kanban', 'Redução de setup de máquinas (SMED)', 'Sistemas Poka-Yoke à prova de erros',
+          '1.3 Automação e Indústria 4.0:', 'Integração de sistemas de controle e automação', 'Projetos de sensoriamento industrial e IoT', 'Dashboards de produção em tempo real (OEE)', 'Sistemas SCADA e controle estatístico de processo (CEP)', 'Digitalização e gêmeo digital (Digital Twin) de linhas produtivas'
+        ]
+      },
+      {
+        category: '2. ENGENHARIA E LAYOUT DE PLANTAS',
+        items: [
+          '2.1 Planejamento Físico-Industrial:', 'Desenho e otimização de layout de fábrica', 'Dimensionamento de postos de trabalho', 'Ergonomia aplicada a linhas de montagem (NR-17)', 'Sistemas de movimentação interna de materiais', 'Planejamento de fluxo de pedestres e veículos (sinalização e segurança)',
+          '2.2 Instalações e Utilidades Industriais:', 'Dimensionamento de sistemas de ar comprimido, vapor e gases industriais', 'Sistemas de exaustão e ventilação industrial', 'Projetos e execução de tubulações industriais (spooling)', 'Gestão integrada de subestações e painéis elétricos', 'Sistemas de tratamento de água industrial'
+        ]
+      },
+      {
+        category: '3. MANUTENÇÃO INDUSTRIAL E ATIVOS (PCM)',
+        items: [
+          '3.1 Planejamento e Controle de Manutenção (PCM):', 'Implementação de manutenção preventiva, preditiva e corretiva', 'Gestão de ativos industriais baseada na confiabilidade (RCM)', 'Indicadores de manutenção (MTBF, MTTR, Disponibilidade)', 'Gestão e controle de estoques de peças sobressalentes', 'Sistemas digitais de gestão de manutenção (CMMS)',
+          '3.2 TPM (Total Productive Maintenance):', 'Engajamento de operadores na manutenção autônoma', 'Melhorias focadas em perdas de equipamentos', 'Manutenção planejada e com foco em qualidade', 'Treinamento técnico de equipes operacionais', 'Gestão preventiva de equipamentos críticos'
+        ]
+      },
+      {
+        category: '4. CONFORMIDADE, SEGURANÇA E ESG INDUSTRIAL',
+        items: [
+          '4.1 Segurança Industrial (NRs):', 'Conformidade com NR-12 (Segurança em máquinas e equipamentos)', 'Projetos de enclausuramento acústico de máquinas', 'Sistemas de emergência e combate a incêndios industriais', 'Análise de risco operacional e ergonomia (APR / HAZOP)', 'Adequação de instalações elétricas industriais (NR-10)',
+          '4.2 Eficiência Energética e Resíduos Industriais:', 'Projetos de redução de consumo de energia na produção', 'Gestão e destinação sustentável de resíduos de processos (PGRS)', 'Sistemas de recuperação térmica e reutilização de calor', 'Reuso de águas e efluentes industriais de processo', 'Substituição de tecnologias de combustão de alto impacto ambiental'
+        ]
+      }
+    ]
+  }
 ];
 
 export const SECTORS = [

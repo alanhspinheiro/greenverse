@@ -17,6 +17,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import { Logo } from './components/Logo';
+import SEO from './components/SEO';
 import { SERVICES, SECTORS, DIFFERENTIALS, BLOG_POSTS, BRAZIL_STATES } from './constants';
 
 // --- Components ---
@@ -260,6 +261,10 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col">
+      <SEO 
+        title="Greenverse | Ecossistema de Soluções Corporativas Integradas"
+        description="Reduza a complexidade de múltiplos fornecedores. O Ecossistema Greenverse unifica Engenharia Industrial, Facilities, ESG, Compliance, Infraestrutura e Mercado Livre de Energia."
+      />
       {/* Hero Section */}
       <section className="relative min-h-[80vh] flex items-center pt-32 md:pt-40 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
@@ -687,6 +692,10 @@ const HomePage = () => {
 
 const BlogPage = () => (
   <div className="pt-32 pb-24 min-h-screen">
+    <SEO 
+      title="Blog & Notícias Ambientais | Novidades e Sustentabilidade"
+      description="Fique por dentro das últimas regulamentações do CONAMA, gestão de resíduos perigosos, transição para o mercado livre de energia e inovação em engenharia sustentável."
+    />
     <div className="container mx-auto px-4">
       <h1 className="text-4xl font-bold mb-12">Blog & Notícias Ambientais</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -718,6 +727,10 @@ const BlogPage = () => (
 
 const ClientAreaPage = () => (
   <div className="pt-32 pb-24 min-h-screen flex items-center justify-center bg-muted/30">
+    <SEO 
+      title="Portal do Cliente | Acesso Seguro"
+      description="Acesse com segurança seus documentos, relatórios técnicos, laudos integrados de engenharia, status de condicionantes ambientais e cronogramas operacionais no Portal de Clientes Greenverse."
+    />
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
         <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -758,8 +771,470 @@ const ServiceDetailPage = () => {
     );
   }
 
+  if (serviceId === 'engenharia-industrial') {
+    return (
+      <div className="pt-32 pb-24 min-h-screen">
+        <SEO 
+          title="Engenharia Industrial, Caldeiras, Vasos de Pressão e NR-13" 
+          description="Soluções completas de engenharia industrial na Greenverse. Projetos, montagem eletromecânica, tubulações industriais, comissionamento e adequação rigorosa à NR-13."
+          keywords="engenharia industrial, caldeiras, vasos de pressão, tubulações industriais, adequação NR-13, montagem eletromecânica, comissionamento, central de GLP, vapor"
+        />
+        <div className="container mx-auto px-4">
+          <Button 
+            variant="ghost" 
+            className="mb-8 gap-2 hover:bg-primary/5 text-muted-foreground hover:text-primary transition-colors"
+            onClick={() => navigate('/')}
+          >
+            <ArrowLeft className="h-4 w-4" /> Voltar para Início
+          </Button>
+
+          <div className="max-w-5xl mx-auto">
+            {/* Custom Header for Engenharia Industrial */}
+            <div className="flex flex-col md:flex-row items-start gap-8 mb-16">
+              <div className="bg-primary/10 p-6 rounded-2xl">
+                <service.icon className="h-12 w-12 text-primary" />
+              </div>
+              <div className="flex-1">
+                <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20 border-none px-3 py-1">Solução Especializada</Badge>
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">Greenverse Engenharia Industrial</h1>
+                <h2 className="text-xl md:text-2xl font-semibold text-primary mb-6 leading-relaxed">
+                  Soluções Completas em Caldeiras, Vasos de Pressão, Tubulações Industriais e Adequação NR-13
+                </h2>
+                <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
+                  <p>
+                    A Greenverse oferece soluções integradas para implantação, adequação, modernização e gestão de sistemas industriais, atuando desde a engenharia inicial até a operação assistida dos equipamentos.
+                  </p>
+                  <p>
+                    Nossa equipe desenvolve projetos completos para caldeiras, vasos de pressão, tubulações industriais, centrais de GLP, sistemas térmicos, utilidades industriais e instalações sujeitas à NR-13, garantindo segurança operacional, eficiência energética e conformidade legal.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Structured Sections */}
+            <div className="space-y-12">
+              <div className="bg-primary/5 rounded-3xl p-8 border border-primary/10">
+                <h3 className="text-xl font-bold mb-2 flex items-center gap-3 text-foreground">
+                  <FileText className="h-5 w-5 text-primary" />
+                  Escopo Detalhado do Serviço
+                </h3>
+                <p className="text-muted-foreground text-sm uppercase tracking-wider font-semibold">
+                  Do projeto à operação: entregamos máxima performance com conformidade técnica e legal
+                </p>
+              </div>
+
+              {/* Grid of the 9 areas */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* 1. Engenharia e Projetos */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        1
+                      </span>
+                      Engenharia e Projetos
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Desenvolvemos projetos completos e personalizados para cada empreendimento, contemplando:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {[
+                        'Engenharia conceitual, básica e executiva',
+                        'Projetos mecânicos industriais',
+                        'Projetos estruturais e fundações',
+                        'Projetos de tubulação industrial',
+                        'Projetos elétricos e de instrumentação',
+                        'Projetos de automação e controle',
+                        'Layout industrial e arranjo físico',
+                        'Projetos de centrais de GLP',
+                        'Adequação técnica conforme NR-13'
+                      ].map((item, id) => (
+                        <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    Todos os projetos são desenvolvidos visando máxima segurança, eficiência operacional e facilidade de manutenção.
+                  </p>
+                </motion.div>
+
+                {/* 2. Obras Civis e Fundações */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        2
+                      </span>
+                      Obras Civis e Fundações
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Executamos toda a infraestrutura necessária para instalação dos equipamentos industriais:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {[
+                        'Terraplenagem',
+                        'Escavações',
+                        'Bases de concreto armado',
+                        'Radiers',
+                        'Sapatas e blocos de fundação',
+                        'Bases para caldeiras e vasos de pressão',
+                        'Estruturas de apoio',
+                        'Casas de caldeiras',
+                        'Canaletas técnicas'
+                      ].map((item, id) => (
+                        <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    As fundações são dimensionadas de acordo com as características dos equipamentos e condições do solo.
+                  </p>
+                </motion.div>
+
+                {/* 3. Montagem Eletromecânica */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        3
+                      </span>
+                      Montagem Eletromecânica
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Realizamos a instalação completa dos sistemas industriais, incluindo:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {[
+                        'Montagem de caldeiras',
+                        'Instalação de vasos de pressão',
+                        'Instalação de compressores',
+                        'Sistemas de geração de vapor',
+                        'Sistemas térmicos industriais',
+                        'Equipamentos auxiliares',
+                        'Bombas industriais',
+                        'Trocadores de calor',
+                        'Chaminés e sistemas de exaustão'
+                      ].map((item, id) => (
+                        <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    Todos os serviços seguem rigorosos padrões de qualidade, segurança e rastreabilidade.
+                  </p>
+                </motion.div>
+
+                {/* 4. Tubulações Industriais */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        4
+                      </span>
+                      Tubulações Industriais
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Projetamos e executamos sistemas completos de tubulação para:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {[
+                        'Vapor',
+                        'Condensado',
+                        'Água industrial',
+                        'Ar comprimido',
+                        'GLP',
+                        'Gás natural',
+                        'Produtos químicos',
+                        'Fluidos térmicos'
+                      ].map((item, id) => (
+                        <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    Nossos serviços incluem fabricação, montagem, testes, isolamento térmico e identificação das linhas.
+                  </p>
+                </motion.div>
+
+                {/* 5. Automação e Instrumentação */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        5
+                      </span>
+                      Automação e Instrumentação
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Implementamos sistemas inteligentes para controle e monitoramento dos processos industriais:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {[
+                        'Painéis elétricos',
+                        'PLCs e controladores industriais',
+                        'Sistemas supervisórios',
+                        'Monitoramento remoto',
+                        'Controle de combustão',
+                        'Instrumentação de campo',
+                        'Sensores de pressão e temperatura',
+                        'Medidores de vazão',
+                        'Alarmes e intertravamentos de segurança'
+                      ].map((item, id) => (
+                        <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    A automação proporciona maior eficiência operacional, redução de custos e aumento da confiabilidade dos processos.
+                  </p>
+                </motion.div>
+
+                {/* 6. Comissionamento e Start-up */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        6
+                      </span>
+                      Comissionamento e Start-up
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Antes da entrega final, realizamos todas as etapas de validação do sistema:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {[
+                        'Inspeções técnicas',
+                        'Testes hidrostáticos',
+                        'Testes operacionais',
+                        'Calibração de instrumentos',
+                        'Testes de segurança',
+                        'Partida assistida',
+                        'Validação de desempenho',
+                        'Entrega técnica ao cliente'
+                      ].map((item, id) => (
+                        <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    Garantimos que cada sistema entre em operação com total segurança e desempenho.
+                  </p>
+                </motion.div>
+
+                {/* 7. Adequação e Documentação NR-13 */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        7
+                      </span>
+                      Adequação e Documentação NR-13
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Oferecemos suporte completo para atendimento às exigências da NR-13:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {[
+                        'Inventário de equipamentos',
+                        'Prontuários técnicos',
+                        'Registros de segurança',
+                        'Relatórios de inspeção',
+                        'Planos de manutenção',
+                        'Gestão documental',
+                        'Cronograma de inspeções',
+                        'Adequação de instalações existentes'
+                      ].map((item, id) => (
+                        <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    Nosso objetivo é garantir a conformidade legal e a integridade dos ativos industriais.
+                  </p>
+                </motion.div>
+
+                {/* 8. Treinamentos Técnicos */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        8
+                      </span>
+                      Treinamentos Técnicos
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Capacitamos operadores, supervisores e equipes de manutenção por meio de treinamentos voltados para:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      {[
+                        'Operação segura de caldeiras',
+                        'Operação de vasos de pressão',
+                        'Procedimentos operacionais',
+                        'Segurança industrial',
+                        'Boas práticas de manutenção',
+                        'Conscientização sobre NR-13'
+                      ].map((item, id) => (
+                        <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    Investir em treinamento significa reduzir riscos e aumentar a produtividade.
+                  </p>
+                </motion.div>
+
+                {/* 9. Assistência Técnica e Suporte Continuado */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/20 transition-all shadow-sm hover:shadow-md md:col-span-2 flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="font-bold text-lg text-primary flex items-center gap-3 border-b border-primary/10 pb-4 mb-4">
+                      <span className="flex-shrink-0 bg-primary/10 text-primary w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold">
+                        9
+                      </span>
+                      Assistência Técnica e Suporte Continuado
+                    </h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-medium leading-relaxed">
+                      Após a entrega do projeto, permanecemos ao lado de nossos clientes oferecendo:
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                      <ul className="space-y-2">
+                        {[
+                          'Manutenção preventiva',
+                          'Manutenção corretiva',
+                          'Inspeções periódicas',
+                          'Monitoramento operacional'
+                        ].map((item, id) => (
+                          <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                      <ul className="space-y-2">
+                        {[
+                          'Consultoria técnica',
+                          'Suporte emergencial',
+                          'Gestão da integridade dos ativos'
+                        ].map((item, id) => (
+                          <li key={id} className="flex items-start gap-3 text-sm text-foreground/80 leading-relaxed">
+                            <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary/60 flex-shrink-0" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground border-t border-border/50 pt-3">
+                    Nosso compromisso é garantir o desempenho contínuo e a segurança das instalações ao longo de toda sua vida útil.
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Bottom institutional section specifically for Engenharia Industrial */}
+              <div className="bg-primary/5 rounded-3xl p-8 border border-primary/10 text-center space-y-4 max-w-4xl mx-auto mt-16 shadow-inner">
+                <h4 className="font-bold text-2xl text-foreground">Greenverse: Engenharia, Segurança e Inovação</h4>
+                <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+                  Mais do que executar obras industriais, a Greenverse entrega soluções completas, integrando engenharia, tecnologia, conformidade regulatória e excelência operacional.
+                </p>
+                <p className="text-primary font-semibold text-sm md:text-base">
+                  Do projeto à operação, oferecemos uma única solução para todas as etapas do seu empreendimento industrial.
+                </p>
+              </div>
+
+              {/* CTA */}
+              <div className="mt-16 bg-foreground text-background rounded-3xl p-12 text-center">
+                <h3 className="text-3xl font-bold mb-6 text-white">Precisa de um orçamento específico?</h3>
+                <p className="text-background/70 mb-8 max-w-xl mx-auto">Nossos engenheiros e consultores estão prontos para analisar seu projeto e entregar uma proposta personalizada sob medida.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button size="lg" className="h-14 px-8 bg-primary hover:bg-primary/90 text-white" onClick={() => navigate('/#contato')}>
+                    Solicitar Proposta Agora
+                  </Button>
+                  <Button size="lg" variant="outline" className="h-14 px-8 border-white/20 bg-transparent hover:bg-white/10 text-white">
+                    Falar com Especialista
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="pt-32 pb-24 min-h-screen">
+      <SEO 
+        title={`${service.title} | Soluções Especializadas`} 
+        description={service.description}
+      />
       <div className="container mx-auto px-4">
         <Button 
           variant="ghost" 
