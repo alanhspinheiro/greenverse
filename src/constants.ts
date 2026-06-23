@@ -2081,8 +2081,8 @@ export const SERVICES = [
   },
   {
     id: 'engenharia-industrial',
-    title: 'Engenharia Industrial',
-    description: 'Soluções técnicas aplicadas à eficiência de processos, otimização de sistemas de produção e conformidade em plantas industriais.',
+    title: 'Engenharia Industrial & NR-13',
+    description: 'Soluções técnicas aplicadas à eficiência de processos, otimização de sistemas de produção, caldeiras, vasos de pressão e conformidade com a NR-13.',
     icon: Factory,
     details: [
       {
@@ -2112,6 +2112,172 @@ export const SERVICES = [
         items: [
           '4.1 Segurança Industrial (NRs):', 'Conformidade com NR-12 (Segurança em máquinas e equipamentos)', 'Projetos de enclausuramento acústico de máquinas', 'Sistemas de emergência e combate a incêndios industriais', 'Análise de risco operacional e ergonomia (APR / HAZOP)', 'Adequação de instalações elétricas industriais (NR-10)',
           '4.2 Eficiência Energética e Resíduos Industriais:', 'Projetos de redução de consumo de energia na produção', 'Gestão e destinação sustentável de resíduos de processos (PGRS)', 'Sistemas de recuperação térmica e reutilização de calor', 'Reuso de águas e efluentes industriais de processo', 'Substituição de tecnologias de combustão de alto impacto ambiental'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ete-tratamento-esgoto',
+    title: 'ETEs - Sistemas de Tratamento de Esgoto',
+    description: 'Projetos, implantação, operação e otimização de Estações de Tratamento de Efluentes (ETEs) e sistemas de esgoto sanitário hídrico para indústrias e comércio.',
+    icon: Droplets,
+    details: [
+      {
+        category: '1. CONCEPÇÃO, PROJETOS E ENGENHARIA',
+        items: [
+          '1.1 Estudos de Caracterização:', 'Caracterização quanti-qualitativa de efluentes', 'Ensaios de tratabilidade de efluentes líquidos', 'Definição de rotas tecnológicas de tratamento', 'Ensaios em escala piloto de laboratório', 'Estudos de autodepuração de corpos receptores',
+          '1.2 Projetos de Engenharia Dedicados:', 'Projetos hidráulicos e de dimensionamento de ETEs', 'Cálculos de reatores anaeróbios (UASB) e aeróbios', 'Desenho técnico mecânico e de tubulações', 'Dimensionamento de sistemas de desidratação de lodo', 'Desenho de plantas industriais de reuso de água'
+        ]
+      },
+      {
+        category: '2. IMPLANTAÇÃO E MONTAGEM ELETROMECÂNICA',
+        items: [
+          '2.1 Execução de Obras de Saneamento:', 'Construção civil de tanques, decantadores e elevatórias', 'Instalação de reatores em fibra de vidro (PRFV) ou aço vitrificado', 'Execução de redes coletoras de esgoto e emissários de descarte', 'Instalação de elevatórias de efluente bruto com bombas submersíveis', 'Sistemas de tratamento preliminar (gradeamento e canais de areia)',
+          '2.2 Instalação de Equipamentos Técnicos:', 'Montagem de difusores de ar e sopradores industriais', 'Instalação de raspadores de lodo superficiais e de fundo', 'Implementação de sistemas de dosagem de produtos químicos', 'Montagem de centrífugas, prensas parafuso ou filtros prensa para desidratação de lodo', 'Projetos e montagem eletromecânica de tubulações hídricas'
+        ]
+      },
+      {
+        category: '3. OPERAÇÃO, INSPEÇÃO E OTIMIZAÇÃO OPERACIONAL',
+        items: [
+          '3.1 Gestão e Operação de ETEs:', 'Serviços de operação técnica assistida ou residente terceirizada', 'Automação industrial e painéis de controle de nível/vazão', 'Controle operacional diário de recirculação e descarte de lodo', 'Otimização energética em sistemas de aeração', 'Definição de protocolos de partida e estabilização microbiológica',
+          '3.2 Controle de Qualidade e Análises:', 'Monitoramento analítico de parâmetros hídricos (pH, DBO, DQO, Sólidos Suspensos)', 'Dosagem automatizada de nutrientes de forma inteligente', 'Avaliação microscópica de flocos e lodo ativado', 'Procedimentos operacionais padronizados de amostragem técnica', 'Análises físico-químicas integradas de eficiência'
+        ]
+      },
+      {
+        category: '4. CONFORMIDADE, REGULAMENTAÇÃO E REUSO',
+        items: [
+          '4.1 Atendimento a Padrões de Lançamento:', 'Adequação legal a Resoluções CONAMA (nº 430/2011) e Estaduais', 'Processos de outorga de lançamento de efluentes em corpos de água', 'Projetos de adequação de pilar de sustentabilidade hídrica', 'Planos de contingenciamento em vazamentos de esgoto ou efluentes', 'Laudos de eficiência atestados por equipe de engenharia habilitada',
+          '4.2 Reuso de Água e Circularidade:', 'Projetos de reúso de água cinza e efluentes sanitários tratados', 'Polimento final de efluentes com Ultrafiltração ou Osmose Reversa', 'Uso industrial de água de reuso para refrigeração ou lavagem', 'Redução do consumo hídrico potável nas instalações corporativas', 'Planos de gestão e desidratação com envio de lodo seco para compostagem sustentável'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'servicos-ambientais-nr13-instalacoes',
+    title: 'Serviços Ambientais (NR-13 e Instalações)',
+    description: 'Serviços especializados em engenharia de segurança, inspeção de caldeiras, vasos de pressão, testes hidrostáticos, controle de conformidade regulatória e adequação completa de instalações industriais.',
+    icon: HardHat,
+    details: [
+      {
+        category: '1. INSPEÇÃO E SEGURANÇA DE CALDEIRAS (NR-13)',
+        items: [
+          '1.1 Inspeção Periódica de Caldeiras:', 'Exames visuais internos e externos completos', 'Medição de espessura de chapas por ultrassom', 'Ensaios não destrutivos (END) e teste hidrostático', 'Calibração de dispositivos de segurança e manômetros', 'Emissão de laudo técnico com ART (Anotação de Responsabilidade Técnica)',
+          '1.2 Requisitos Obrigatórios e Operação:', 'Abertura e atualização do Registro de Segurança da caldeira', 'Cálculo de Pressão Máxima de Trabalho Admissível (PMTA)', 'Exame físico de tubulações e acessórios de controle', 'Treinamento e capacitação profissional para operadores de caldeira'
+        ]
+      },
+      {
+        category: '2. INSPEÇÃO DE VASOS DE PRESSÃO E COMPRESSORES',
+        items: [
+          '2.1 Avaliação de Integridade Física:', 'Inspeção interna e externa de vasos coletores de ar comprimido', 'Medições de ultrassom de parede e tampos', 'Verificação de válvulas de segurança de alívio de pressão', 'Elaboração e revisão de prontuários de vasos de pressão (NR-13)', 'Cálculo de vida útil remanescente dos equipamentos',
+          '2.2 Instalações de Ar Comprimido e Vasos:', 'Sinalização e demarcação de segurança do local de instalação', 'Instalação de drenos automáticos e purgadores', 'Monitoramento térmico e acústico de salas de compressores', 'Sistemas de alarme visual e sonoro de sobrepressão'
+        ]
+      },
+      {
+        category: '3. PROJETOS, RECONSTITUIÇÃO E LAUDOS TÉCNICOS',
+        items: [
+          '3.1 Prontuários e Documentação Legal:', 'Reconstituição de prontuário técnico de caldeiras e vasos de pressão', 'Estudos de alteração ou reparo de equipamentos (Projeto de Alteração ou Reparo - PAR)', 'Elaboração do plano de inspeção e cronograma anual de calibração', 'Laudos de estabilidade estrutural de passarelas e suportes de tubulação',
+          '3.2 Ensaios Não Destrutivos Avançados (END):', 'Ensaios por líquido penetrante e partículas magnéticas', 'Ensaios de ultrassom de alta precisão em soldas', 'Medição de dureza de materiais metálicos', 'Verificação de taxas de corrosão em ambientes agressivos'
+        ]
+      },
+      {
+        category: '4. MONTAGEM, ADEQUAÇÃO E INSTALAÇÕES INDUSTRIAIS',
+        items: [
+          '4.1 Adequação Física de Instalações:', 'Instalação de sistemas de exaustão de gases e chaminés', 'Sistemas de contenção de fluidos e bacias de segurança', 'Adequação de acessos, escadas e plataformas metálicas de operação', 'Iluminação de emergência e rotas de fuga em salas de máquinas',
+          '4.2 Identificação e Fluxo de Tubulações:', 'Identificação padrão de tubulações industriais (cores regulamentadas pela NR-26)', 'Instalação de isolamento térmico de alta eficiência para proteção de operadores', 'Substituição de juntas de vedação, purgadores e filtros de linha'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'infraestrutura-engenharia',
+    title: 'Infraestrutura, Engenharia e Desenvolvimento',
+    description: 'Soluções integradas para o setor público, industrial, logístico, habitacional, energético, ambiental e de infraestrutura.',
+    icon: Construction,
+    details: [
+      {
+        category: '1. INFRAESTRUTURA URBANA E SETOR PÚBLICO',
+        items: [
+          '1.1 Planejamento Urbano e Saneamento:', 'Projetos integrados de drenagem urbana e macrodrenagem', 'Sistemas de distribuição de água e coleta de esgoto', 'Pavimentação asfáltica e requalificação de vias urbanas', 'Projetos de mobilidade urbana e ciclovias',
+          '1.2 Concessões e Parcerias Público-Privadas (PPPs):', 'Modelagem técnica para concessões públicas', 'Estudos de viabilidade técnica, econômica e ambiental (EVTEA)', 'Planos municipais de saneamento básico e gestão de resíduos sólidos'
+        ]
+      },
+      {
+        category: '2. ENGENHARIA INDUSTRIAL E INSTALAÇÕES',
+        items: [
+          '2.1 Estruturas e Montagens:', 'Cálculo estrutural para galpões e estruturas metálicas pesadas', 'Fundações profundas e contenções para cargas dinâmicas', 'Montagem eletromecânica industrial e linhas de produção',
+          '2.2 Tubulações e Fluidos:', 'Sistemas de ar comprimido, vapor, água gelada e gases industriais', 'Instalações de prevenção e combate a incêndio (AVCB)', 'Redes de escoamento e tratamento de efluentes industriais'
+        ]
+      },
+      {
+        category: '3. LOGÍSTICA E CENTROS DE DISTRIBUIÇÃO',
+        items: [
+          '3.1 Terminais e Portos Secos:', 'Projetos geométricos e estruturais para pátios de manobra de alta tonelagem', 'Pisos industriais de alta resistência com concreto protendido', 'Sistemas de fluxo logístico e docas de carga/descarga',
+          '3.2 Armazenamento Inteligente:', 'Projetos térmicos e acústicos para galpões refrigerados', 'Sistemas automatizados de armazenamento e distribuição', 'Infraestrutura de segurança patrimonial e controle de acessos'
+        ]
+      },
+      {
+        category: '4. SETOR HABITACIONAL E EDIFICAÇÕES',
+        items: [
+          '4.1 Incorporação e Loteamentos:', 'Projetos de infraestrutura básica para loteamentos residenciais', 'Sistemas de drenagem pluvial, redes de água e iluminação pública', 'Projetos de arquitetura e urbanismo integrados ao relevo natural',
+          '4.2 Habitação Sustentável:', 'Soluções construtivas eficientes (alvenaria estrutural, paredes de concreto)', 'Aproveitamento de águas pluviais para reuso não potável', 'Certificações de sustentabilidade edilícia (AQUA-HQE, LEED)'
+        ]
+      },
+      {
+        category: '5. INFRAESTRUTURA ENERGÉTICA',
+        items: [
+          '5.1 Redes e Subestações:', 'Projetos de subestações de energia de média e alta tensão', 'Redes de distribuição elétrica subterrâneas e aéreas', 'Sistemas de automação e telemetria para redes elétricas',
+          '5.2 Energias Renováveis:', 'Usinas fotovoltaicas de solo e telhado para autogeração', 'Infraestrutura civil e elétrica para parques eólicos', 'Sistemas de armazenamento de energia (BESS) e geradores de emergência'
+        ]
+      },
+      {
+        category: '6. ENGENHARIA AMBIENTAL E SANEAMENTO',
+        items: [
+          '6.1 Estações de Tratamento:', 'Projetos executivos de Estações de Tratamento de Água (ETA) e Esgoto (ETE)', 'Tratamento avançado de efluentes com membranas biológicas (MBR)', 'Sistemas de desidratação e disposição final de lodos',
+          '6.2 Remediação e Recuperação:', 'Estudos de impacto ambiental (EIA/RIMA) para grandes obras', 'Projetos de remediação de solos e lençol freático contaminados', 'Plano de Recuperação de Áreas Degradadas (PRAD)'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'barragens-infraestrutura-hidrica',
+    title: 'Barragens e Infraestrutura Hídrica',
+    description: 'Estudos, projetos, construção, manutenção e segurança de barragens, canais, adutoras, reservatórios e sistemas de gestão de recursos hídricos.',
+    icon: Droplets,
+    details: [
+      {
+        category: '1. ESTUDOS E PROJETOS DE ENGENHARIA HÍDRICA',
+        items: [
+          'Estudos hidrológicos, hidráulicos e sedimentológicos com modelagem computacional 2D/3D',
+          'Projetos geométricos, geotécnicos e estruturais de maciços e estruturas hidráulicas de concreto',
+          'Projetos de canais de adução, desvios de rios, vertedouros e tomadas de água de grande porte',
+          'Estudos de Impacto Ambiental (EIA/RIMA) e modelagem de ruptura de barragens (Dam Break)'
+        ]
+      },
+      {
+        category: '2. CONSTRUÇÃO E REABILITAÇÃO DE BARRAGENS',
+        items: [
+          'Execução de barragens de terra, enrocamento e concreto compactado com rolo (CCR)',
+          'Tratamentos de fundações com injeções de calda de cimento e cortinas de impermeabilização',
+          'Reabilitação de maciços, recuperação estrutural de vertedouros e troca de comportas e adufas',
+          'Modernização de sistemas mecânicos, elétricos e de automação de comportas'
+        ]
+      },
+      {
+        category: '3. SEGURANÇA E MONITORAMENTO DE BARRAGENS (PNSB)',
+        items: [
+          'Elaboração de Planos de Segurança de Barragens (PSB) e Revisões Periódicas de Segurança (RPSB)',
+          'Planos de Ação de Emergência (PAEBM) com mapeamento de inundação (Dam Break)',
+          'Instalação de instrumentação de monitoramento (piezômetros, medidores de vazão, inclinômetros)',
+          'Inspeções regulares de segurança, relatórios técnicos e auditorias de conformidade legal'
+        ]
+      },
+      {
+        category: '4. ADUTORAS, CANAIS E SISTEMAS DE BOMBEAMENTO',
+        items: [
+          'Projetos e implantação de adutoras de grande diâmetro em aço, ferro fundido ou PRFV',
+          'Construção e revestimento de canais de irrigação e de transposição de bacias',
+          'Estações de bombeamento de água bruta de alta capacidade com cálculo de transientes hidráulicos',
+          'Reservatórios elevados, enterrados e bacias de acumulação de água industrial e pública'
         ]
       }
     ]
