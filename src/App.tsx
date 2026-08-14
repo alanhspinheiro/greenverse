@@ -59,10 +59,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Quem somos', href: '#quem-somos' },
+    { name: 'O Ecossistema', href: '#quem-somos' },
     { name: 'Serviços', href: '#servicos' },
     { name: 'Setores', href: '#setores' },
     { name: 'Diferenciais', href: '#diferenciais' },
+    { name: 'Mercosul', href: '#mercosul' },
+    { name: 'Rede Homologada', href: '#rede-homologada' },
     { name: 'Blog', href: '/blog' },
   ];
 
@@ -153,9 +155,9 @@ const Footer = () => (
         <div>
           <h4 className="font-bold mb-6">Contato</h4>
           <ul className="space-y-3 text-sm text-background/60">
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> (48) 9930-3323</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> contato@greenverse.com.br</li>
-            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Palhoça, SC</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary shrink-0" /> (48) 9930-3323</li>
+            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary shrink-0" /> contato@greenverse.com.br</li>
+            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-primary shrink-0 mt-1" /> <span>Rua Caetano Silveira de Matos nº 2455, sala 02, Centro Palhoça/SC, CEP 88130-005</span></li>
           </ul>
         </div>
         <div>
@@ -278,10 +280,10 @@ const HomePage = () => {
               className="max-w-4xl text-center"
             >
               <h1 className="text-3xl md:text-6xl font-bold tracking-tighter mb-6 leading-[1.1]">
-                Eficiência máxima, conformidade total e crescimento estratégico. <span className="text-primary">Tudo em um só ecossistema com múltiplos serviços</span>.
+                Conectamos empresas, especialistas e tecnologia para entregar <span className="text-primary">soluções complexas em diferentes mercados</span>.
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-                Unimos inteligência corporativa, ESG e alta capacidade de execução para gerenciar os desafios da sua empresa. Da governança complexa à infraestrutura pesada, o Ecossistema Greenverse entrega resultados concretos.
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
+                Estratégia, engenharia, infraestrutura, operações, meio ambiente e logística integradas em um único ecossistema empresarial.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="h-14 px-10 text-lg bg-primary hover:bg-primary/90 text-primary-foreground">
@@ -293,37 +295,36 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Quem Somos Section */}
-      <section id="quem-somos" className="py-24 overflow-hidden">
+      {/* Quem Somos / O Ecossistema Section */}
+      <section id="quem-somos" className="py-24 overflow-hidden bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Top Intro with Interactive Graphic */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Badge variant="outline" className="mb-6 border-primary text-primary px-4 py-1">
-                Sobre a Greenverse
+              <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+                O Ecossistema
               </Badge>
-              <h2 className="text-2xl md:text-4xl font-bold mb-8 leading-tight">
-                Gerenciar múltiplos fornecedores está <span className="text-primary">freando o crescimento da sua empresa?</span>
+              <h2 className="text-2xl md:text-4xl font-extrabold mb-6 leading-tight uppercase tracking-tight text-foreground">
+                Um Ecossistema. <span className="text-primary">Múltiplas Capacidades.</span>
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  No cenário corporativo atual, fragmentar operações entre dezenas de contratos gera ruído de comunicação, riscos de compliance e perda de eficiência. Sua empresa precisa de crescimento, mas acaba gastando tempo apagando incêndios operacionais.
+                <p className="text-lg md:text-xl text-foreground font-medium leading-relaxed">
+                  A Greenverse é um ecossistema empresarial criado para conectar empresas, especialistas, tecnologia e capital intelectual na construção de soluções para diferentes mercados.
                 </p>
-                <p className="font-semibold text-xl text-foreground">
-                  A solução não é contratar mais serviços. É integrar a sua gestão.
+                <p className="text-base md:text-lg">
+                  Nossa atuação combina estratégia, engenharia, infraestrutura, operações, meio ambiente e logística, permitindo estruturar projetos de forma integrada.
                 </p>
                 
-                <div className="pt-4 border-t border-primary/10 !mt-4">
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">Conheça o Ecossistema Greenverse</h3>
-                  <p className="text-base md:text-lg mb-4">
-                    O Greenverse é uma plataforma empresarial de soluções integradas desenhada para organizações que buscam excelência operacional, sustentabilidade real e alta performance.
-                  </p>
-                  <p className="text-base md:text-lg">
-                    Fundamentados nos pilares de <strong>ESG, Compliance, Governança Corporativa e Inovação Sustentável</strong>, nós assumimos a complexidade das suas operações para que você foque no seu core business.
+                <div className="p-6 bg-primary/10 border border-primary/20 rounded-2xl">
+                  <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">Nosso Posicionamento</p>
+                  <p className="text-lg md:text-xl font-bold text-foreground">
+                    Não somos apenas um fornecedor. <span className="text-primary">Somos uma estrutura de integração e execução.</span>
                   </p>
                 </div>
               </div>
@@ -405,6 +406,152 @@ const HomePage = () => {
               </div>
             </motion.div>
           </div>
+
+          {/* Uma Estrutura Pensada Para Crescer */}
+          <div className="mb-24 pt-12 border-t border-border">
+            <div className="max-w-4xl mb-12">
+              <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+                Arquitetura Empresarial
+              </Badge>
+              <h3 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-foreground mb-4">
+                Uma Estrutura Pensada Para <span className="text-primary">Crescer</span>
+              </h3>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                O ecossistema Greenverse é formado por diferentes empresas, unidades de negócio, especialistas e parceiros estratégicos. Cada estrutura possui competências específicas, enquanto o ecossistema permite integração entre elas.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  title: 'Greenverse Holding',
+                  desc: 'Estrutura estratégica e patrimonial.',
+                  icon: <Building2 className="h-6 w-6" />,
+                },
+                {
+                  title: 'Greenverse Brasil',
+                  desc: 'Operações e desenvolvimento de negócios no Brasil.',
+                  icon: <Globe className="h-6 w-6" />,
+                },
+                {
+                  title: 'Greenverse Mercosul',
+                  desc: 'Estrutura voltada à expansão e integração de negócios na região.',
+                  icon: <Target className="h-6 w-6" />,
+                },
+                {
+                  title: 'Greenverse Infrastructure & Logistics',
+                  desc: 'Infraestrutura, logística e desenvolvimento de ativos.',
+                  icon: <Construction className="h-6 w-6" />,
+                },
+                {
+                  title: 'Empresas Especializadas',
+                  desc: 'Operações técnicas e serviços específicos.',
+                  icon: <Briefcase className="h-6 w-6" />,
+                },
+                {
+                  title: 'Rede Homologada',
+                  desc: 'Empresas e especialistas integrados ao ecossistema.',
+                  icon: <ShieldCheck className="h-6 w-6" />,
+                },
+              ].map((item, idx) => (
+                <div 
+                  key={idx}
+                  className="bg-card hover:bg-card/80 p-7 rounded-2xl border border-border shadow-sm hover:border-primary/40 transition-all group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="bg-primary/10 p-3 rounded-xl w-fit text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                      {item.icon}
+                    </div>
+                    <h4 className="text-lg font-bold text-foreground mb-2">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Visão e Missão */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+            {/* Visão */}
+            <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 border border-slate-800 shadow-xl flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/20 px-3.5 py-1.5 rounded-full inline-block mb-6">
+                  Nossa Visão
+                </span>
+                <h4 className="text-xl md:text-3xl font-extrabold uppercase tracking-tight text-white mb-4">
+                  Construir Conexões que Geram Capacidade.
+                </h4>
+                <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
+                  <p>
+                    Acreditamos que grandes projetos não dependem de uma única empresa.
+                  </p>
+                  <p>
+                    Eles dependem da capacidade de conectar pessoas, conhecimento, tecnologia, infraestrutura e execução.
+                  </p>
+                  <p className="text-primary font-semibold">
+                    É essa conexão que orienta a Greenverse.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Missão */}
+            <div className="bg-primary text-primary-foreground rounded-3xl p-8 md:p-12 shadow-xl flex flex-col justify-between relative overflow-hidden">
+              <div className="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+              <div>
+                <span className="text-xs font-bold uppercase tracking-widest text-white bg-black/20 px-3.5 py-1.5 rounded-full inline-block mb-6">
+                  Nossa Missão
+                </span>
+                <h4 className="text-xl md:text-3xl font-extrabold uppercase tracking-tight text-white mb-4">
+                  Integrar Capacidades para Resolver Problemas Complexos.
+                </h4>
+                <p className="text-white/90 text-sm md:text-base leading-relaxed">
+                  Desenvolver soluções eficientes, responsáveis e escaláveis, conectando diferentes competências para gerar valor aos nossos clientes e parceiros.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Nossos Pilares */}
+          <div>
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+                Fundamentos
+              </Badge>
+              <h3 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-foreground mb-3">
+                Nossos <span className="text-primary">Pilares</span>
+              </h3>
+              <p className="text-muted-foreground text-sm md:text-base">
+                Os princípios que guiam cada decisão, parceria e entrega no ecossistema Greenverse.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: 'Estratégia', subtitle: 'Pensar antes de executar.', icon: <Target className="h-5 w-5" /> },
+                { title: 'Especialização', subtitle: 'Mobilizar conhecimento técnico.', icon: <Lightbulb className="h-5 w-5" /> },
+                { title: 'Integração', subtitle: 'Conectar diferentes competências.', icon: <Users className="h-5 w-5" /> },
+                { title: 'Governança', subtitle: 'Controlar riscos e garantir conformidade.', icon: <ShieldCheck className="h-5 w-5" /> },
+                { title: 'Execução', subtitle: 'Transformar planejamento em resultado.', icon: <Activity className="h-5 w-5" /> },
+                { title: 'Escala', subtitle: 'Construir estruturas capazes de crescer.', icon: <Building2 className="h-5 w-5" /> },
+              ].map((pilar, idx) => (
+                <div 
+                  key={idx}
+                  className="bg-card p-6 rounded-2xl border border-border hover:border-primary/40 transition-all flex items-start gap-4"
+                >
+                  <div className="bg-primary/10 p-2.5 rounded-xl text-primary shrink-0 mt-1">
+                    {pilar.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-foreground">{pilar.title}</h4>
+                    <p className="text-sm text-muted-foreground mt-1">{pilar.subtitle}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -541,6 +688,289 @@ const HomePage = () => {
         </div>
       </section>
 
+      {/* Mercosul Section */}
+      <section id="mercosul" className="py-24 bg-slate-950 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
+          
+          {/* Header */}
+          <div className="max-w-4xl mb-16">
+            <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+              Plataforma Regional
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase mb-4 text-white">
+              Greenverse <span className="text-primary">Mercosul</span>
+            </h2>
+            <p className="text-xl md:text-2xl font-semibold text-primary/90 mb-6">
+              Conectando empresas e oportunidades entre diferentes mercados.
+            </p>
+            <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-3xl">
+              A Greenverse está estruturando uma plataforma de atuação integrada no Mercosul para apoiar empresas que desejam entrar, expandir ou desenvolver operações na região.
+            </p>
+
+            {/* Mercados Estratégicos */}
+            <div className="mt-8 pt-8 border-t border-white/10">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-4">
+                Mercados Estratégicos
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { name: 'Brasil', flag: '🇧🇷' },
+                  { name: 'Paraguai', flag: '🇵🇾' },
+                  { name: 'Argentina', flag: '🇦🇷' },
+                  { name: 'Uruguai', flag: '🇺🇾' },
+                  { name: 'Chile', flag: '🇨🇱' },
+                  { name: 'Bolívia', flag: '🇧🇴' },
+                ].map((country, idx) => (
+                  <div 
+                    key={idx}
+                    className="flex items-center gap-2 bg-white/5 border border-white/10 hover:border-primary/40 px-4 py-2.5 rounded-xl transition-colors"
+                  >
+                    <span className="text-xl">{country.flag}</span>
+                    <span className="font-semibold text-sm md:text-base text-slate-200">{country.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* O Que Fazemos */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="bg-primary/20 p-2 rounded-xl text-primary">
+                <Target className="h-5 w-5" />
+              </div>
+              <h3 className="text-2xl font-extrabold uppercase tracking-tight text-white">
+                O Que Fazemos
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
+                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <Globe className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-bold mb-2 text-white">Entrada em novos mercados</h4>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Apoiamos empresas na estruturação de operações e desenvolvimento de projetos.
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
+                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <Building2 className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-bold mb-2 text-white">Infraestrutura</h4>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Identificação e estruturação de soluções para instalações, galpões, centros logísticos e ativos empresariais.
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
+                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <Activity className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-bold mb-2 text-white">Logística</h4>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Integração de rotas, operações, armazenagem e infraestrutura.
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
+                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <Users className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-bold mb-2 text-white">Parceiros locais</h4>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Conectamos empresas a especialistas e operadores locais.
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
+                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <Construction className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-bold mb-2 text-white">Engenharia</h4>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Mobilizamos competências técnicas para projetos de diferentes dimensões.
+                </p>
+              </div>
+
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
+                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <ShieldCheck className="h-6 w-6" />
+                </div>
+                <h4 className="text-lg font-bold mb-2 text-white">Operação</h4>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Apoiamos a implantação e continuidade das operações.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Corredor Estratégico */}
+          <div className="bg-gradient-to-r from-primary/20 via-slate-900 to-primary/20 border border-primary/30 rounded-3xl p-8 md:p-12">
+            <div className="max-w-4xl mx-auto text-center space-y-6">
+              <span className="text-xs uppercase tracking-widest font-bold text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 inline-block">
+                Corredor Estratégico
+              </span>
+              
+              <h3 className="text-xl sm:text-2xl md:text-4xl font-extrabold tracking-tight text-white">
+                BRASIL <span className="text-primary">→</span> PARAGUAI <span className="text-primary">→</span> ARGENTINA <span className="text-primary">→</span> URUGUAI
+              </h3>
+
+              <p className="text-base md:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
+                A Greenverse busca participar da construção de novas conexões logísticas e empresariais dentro da América do Sul.
+              </p>
+
+              <div className="pt-4">
+                <div className="inline-flex flex-wrap items-center justify-center gap-2 bg-slate-950/80 border border-primary/40 px-6 py-3.5 rounded-2xl text-sm md:text-base font-semibold text-primary">
+                  <span>Infraestrutura</span>
+                  <span className="text-slate-400">+</span>
+                  <span>Logística</span>
+                  <span className="text-slate-400">+</span>
+                  <span>Indústria</span>
+                  <span className="text-slate-400">+</span>
+                  <span>Comércio</span>
+                  <span className="text-slate-400">+</span>
+                  <span className="text-white">Mercosul</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* Rede Homologada Section */}
+      <section id="rede-homologada" className="py-24 bg-background border-b border-border/40">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mb-16">
+            <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+              Rede Homologada
+            </Badge>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase mb-6 text-foreground">
+              Uma Rede Construída para <span className="text-primary">Ampliar Nossa Capacidade</span>.
+            </h2>
+            <p className="text-muted-foreground text-xl leading-relaxed">
+              A Greenverse trabalha com uma rede de empresas e especialistas homologados.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            {/* Critérios de Seleção */}
+            <div className="bg-card rounded-3xl p-8 border border-border shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-primary/10 p-2.5 rounded-xl text-primary">
+                    <ShieldCheck className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold uppercase tracking-tight text-foreground">
+                    A seleção considera:
+                  </h3>
+                </div>
+                <ul className="space-y-3.5">
+                  {[
+                    'Capacidade técnica',
+                    'Experiência',
+                    'Documentação',
+                    'Conformidade',
+                    'Segurança',
+                    'Capacidade operacional',
+                    'Histórico de atuação',
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-center gap-3 text-sm md:text-base font-medium text-foreground">
+                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Áreas de Especialização */}
+            <div className="bg-card rounded-3xl p-8 border border-border shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-primary/10 p-2.5 rounded-xl text-primary">
+                    <Building2 className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold uppercase tracking-tight text-foreground">
+                    Áreas de Especialização
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                  {[
+                    'Engenharia',
+                    'Construção',
+                    'Elétrica',
+                    'Ambiental',
+                    'Estruturas',
+                    'Caldeiras',
+                    'Equipamentos',
+                    'Andaimes',
+                    'Segurança',
+                    'Tecnologia',
+                    'Logística',
+                    'Manutenção',
+                  ].map((area, idx) => (
+                    <span 
+                      key={idx}
+                      className="bg-primary/10 hover:bg-primary/20 text-foreground border border-primary/20 px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Para Nossos Clientes */}
+            <div className="bg-slate-900 text-white rounded-3xl p-8 border border-slate-800 shadow-xl flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="bg-primary/20 p-2.5 rounded-xl text-primary">
+                    <Users className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold uppercase tracking-tight text-white">
+                    Para Nossos Clientes
+                  </h3>
+                </div>
+                
+                <div className="space-y-4 mb-6">
+                  <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <p className="font-bold text-base text-primary mb-1">Uma única estrutura de relacionamento.</p>
+                    <p className="text-xs md:text-sm text-slate-300">Centralização estratégica de atendimento, gestão e governança de ponta a ponta.</p>
+                  </div>
+
+                  <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <p className="font-bold text-base text-primary mb-1">Múltiplas capacidades técnicas.</p>
+                    <p className="text-xs md:text-sm text-slate-300">Acesso direto a especialistas multidisciplinares em todas as frentes operacionais.</p>
+                  </div>
+                </div>
+
+                <p className="text-sm md:text-base text-slate-300 leading-relaxed">
+                  Isso reduz a necessidade de coordenar diversos fornecedores independentes e permite construir soluções integradas.
+                </p>
+              </div>
+
+              <div className="mt-8">
+                <Button 
+                  size="lg" 
+                  className="w-full bg-primary hover:bg-primary/90 text-white" 
+                  onClick={() => {
+                    const el = document.getElementById('contato');
+                    el?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  Falar com Nosso Time
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <AuthoritySection />
 
       {/* Blog Preview */}
@@ -575,7 +1005,7 @@ const HomePage = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-24 bg-accent/10">
+      <section id="contato" className="py-24 bg-accent/10">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto bg-background rounded-3xl overflow-hidden shadow-2xl flex flex-col md:row">
             <div className="grid grid-cols-1 md:grid-cols-2">
@@ -585,12 +1015,16 @@ const HomePage = () => {
                   <p className="opacity-80 mb-8">Preencha o formulário e receba um diagnóstico técnico preliminar sem custos.</p>
                   <div className="space-y-6">
                     <div className="flex items-center gap-4">
-                      <div className="bg-white/10 p-2 rounded-lg"><Phone className="h-5 w-5" /></div>
+                      <div className="bg-white/10 p-2 rounded-lg shrink-0"><Phone className="h-5 w-5" /></div>
                       <span>(48) 9930-3323</span>
                     </div>
                     <div className="flex items-center gap-4">
-                      <div className="bg-white/10 p-2 rounded-lg"><Mail className="h-5 w-5" /></div>
+                      <div className="bg-white/10 p-2 rounded-lg shrink-0"><Mail className="h-5 w-5" /></div>
                       <span>contato@greenverse.com.br</span>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="bg-white/10 p-2 rounded-lg shrink-0 mt-0.5"><MapPin className="h-5 w-5" /></div>
+                      <span className="text-sm leading-relaxed">Rua Caetano Silveira de Matos nº 2455, sala 02, Centro Palhoça/SC, CEP 88130-005</span>
                     </div>
                   </div>
                 </div>
