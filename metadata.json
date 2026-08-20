@@ -1,5 +1,6 @@
 {
   "name": "Greenverse",
   "description": "Ecossistema empresarial de soluções corporativas integradas. Alta performance, engenharia industrial, facilities, ESG, compliance e mercado livre de energia.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

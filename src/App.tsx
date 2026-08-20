@@ -7,7 +7,7 @@ import {
   ChevronRight, Download, Lock, Bell, MessageCircle, CheckCircle2,
   Leaf, BarChart3, FileText, Globe, Users, Target, Briefcase, ArrowLeft, ShieldCheck,
   Waves, Activity, FlaskConical, FileSpreadsheet, BookOpen, Wrench, Cpu, Construction, Lightbulb, AlertTriangle,
-  Droplets, Factory, Heart, Home, Building2, Sprout
+  Droplets, Factory, Heart, Home, Building2, Sprout, Instagram
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,6 +21,8 @@ import { toast } from 'sonner';
 import { Logo } from './components/Logo';
 import SEO from './components/SEO';
 import { SERVICES, SECTORS, DIFFERENTIALS, BLOG_POSTS, BRAZIL_STATES } from './constants';
+import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
+import { LanguageSelector } from './components/LanguageSelector';
 
 // --- Components ---
 
@@ -34,13 +36,14 @@ const ScrollToTop = () => {
 
 const NotificationBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const { t } = useLanguage();
   if (!isVisible) return null;
 
   return (
     <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm font-medium relative">
       <span className="flex items-center justify-center gap-2">
         <Bell className="h-4 w-4" />
-        Alerta: Novas diretrizes do CONAMA publicadas. <Link to="/blog" className="underline hover:opacity-80">Saiba mais</Link>
+        {t.banner.alert} <Link to="/blog" className="underline hover:opacity-80">{t.banner.learnMore}</Link>
       </span>
       <button onClick={() => setIsVisible(false)} className="absolute right-4 top-1/2 -translate-y-1/2">
         <X className="h-4 w-4" />
@@ -51,6 +54,7 @@ const NotificationBanner = () => {
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -59,13 +63,13 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'O Ecossistema', href: '#quem-somos' },
-    { name: 'Serviços', href: '#servicos' },
-    { name: 'Setores', href: '#setores' },
-    { name: 'Diferenciais', href: '#diferenciais' },
-    { name: 'Mercosul', href: '#mercosul' },
-    { name: 'Rede Homologada', href: '#rede-homologada' },
-    { name: 'Blog', href: '/blog' },
+    { name: t.nav.ecosystem, href: '#quem-somos' },
+    { name: t.nav.services, href: '#servicos' },
+    { name: t.nav.sectors, href: '#setores' },
+    { name: t.nav.differentials, href: '#diferenciais' },
+    { name: t.nav.mercosul, href: '#mercosul' },
+    { name: t.nav.approvedNetwork, href: '#rede-homologada' },
+    { name: t.nav.blog, href: '/blog' },
   ];
 
   return (
@@ -76,37 +80,44 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <a key={link.name} href={link.href} className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               {link.name}
             </a>
           ))}
-          <div className="h-4 w-[1px] bg-border mx-2" />
+          <div className="h-4 w-[1px] bg-border mx-1" />
+          {/* Botão de Troca de Idioma com Bandeiras do Brasil, Espanha e Inglaterra */}
+          <LanguageSelector variant="dropdown" />
           <Link to="/area-cliente">
             <Button variant="ghost" size="sm" className="gap-2">
               <Lock className="h-4 w-4" />
-              Área do Cliente
+              {t.nav.clientArea}
             </Button>
           </Link>
         </div>
 
         {/* Mobile Nav */}
-        <div className="md:hidden">
+        <div className="lg:hidden flex items-center gap-2">
+          {/* Seletor rápido de idioma também no header mobile */}
+          <LanguageSelector variant="dropdown" />
           <Sheet>
             <SheetTrigger render={<Button variant="ghost" size="icon" />}>
               <Menu className="h-6 w-6" />
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <div className="flex flex-col gap-8 mt-12">
+              <div className="flex flex-col gap-6 mt-8">
                 {navLinks.map((link) => (
                   <a key={link.name} href={link.href} className="text-lg font-semibold hover:text-primary transition-colors">
                     {link.name}
                   </a>
                 ))}
                 <Link to="/area-cliente" className="text-lg font-semibold hover:text-primary transition-colors">
-                  Área do Cliente
+                  {t.nav.clientArea}
                 </Link>
+                
+                {/* Seletor detalhado de idiomas no menu mobile */}
+                <LanguageSelector variant="mobile" />
               </div>
             </SheetContent>
           </Sheet>
@@ -127,59 +138,76 @@ const WhatsAppButton = () => (
   </a>
 );
 
-const Footer = () => (
-  <footer className="bg-foreground text-background py-16">
-    <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div className="col-span-1 md:col-span-1">
-          <Link to="/" className="mb-6 block group">
-            <Logo light />
-          </Link>
-          <p className="text-background/60 text-sm leading-relaxed">
-            Sua parceira estratégica em conformidade ambiental e sustentabilidade corporativa. Transformamos desafios regulatórios em vantagens competitivas.
-          </p>
+const Footer = () => {
+  const { t } = useLanguage();
+  return (
+    <footer className="bg-foreground text-background py-16">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div className="col-span-1 md:col-span-1">
+            <Link to="/" className="mb-6 block group">
+              <Logo light />
+            </Link>
+            <p className="text-background/60 text-sm leading-relaxed">
+              {t.footer.tagline}
+            </p>
+          </div>
+          <div>
+            <h4 className="font-bold mb-6">{t.footer.servicesTitle}</h4>
+            <ul className="space-y-3 text-sm text-background/60">
+              <li>Gestão Ambiental e Soluções ESG</li>
+              <li>Gestão de Resíduos</li>
+              <li>Construção Civil</li>
+              <li>Compliance e Governança</li>
+              <li>Facilities e Operações</li>
+              <li>Limpeza e Conservação</li>
+              <li>Controle de Pragas</li>
+              <li>Gestão Ambiental e PRAD</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold mb-6">{t.footer.contactTitle}</h4>
+            <ul className="space-y-3 text-sm text-background/60">
+              <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary shrink-0" /> (48) 9930-3323</li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary shrink-0" /> contato@greenverse.com.br</li>
+              <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-primary shrink-0 mt-1" /> <span>Rua Caetano Silveira de Matos nº 2455, sala 02, Centro Palhoça/SC, CEP 88130-005</span></li>
+              <li className="pt-1">
+                <a 
+                  href="http://www.instagram.com/greenverse2026" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-background/80 hover:text-primary transition-colors group"
+                >
+                  <Instagram className="h-4 w-4 text-primary shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:underline">@greenverse2026</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-bold mb-6">{t.footer.newsletterTitle}</h4>
+            <p className="text-sm text-background/60 mb-4">{t.footer.newsletterDesc}</p>
+            <div className="flex gap-2">
+              <Input className="bg-background/10 border-background/20 text-background placeholder:text-background/40" placeholder={t.footer.newsletterPlaceholder} />
+              <Button size="icon" className="shrink-0"><ChevronRight className="h-4 w-4" /></Button>
+            </div>
+            <div className="mt-6">
+              <LanguageSelector variant="segmented" />
+            </div>
+          </div>
         </div>
-        <div>
-          <h4 className="font-bold mb-6">Serviços</h4>
-          <ul className="space-y-3 text-sm text-background/60">
-            <li>Gestão Ambiental e Soluções ESG</li>
-            <li>Gestão de Resíduos</li>
-            <li>Construção Civil</li>
-            <li>Compliance e Governança</li>
-            <li>Facilities e Operações</li>
-            <li>Limpeza e Conservação</li>
-            <li>Controle de Pragas</li>
-            <li>Gestão Ambiental e PRAD</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-bold mb-6">Contato</h4>
-          <ul className="space-y-3 text-sm text-background/60">
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary shrink-0" /> (48) 9930-3323</li>
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary shrink-0" /> contato@greenverse.com.br</li>
-            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-primary shrink-0 mt-1" /> <span>Rua Caetano Silveira de Matos nº 2455, sala 02, Centro Palhoça/SC, CEP 88130-005</span></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-bold mb-6">Newsletter</h4>
-          <p className="text-sm text-background/60 mb-4">Receba atualizações sobre legislação ambiental.</p>
-          <div className="flex gap-2">
-            <Input className="bg-background/10 border-background/20 text-background placeholder:text-background/40" placeholder="Seu e-mail" />
-            <Button size="icon" className="shrink-0"><ChevronRight className="h-4 w-4" /></Button>
+        <div className="border-t border-background/10 mt-16 pt-8 flex flex-col md:row items-center justify-between gap-4 text-xs text-background/40">
+          <p>{t.footer.rights}</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-primary">{t.footer.privacy}</a>
+            <a href="#" className="hover:text-primary">{t.footer.terms}</a>
+            <span className="text-primary font-semibold">ESG Certified</span>
           </div>
         </div>
       </div>
-      <div className="border-t border-background/10 mt-16 pt-8 flex flex-col md:row items-center justify-between gap-4 text-xs text-background/40">
-        <p>© 2026 Greenverse. Todos os direitos reservados.</p>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-primary">Política de Privacidade</a>
-          <a href="#" className="hover:text-primary">Termos de Uso</a>
-          <span className="text-primary font-semibold">ESG Certified</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 const AuthoritySection = () => (
   <section className="py-24 bg-primary relative overflow-hidden">
@@ -250,6 +278,7 @@ const AuthoritySection = () => (
 // --- Pages ---
 
 const HomePage = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -259,7 +288,7 @@ const HomePage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success('Solicitação enviada! Um consultor entrará em contato em breve.');
+    toast.success(t.contactSection.form.successToastTitle);
     setFormData({ name: '', email: '', service: '', state: '' });
   };
 
@@ -280,14 +309,21 @@ const HomePage = () => {
               className="max-w-4xl text-center"
             >
               <h1 className="text-3xl md:text-6xl font-bold tracking-tighter mb-6 leading-[1.1]">
-                Conectamos empresas, especialistas e tecnologia para entregar <span className="text-primary">soluções complexas em diferentes mercados</span>.
+                {t.hero.titleStart} <span className="text-primary">{t.hero.titleHighlight}</span>.
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
-                Estratégia, engenharia, infraestrutura, operações, meio ambiente e logística integradas em um único ecossistema empresarial.
+                {t.hero.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="h-14 px-10 text-lg bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Conhecer Nossos Serviços
+                <Button 
+                  size="lg" 
+                  className="h-14 px-10 text-lg bg-primary hover:bg-primary/90 text-primary-foreground"
+                  onClick={() => {
+                    const el = document.getElementById('servicos');
+                    el?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  {t.hero.ctaSecondary}
                 </Button>
               </div>
             </motion.div>
@@ -308,23 +344,25 @@ const HomePage = () => {
               viewport={{ once: true }}
             >
               <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
-                O Ecossistema
+                {t.ecosystem.badge}
               </Badge>
               <h2 className="text-2xl md:text-4xl font-extrabold mb-6 leading-tight uppercase tracking-tight text-foreground">
-                Um Ecossistema. <span className="text-primary">Múltiplas Capacidades.</span>
+                {t.ecosystem.title} <span className="text-primary">{t.ecosystem.titleHighlight}</span>
               </h2>
               <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                 <p className="text-lg md:text-xl text-foreground font-medium leading-relaxed">
-                  A Greenverse é um ecossistema empresarial criado para conectar empresas, especialistas, tecnologia e capital intelectual na construção de soluções para diferentes mercados.
+                  {t.ecosystem.lead}
                 </p>
                 <p className="text-base md:text-lg">
-                  Nossa atuação combina estratégia, engenharia, infraestrutura, operações, meio ambiente e logística, permitindo estruturar projetos de forma integrada.
+                  {t.ecosystem.paragraph1}
                 </p>
                 
                 <div className="p-6 bg-primary/10 border border-primary/20 rounded-2xl">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">Nosso Posicionamento</p>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">
+                    {t.ecosystem.positioningBadge}
+                  </p>
                   <p className="text-lg md:text-xl font-bold text-foreground">
-                    Não somos apenas um fornecedor. <span className="text-primary">Somos uma estrutura de integração e execução.</span>
+                    {t.ecosystem.positioningText} <span className="text-primary">{t.ecosystem.positioningHighlight}</span>
                   </p>
                 </div>
               </div>
@@ -400,7 +438,7 @@ const HomePage = () => {
                   </div>
                   <div>
                     <p className="text-3xl font-bold text-foreground">+15</p>
-                    <p className="text-sm text-muted-foreground">Especialistas Sênior</p>
+                    <p className="text-sm text-muted-foreground">{t.ecosystem.specialistsBadge}</p>
                   </div>
                 </div>
               </div>
@@ -411,46 +449,46 @@ const HomePage = () => {
           <div className="mb-24 pt-12 border-t border-border">
             <div className="max-w-4xl mb-12">
               <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
-                Arquitetura Empresarial
+                {t.ecosystem.structureBadge}
               </Badge>
               <h3 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-foreground mb-4">
-                Uma Estrutura Pensada Para <span className="text-primary">Crescer</span>
+                {t.ecosystem.structureTitle} <span className="text-primary">{t.ecosystem.structureTitleHighlight}</span>
               </h3>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                O ecossistema Greenverse é formado por diferentes empresas, unidades de negócio, especialistas e parceiros estratégicos. Cada estrutura possui competências específicas, enquanto o ecossistema permite integração entre elas.
+                {t.ecosystem.structureLead}
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  title: 'Greenverse Holding',
-                  desc: 'Estrutura estratégica e patrimonial.',
+                  title: t.ecosystem.structureCards.holding.title,
+                  desc: t.ecosystem.structureCards.holding.desc,
                   icon: <Building2 className="h-6 w-6" />,
                 },
                 {
-                  title: 'Greenverse Brasil',
-                  desc: 'Operações e desenvolvimento de negócios no Brasil.',
+                  title: t.ecosystem.structureCards.brasil.title,
+                  desc: t.ecosystem.structureCards.brasil.desc,
                   icon: <Globe className="h-6 w-6" />,
                 },
                 {
-                  title: 'Greenverse Mercosul',
-                  desc: 'Estrutura voltada à expansão e integração de negócios na região.',
+                  title: t.ecosystem.structureCards.mercosul.title,
+                  desc: t.ecosystem.structureCards.mercosul.desc,
                   icon: <Target className="h-6 w-6" />,
                 },
                 {
-                  title: 'Greenverse Infrastructure & Logistics',
-                  desc: 'Infraestrutura, logística e desenvolvimento de ativos.',
+                  title: t.ecosystem.structureCards.infra.title,
+                  desc: t.ecosystem.structureCards.infra.desc,
                   icon: <Construction className="h-6 w-6" />,
                 },
                 {
-                  title: 'Empresas Especializadas',
-                  desc: 'Operações técnicas e serviços específicos.',
+                  title: t.ecosystem.structureCards.specialized.title,
+                  desc: t.ecosystem.structureCards.specialized.desc,
                   icon: <Briefcase className="h-6 w-6" />,
                 },
                 {
-                  title: 'Rede Homologada',
-                  desc: 'Empresas e especialistas integrados ao ecossistema.',
+                  title: t.ecosystem.structureCards.approved.title,
+                  desc: t.ecosystem.structureCards.approved.desc,
                   icon: <ShieldCheck className="h-6 w-6" />,
                 },
               ].map((item, idx) => (
@@ -477,21 +515,15 @@ const HomePage = () => {
               <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
               <div>
                 <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/20 px-3.5 py-1.5 rounded-full inline-block mb-6">
-                  Nossa Visão
+                  {t.ecosystem.visionBadge}
                 </span>
                 <h4 className="text-xl md:text-3xl font-extrabold uppercase tracking-tight text-white mb-4">
-                  Construir Conexões que Geram Capacidade.
+                  {t.ecosystem.visionTitle}
                 </h4>
                 <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
-                  <p>
-                    Acreditamos que grandes projetos não dependem de uma única empresa.
-                  </p>
-                  <p>
-                    Eles dependem da capacidade de conectar pessoas, conhecimento, tecnologia, infraestrutura e execução.
-                  </p>
-                  <p className="text-primary font-semibold">
-                    É essa conexão que orienta a Greenverse.
-                  </p>
+                  <p>{t.ecosystem.visionP1}</p>
+                  <p>{t.ecosystem.visionP2}</p>
+                  <p className="text-primary font-semibold">{t.ecosystem.visionP3}</p>
                 </div>
               </div>
             </div>
@@ -501,13 +533,13 @@ const HomePage = () => {
               <div className="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
               <div>
                 <span className="text-xs font-bold uppercase tracking-widest text-white bg-black/20 px-3.5 py-1.5 rounded-full inline-block mb-6">
-                  Nossa Missão
+                  {t.ecosystem.missionBadge}
                 </span>
                 <h4 className="text-xl md:text-3xl font-extrabold uppercase tracking-tight text-white mb-4">
-                  Integrar Capacidades para Resolver Problemas Complexos.
+                  {t.ecosystem.missionTitle}
                 </h4>
                 <p className="text-white/90 text-sm md:text-base leading-relaxed">
-                  Desenvolver soluções eficientes, responsáveis e escaláveis, conectando diferentes competências para gerar valor aos nossos clientes e parceiros.
+                  {t.ecosystem.missionDesc}
                 </p>
               </div>
             </div>
@@ -517,38 +549,41 @@ const HomePage = () => {
           <div>
             <div className="text-center max-w-2xl mx-auto mb-14">
               <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
-                Fundamentos
+                {t.ecosystem.pillarsBadge}
               </Badge>
               <h3 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-foreground mb-3">
-                Nossos <span className="text-primary">Pilares</span>
+                {t.ecosystem.pillarsTitle} <span className="text-primary">{t.ecosystem.pillarsTitleHighlight}</span>
               </h3>
               <p className="text-muted-foreground text-sm md:text-base">
-                Os princípios que guiam cada decisão, parceria e entrega no ecossistema Greenverse.
+                {t.ecosystem.pillarsSubtitle}
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { title: 'Estratégia', subtitle: 'Pensar antes de executar.', icon: <Target className="h-5 w-5" /> },
-                { title: 'Especialização', subtitle: 'Mobilizar conhecimento técnico.', icon: <Lightbulb className="h-5 w-5" /> },
-                { title: 'Integração', subtitle: 'Conectar diferentes competências.', icon: <Users className="h-5 w-5" /> },
-                { title: 'Governança', subtitle: 'Controlar riscos e garantir conformidade.', icon: <ShieldCheck className="h-5 w-5" /> },
-                { title: 'Execução', subtitle: 'Transformar planejamento em resultado.', icon: <Activity className="h-5 w-5" /> },
-                { title: 'Escala', subtitle: 'Construir estruturas capazes de crescer.', icon: <Building2 className="h-5 w-5" /> },
-              ].map((pilar, idx) => (
-                <div 
-                  key={idx}
-                  className="bg-card p-6 rounded-2xl border border-border hover:border-primary/40 transition-all flex items-start gap-4"
-                >
-                  <div className="bg-primary/10 p-2.5 rounded-xl text-primary shrink-0 mt-1">
-                    {pilar.icon}
+              {t.ecosystem.pillars.map((pilar, idx) => {
+                const icons = [
+                  <Target key="0" className="h-5 w-5" />,
+                  <Lightbulb key="1" className="h-5 w-5" />,
+                  <Users key="2" className="h-5 w-5" />,
+                  <ShieldCheck key="3" className="h-5 w-5" />,
+                  <Activity key="4" className="h-5 w-5" />,
+                  <Building2 key="5" className="h-5 w-5" />,
+                ];
+                return (
+                  <div 
+                    key={idx}
+                    className="bg-card p-6 rounded-2xl border border-border hover:border-primary/40 transition-all flex items-start gap-4"
+                  >
+                    <div className="bg-primary/10 p-2.5 rounded-xl text-primary shrink-0 mt-1">
+                      {icons[idx % icons.length]}
+                    </div>
+                    <div>
+                      <h4 className="text-base font-bold text-foreground">{pilar.title}</h4>
+                      <p className="text-sm text-muted-foreground mt-1">{pilar.subtitle}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-base font-bold text-foreground">{pilar.title}</h4>
-                    <p className="text-sm text-muted-foreground mt-1">{pilar.subtitle}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -696,31 +731,31 @@ const HomePage = () => {
           {/* Header */}
           <div className="max-w-4xl mb-16">
             <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
-              Plataforma Regional
+              {t.mercosulSection.badge}
             </Badge>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase mb-4 text-white">
-              Greenverse <span className="text-primary">Mercosul</span>
+              {t.mercosulSection.title} <span className="text-primary">{t.mercosulSection.titleHighlight}</span>
             </h2>
             <p className="text-xl md:text-2xl font-semibold text-primary/90 mb-6">
-              Conectando empresas e oportunidades entre diferentes mercados.
+              {t.mercosulSection.subtitle}
             </p>
             <p className="text-slate-300 text-base md:text-lg leading-relaxed max-w-3xl">
-              A Greenverse está estruturando uma plataforma de atuação integrada no Mercosul para apoiar empresas que desejam entrar, expandir ou desenvolver operações na região.
+              {t.mercosulSection.lead}
             </p>
 
             {/* Mercados Estratégicos */}
             <div className="mt-8 pt-8 border-t border-white/10">
               <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-4">
-                Mercados Estratégicos
+                {t.mercosulSection.strategicMarkets}
               </h3>
               <div className="flex flex-wrap gap-3">
                 {[
-                  { name: 'Brasil', flag: '🇧🇷' },
-                  { name: 'Paraguai', flag: '🇵🇾' },
-                  { name: 'Argentina', flag: '🇦🇷' },
-                  { name: 'Uruguai', flag: '🇺🇾' },
-                  { name: 'Chile', flag: '🇨🇱' },
-                  { name: 'Bolívia', flag: '🇧🇴' },
+                  { name: t.mercosulSection.countries.brazil, flag: '🇧🇷' },
+                  { name: t.mercosulSection.countries.paraguay, flag: '🇵🇾' },
+                  { name: t.mercosulSection.countries.argentina, flag: '🇦🇷' },
+                  { name: t.mercosulSection.countries.uruguay, flag: '🇺🇾' },
+                  { name: t.mercosulSection.countries.chile, flag: '🇨🇱' },
+                  { name: t.mercosulSection.countries.bolivia, flag: '🇧🇴' },
                 ].map((country, idx) => (
                   <div 
                     key={idx}
@@ -741,70 +776,32 @@ const HomePage = () => {
                 <Target className="h-5 w-5" />
               </div>
               <h3 className="text-2xl font-extrabold uppercase tracking-tight text-white">
-                O Que Fazemos
+                {t.mercosulSection.whatWeDoTitle}
               </h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
-                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <Globe className="h-6 w-6" />
-                </div>
-                <h4 className="text-lg font-bold mb-2 text-white">Entrada em novos mercados</h4>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Apoiamos empresas na estruturação de operações e desenvolvimento de projetos.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
-                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <Building2 className="h-6 w-6" />
-                </div>
-                <h4 className="text-lg font-bold mb-2 text-white">Infraestrutura</h4>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Identificação e estruturação de soluções para instalações, galpões, centros logísticos e ativos empresariais.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
-                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <Activity className="h-6 w-6" />
-                </div>
-                <h4 className="text-lg font-bold mb-2 text-white">Logística</h4>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Integração de rotas, operações, armazenagem e infraestrutura.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
-                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <Users className="h-6 w-6" />
-                </div>
-                <h4 className="text-lg font-bold mb-2 text-white">Parceiros locais</h4>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Conectamos empresas a especialistas e operadores locais.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
-                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <Construction className="h-6 w-6" />
-                </div>
-                <h4 className="text-lg font-bold mb-2 text-white">Engenharia</h4>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Mobilizamos competências técnicas para projetos de diferentes dimensões.
-                </p>
-              </div>
-
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
-                <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <ShieldCheck className="h-6 w-6" />
-                </div>
-                <h4 className="text-lg font-bold mb-2 text-white">Operação</h4>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Apoiamos a implantação e continuidade das operações.
-                </p>
-              </div>
+              {t.mercosulSection.whatWeDoItems.map((item, idx) => {
+                const icons = [
+                  <Globe key="0" className="h-6 w-6" />,
+                  <Building2 key="1" className="h-6 w-6" />,
+                  <Activity key="2" className="h-6 w-6" />,
+                  <Users key="3" className="h-6 w-6" />,
+                  <Construction key="4" className="h-6 w-6" />,
+                  <ShieldCheck key="5" className="h-6 w-6" />,
+                ];
+                return (
+                  <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:border-primary/50 transition-all group">
+                    <div className="bg-primary/20 p-3 rounded-xl w-fit mb-5 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                      {icons[idx % icons.length]}
+                    </div>
+                    <h4 className="text-lg font-bold mb-2 text-white">{item.title}</h4>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -812,28 +809,28 @@ const HomePage = () => {
           <div className="bg-gradient-to-r from-primary/20 via-slate-900 to-primary/20 border border-primary/30 rounded-3xl p-8 md:p-12">
             <div className="max-w-4xl mx-auto text-center space-y-6">
               <span className="text-xs uppercase tracking-widest font-bold text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 inline-block">
-                Corredor Estratégico
+                {t.mercosulSection.corridorBadge}
               </span>
               
               <h3 className="text-xl sm:text-2xl md:text-4xl font-extrabold tracking-tight text-white">
-                BRASIL <span className="text-primary">→</span> PARAGUAI <span className="text-primary">→</span> ARGENTINA <span className="text-primary">→</span> URUGUAI
+                {t.mercosulSection.corridorTitle}
               </h3>
 
               <p className="text-base md:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed">
-                A Greenverse busca participar da construção de novas conexões logísticas e empresariais dentro da América do Sul.
+                {t.mercosulSection.corridorDesc}
               </p>
 
               <div className="pt-4">
                 <div className="inline-flex flex-wrap items-center justify-center gap-2 bg-slate-950/80 border border-primary/40 px-6 py-3.5 rounded-2xl text-sm md:text-base font-semibold text-primary">
-                  <span>Infraestrutura</span>
+                  <span>{t.mercosulSection.equation.infra}</span>
                   <span className="text-slate-400">+</span>
-                  <span>Logística</span>
+                  <span>{t.mercosulSection.equation.logistics}</span>
                   <span className="text-slate-400">+</span>
-                  <span>Indústria</span>
+                  <span>{t.mercosulSection.equation.industry}</span>
                   <span className="text-slate-400">+</span>
-                  <span>Comércio</span>
+                  <span>{t.mercosulSection.equation.commerce}</span>
                   <span className="text-slate-400">+</span>
-                  <span className="text-white">Mercosul</span>
+                  <span className="text-white">{t.mercosulSection.equation.mercosul}</span>
                 </div>
               </div>
             </div>
@@ -847,13 +844,13 @@ const HomePage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mb-16">
             <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
-              Rede Homologada
+              {t.networkSection.badge}
             </Badge>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase mb-6 text-foreground">
-              Uma Rede Construída para <span className="text-primary">Ampliar Nossa Capacidade</span>.
+              {t.networkSection.title} <span className="text-primary">{t.networkSection.titleHighlight}</span>.
             </h2>
             <p className="text-muted-foreground text-xl leading-relaxed">
-              A Greenverse trabalha com uma rede de empresas e especialistas homologados.
+              {t.networkSection.lead}
             </p>
           </div>
 
@@ -866,19 +863,11 @@ const HomePage = () => {
                     <ShieldCheck className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-bold uppercase tracking-tight text-foreground">
-                    A seleção considera:
+                    {t.networkSection.criteriaTitle}
                   </h3>
                 </div>
                 <ul className="space-y-3.5">
-                  {[
-                    'Capacidade técnica',
-                    'Experiência',
-                    'Documentação',
-                    'Conformidade',
-                    'Segurança',
-                    'Capacidade operacional',
-                    'Histórico de atuação',
-                  ].map((item, idx) => (
+                  {t.networkSection.criteriaItems.map((item, idx) => (
                     <li key={idx} className="flex items-center gap-3 text-sm md:text-base font-medium text-foreground">
                       <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
                       <span>{item}</span>
@@ -896,24 +885,11 @@ const HomePage = () => {
                     <Building2 className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-bold uppercase tracking-tight text-foreground">
-                    Áreas de Especialização
+                    {t.networkSection.specializationTitle}
                   </h3>
                 </div>
                 <div className="flex flex-wrap gap-2.5">
-                  {[
-                    'Engenharia',
-                    'Construção',
-                    'Elétrica',
-                    'Ambiental',
-                    'Estruturas',
-                    'Caldeiras',
-                    'Equipamentos',
-                    'Andaimes',
-                    'Segurança',
-                    'Tecnologia',
-                    'Logística',
-                    'Manutenção',
-                  ].map((area, idx) => (
+                  {t.networkSection.specializationAreas.map((area, idx) => (
                     <span 
                       key={idx}
                       className="bg-primary/10 hover:bg-primary/20 text-foreground border border-primary/20 px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors"
@@ -933,24 +909,21 @@ const HomePage = () => {
                     <Users className="h-6 w-6" />
                   </div>
                   <h3 className="text-xl font-bold uppercase tracking-tight text-white">
-                    Para Nossos Clientes
+                    {t.networkSection.forClientsTitle}
                   </h3>
                 </div>
                 
                 <div className="space-y-4 mb-6">
-                  <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                    <p className="font-bold text-base text-primary mb-1">Uma única estrutura de relacionamento.</p>
-                    <p className="text-xs md:text-sm text-slate-300">Centralização estratégica de atendimento, gestão e governança de ponta a ponta.</p>
-                  </div>
-
-                  <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                    <p className="font-bold text-base text-primary mb-1">Múltiplas capacidades técnicas.</p>
-                    <p className="text-xs md:text-sm text-slate-300">Acesso direto a especialistas multidisciplinares em todas as frentes operacionais.</p>
-                  </div>
+                  {t.networkSection.forClientsItems.map((item, idx) => (
+                    <div key={idx} className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                      <p className="font-bold text-base text-primary mb-1">{item.title}</p>
+                      <p className="text-xs md:text-sm text-slate-300">{item.desc}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <p className="text-sm md:text-base text-slate-300 leading-relaxed">
-                  Isso reduz a necessidade de coordenar diversos fornecedores independentes e permite construir soluções integradas.
+                  {t.networkSection.forClientsConclusion}
                 </p>
               </div>
 
@@ -963,7 +936,7 @@ const HomePage = () => {
                     el?.scrollIntoView({ behavior: 'smooth' });
                   }}
                 >
-                  Falar com Nosso Time
+                  {t.networkSection.ctaButton}
                 </Button>
               </div>
             </div>
@@ -1011,8 +984,8 @@ const HomePage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="p-12 bg-primary text-primary-foreground flex flex-col justify-between">
                 <div>
-                  <h2 className="text-3xl font-bold mb-6">Pronto para regularizar seu negócio?</h2>
-                  <p className="opacity-80 mb-8">Preencha o formulário e receba um diagnóstico técnico preliminar sem custos.</p>
+                  <h2 className="text-3xl font-bold mb-6">{t.contactSection.title}</h2>
+                  <p className="opacity-80 mb-8">{t.contactSection.subtitle}</p>
                   <div className="space-y-6">
                     <div className="flex items-center gap-4">
                       <div className="bg-white/10 p-2 rounded-lg shrink-0"><Phone className="h-5 w-5" /></div>
@@ -1026,6 +999,17 @@ const HomePage = () => {
                       <div className="bg-white/10 p-2 rounded-lg shrink-0 mt-0.5"><MapPin className="h-5 w-5" /></div>
                       <span className="text-sm leading-relaxed">Rua Caetano Silveira de Matos nº 2455, sala 02, Centro Palhoça/SC, CEP 88130-005</span>
                     </div>
+                    <div className="flex items-center gap-4">
+                      <div className="bg-white/10 p-2 rounded-lg shrink-0"><Instagram className="h-5 w-5" /></div>
+                      <a 
+                        href="http://www.instagram.com/greenverse2026" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:underline transition-all font-medium"
+                      >
+                        @greenverse2026
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <div className="mt-12 p-6 bg-white/10 rounded-2xl border border-white/10">
@@ -1036,21 +1020,21 @@ const HomePage = () => {
               <div className="p-12">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nome Completo</Label>
+                    <Label htmlFor="name">{t.contactSection.form.name}</Label>
                     <Input 
                       id="name" 
-                      placeholder="Seu nome" 
+                      placeholder={t.contactSection.form.namePlaceholder} 
                       required 
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="email">E-mail Corporativo</Label>
+                    <Label htmlFor="email">{t.contactSection.form.email}</Label>
                     <Input 
                       id="email" 
                       type="email" 
-                      placeholder="email@empresa.com.br" 
+                      placeholder={t.contactSection.form.emailPlaceholder} 
                       required 
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -1058,10 +1042,10 @@ const HomePage = () => {
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label>Serviço de Interesse</Label>
+                      <Label>{t.contactSection.form.service}</Label>
                       <Select onValueChange={(v) => setFormData({...formData, service: v})}>
                         <SelectTrigger>
-                          <SelectValue placeholder="Selecione" />
+                          <SelectValue placeholder={t.contactSection.form.servicePlaceholder} />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="licenciamento">Gestão Ambiental e Soluções ESG</SelectItem>
@@ -1079,10 +1063,10 @@ const HomePage = () => {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label>Estado (UF)</Label>
+                      <Label>{t.contactSection.form.state}</Label>
                       <Select onValueChange={(v) => setFormData({...formData, state: v})}>
                         <SelectTrigger>
-                          <SelectValue placeholder="UF" />
+                          <SelectValue placeholder={t.contactSection.form.statePlaceholder} />
                         </SelectTrigger>
                         <SelectContent>
                           {BRAZIL_STATES.map((state) => (
@@ -1094,9 +1078,9 @@ const HomePage = () => {
                       </Select>
                     </div>
                   </div>
-                  <Button type="submit" className="w-full h-12 text-lg">Enviar Solicitação</Button>
+                  <Button type="submit" className="w-full h-12 text-lg">{t.contactSection.form.submitBtn}</Button>
                   <p className="text-[10px] text-center text-muted-foreground">
-                    Ao enviar, você concorda com nossa Política de Privacidade e tratamento de dados conforme a LGPD.
+                    {t.contactSection.form.privacyNotice}
                   </p>
                 </form>
               </div>
@@ -3639,22 +3623,25 @@ const ServiceDetailPage = () => {
 
 export default function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <div className="min-h-screen bg-background font-sans selection:bg-primary/20 selection:text-primary">
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/servicos/:serviceId" element={<ServiceDetailPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/area-cliente" element={<ClientAreaPage />} />
-          </Routes>
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <Toaster position="top-right" />
-      </div>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="min-h-screen bg-background font-sans selection:bg-primary/20 selection:text-primary">
+          <NotificationBanner />
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/servicos/:serviceId" element={<ServiceDetailPage />} />
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/area-cliente" element={<ClientAreaPage />} />
+            </Routes>
+          </main>
+          <Footer />
+          <WhatsAppButton />
+          <Toaster position="top-right" />
+        </div>
+      </Router>
+    </LanguageProvider>
   );
 }
