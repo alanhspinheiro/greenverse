@@ -1,4 +1,4 @@
-import { ShieldCheck, Leaf, Recycle, Droplets, FileText, BarChart3, Factory, Tractor, Building2, Sparkles, Bug, Sprout, Truck, Shield, HardHat, Briefcase, Camera, Zap, Paintbrush, Wind, RefreshCcw, Mountain, Plane, Warehouse, Home, Users, Wrench, Construction } from 'lucide-react';
+import { ShieldCheck, Leaf, Recycle, Droplets, FileText, BarChart3, Factory, Tractor, Building2, Sparkles, Bug, Sprout, Truck, Shield, HardHat, Briefcase, Camera, Zap, Paintbrush, Wind, RefreshCcw, Mountain, Plane, Warehouse, Home, Users, Wrench, Construction, Server, Cpu, Database, Network } from 'lucide-react';
 
 export const SERVICES = [
   {
@@ -2278,6 +2278,140 @@ export const SERVICES = [
           'Construção e revestimento de canais de irrigação e de transposição de bacias',
           'Estações de bombeamento de água bruta de alta capacidade com cálculo de transientes hidráulicos',
           'Reservatórios elevados, enterrados e bacias de acumulação de água industrial e pública'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'tecnologia-da-informacao',
+    title: 'Tecnologia da Informação',
+    description: 'Desenvolvimento de software, especialistas em TI, IA e dados, infraestrutura em nuvem, cibersegurança, automação e tecnologias avançadas.',
+    icon: Server,
+    details: [
+      {
+        category: 'Desenvolvimento e programação',
+        items: [
+          'Desenvolvimento de software',
+          'Programação',
+          'Sistemas sob medida',
+          'Aplicações web',
+          'Aplicativos mobile',
+          'Plataformas corporativas',
+          'SaaS',
+          'Portais empresariais',
+          'Sistemas de gestão',
+          'Sistemas operacionais',
+          'APIs',
+          'Integrações',
+          'Microsserviços',
+          'Bancos de dados',
+          'Sistemas legados'
+        ]
+      },
+      {
+        category: 'Profissionais especializados',
+        items: [
+          'Desenvolvedor de software',
+          'Programador',
+          'Engenheiro de software',
+          'Analista de sistemas',
+          'Analista de software',
+          'Analista de negócios',
+          'Arquiteto de soluções',
+          'Arquiteto de software',
+          'Product Manager',
+          'Product Owner',
+          'QA',
+          'DevOps',
+          'DevSecOps',
+          'DBA',
+          'Analista de dados',
+          'Cientista de dados',
+          'Especialista em cloud',
+          'Especialista em cybersecurity'
+        ]
+      },
+      {
+        category: 'Dados e Inteligência Artificial',
+        items: [
+          'Business Intelligence',
+          'Data Analytics',
+          'Dashboards',
+          'Power BI',
+          'Data warehouse',
+          'Engenharia de dados',
+          'Inteligência artificial',
+          'Agentes de IA',
+          'Automação inteligente',
+          'RPA',
+          'Análise preditiva',
+          'Machine learning',
+          'Processamento de documentos',
+          'Análise de grandes volumes de dados'
+        ]
+      },
+      {
+        category: 'Infraestrutura de TI',
+        items: [
+          'Redes',
+          'Servidores',
+          'Cloud computing',
+          'Backup',
+          'Disaster recovery',
+          'Virtualização',
+          'Storage',
+          'Monitoramento',
+          'Infraestrutura de dados',
+          'Suporte técnico',
+          'Service Desk',
+          'ITSM'
+        ]
+      },
+      {
+        category: 'Segurança digital',
+        items: [
+          'Cybersecurity',
+          'Análise de vulnerabilidades',
+          'Segurança de redes',
+          'Segurança de aplicações',
+          'Controle de acesso',
+          'Monitoramento',
+          'Gestão de incidentes',
+          'Segurança em cloud',
+          'Proteção de dados',
+          'LGPD',
+          'Governança de TI'
+        ]
+      },
+      {
+        category: 'Automação e integração',
+        items: [
+          'Integração de sistemas',
+          'APIs',
+          'Automação de processos',
+          'Workflows',
+          'RPA',
+          'Integração ERP',
+          'CRM',
+          'Sistemas financeiros',
+          'Sistemas operacionais',
+          'Automação administrativa',
+          'Automação industrial'
+        ]
+      },
+      {
+        category: 'Tecnologias avançadas',
+        items: [
+          'IoT',
+          'Sensores',
+          'Monitoramento remoto',
+          'Visão computacional',
+          'Geotecnologia',
+          'GIS',
+          'Drones',
+          'Análise de imagens',
+          'Digital Twin',
+          'Manutenção preditiva'
         ]
       }
     ]

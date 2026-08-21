@@ -23,6 +23,7 @@ import SEO from './components/SEO';
 import { SERVICES, SECTORS, DIFFERENTIALS, BLOG_POSTS, BRAZIL_STATES } from './constants';
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import { LanguageSelector } from './components/LanguageSelector';
+import ecosystemBg from './assets/images/ecosystem_panoramic_bg_1787333228456.jpg';
 
 // --- Components ---
 
@@ -163,6 +164,7 @@ const Footer = () => {
               <li>Limpeza e Conservação</li>
               <li>Controle de Pragas</li>
               <li>Gestão Ambiental e PRAD</li>
+              <li>Tecnologia da Informação</li>
             </ul>
           </div>
           <div>
@@ -332,234 +334,250 @@ const HomePage = () => {
       </section>
 
       {/* Quem Somos / O Ecossistema Section */}
-      <section id="quem-somos" className="py-24 overflow-hidden bg-background">
-        <div className="container mx-auto px-4">
+      <section id="quem-somos" className="relative py-28 md:py-36 overflow-hidden bg-[#061e14] text-white">
+        {/* Imagem de Fundo Panorâmica Contínua com Overlay Verde Escuro Profundo que garante máxima legibilidade */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <img 
+            src={ecosystemBg} 
+            alt="Ecossistema Greenverse Background" 
+            className="w-full h-full object-cover object-center scale-105"
+            referrerPolicy="no-referrer"
+          />
+          {/* Camadas de escurecimento verde escuro para contraste e legibilidade perfeita */}
+          <div className="absolute inset-0 bg-[#061e14]/90 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#051810] via-[#08261a]/90 to-[#051810]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-600/15 via-transparent to-transparent" />
+        </div>
+
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Top Intro with Interactive Graphic */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+          {/* Top Intro - Layout de Tela Inteira sem Imagens Laterais ou Cards */}
+          <div className="max-w-5xl mb-24">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold uppercase tracking-wider">
                 {t.ecosystem.badge}
               </Badge>
-              <h2 className="text-2xl md:text-4xl font-extrabold mb-6 leading-tight uppercase tracking-tight text-foreground">
-                {t.ecosystem.title} <span className="text-primary">{t.ecosystem.titleHighlight}</span>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 leading-tight uppercase tracking-tight text-white">
+                {t.ecosystem.title} <span className="text-emerald-400">{t.ecosystem.titleHighlight}</span>
               </h2>
-              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                <p className="text-lg md:text-xl text-foreground font-medium leading-relaxed">
+              
+              <div className="space-y-6 text-emerald-50/90 leading-relaxed text-lg md:text-xl">
+                <p className="text-xl md:text-2xl text-white font-medium leading-relaxed">
                   {t.ecosystem.lead}
                 </p>
-                <p className="text-base md:text-lg">
+                <p className="text-base md:text-lg text-emerald-100/85">
                   {t.ecosystem.paragraph1}
                 </p>
                 
-                <div className="p-6 bg-primary/10 border border-primary/20 rounded-2xl">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">
-                    {t.ecosystem.positioningBadge}
-                  </p>
-                  <p className="text-lg md:text-xl font-bold text-foreground">
-                    {t.ecosystem.positioningText} <span className="text-primary">{t.ecosystem.positioningHighlight}</span>
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-tr from-green-900 via-green-600 to-green-400 p-4 flex items-center justify-center border border-primary/20 group relative">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] opacity-30 from-white/20" />
-                <img 
-                  src="/img001.png" 
-                  alt="Ecossistema de Integração Greenverse" 
-                  className="w-full h-full object-cover rounded-2xl mix-blend-luminosity opacity-40 group-hover:opacity-60 transition-all duration-700 brightness-110 contrast-125"
-                  referrerPolicy="no-referrer"
-                />
-                
-                {/* Simulated Integration Points */}
-                <div className="absolute inset-0 pointer-events-none">
-                  {[
-                    { top: '25%', left: '35%' }, 
-                    { top: '35%', left: '60%' },
-                    { top: '40%', left: '45%' },
-                    { top: '55%', left: '25%' },
-                    { top: '50%', left: '75%' },
-                    { top: '65%', left: '40%' },
-                    { top: '80%', left: '50%' },
-                    { top: '15%', left: '40%' },
-                    { top: '45%', left: '85%' },
-                    { top: '70%', left: '65%' },
-                  ].map((pos, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-2.5 h-2.5 bg-emerald-300 rounded-full shadow-[0_0_15px_rgba(110,231,183,0.8)]"
-                      style={pos}
-                      animate={{
-                        scale: [1, 1.8, 1],
-                        opacity: [0.7, 1, 0.7],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        delay: i * 0.3,
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-75" />
-                      <div className="absolute inset-0 bg-white blur-[2px] opacity-40 rounded-full" />
-                    </motion.div>
-                  ))}
-                  
-                  {/* Connection Lines (SVG) */}
-                  <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 100 100">
-                    <motion.path
-                      d="M35 25 L45 40 L60 35 L75 50 L85 45 L65 70 L50 80 L40 65 L25 55 Z M45 40 L40 15 L35 25 M60 35 L40 15"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="0.3"
-                      className="text-emerald-300"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={{ pathLength: 1, opacity: 1 }}
-                      transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div className="absolute -bottom-8 -left-8 bg-white p-8 rounded-3xl shadow-xl hidden md:block border border-border">
-                <div className="flex items-center gap-4">
-                  <div className="bg-primary p-3 rounded-2xl">
-                    <Users className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-foreground">+15</p>
-                    <p className="text-sm text-muted-foreground">{t.ecosystem.specialistsBadge}</p>
+                <div className="pt-6 mt-8 border-t border-emerald-500/20">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 shrink-0">
+                      {t.ecosystem.positioningBadge} —
+                    </span>
+                    <p className="text-xl md:text-2xl font-bold text-white leading-snug">
+                      {t.ecosystem.positioningText}{' '}
+                      <span className="text-emerald-400">{t.ecosystem.positioningHighlight}</span>
+                    </p>
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
 
-          {/* Uma Estrutura Pensada Para Crescer */}
-          <div className="mb-24 pt-12 border-t border-border">
-            <div className="max-w-4xl mb-12">
-              <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+          {/* Rede Integrada de Soluções, Serviços e Empresas Homologadas - Layout Amplo sem Cards */}
+          <div id="rede-integrada" className="mb-28 pt-16 border-t border-emerald-500/25">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="max-w-5xl"
+            >
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4 leading-tight">
+                {t.ecosystem.integratedNetwork.title}
+              </h3>
+              
+              <p className="text-lg md:text-2xl text-emerald-300 font-medium leading-relaxed mb-8">
+                {t.ecosystem.integratedNetwork.subtitle}
+              </p>
+
+              <div className="space-y-6 text-emerald-100/90 leading-relaxed text-base md:text-lg mb-12">
+                <p>
+                  {t.ecosystem.integratedNetwork.p1}
+                </p>
+                <p>
+                  {t.ecosystem.integratedNetwork.p2Lead}
+                  <span className="italic text-white font-medium">{t.ecosystem.integratedNetwork.p2Highlight}</span>
+                  {t.ecosystem.integratedNetwork.p2Tail}
+                </p>
+                <p>
+                  {t.ecosystem.integratedNetwork.p3}
+                </p>
+              </div>
+
+              <div className="pt-8 border-t border-emerald-500/20">
+                <h4 className="text-xl md:text-3xl font-bold text-white mb-4">
+                  {t.ecosystem.integratedNetwork.interfaceTitle}
+                </h4>
+                <p className="text-emerald-200 text-base md:text-lg font-medium mb-8">
+                  {t.ecosystem.integratedNetwork.processLead}
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3">
+                  {t.ecosystem.integratedNetwork.steps.map((step, idx) => (
+                    <div 
+                      key={idx} 
+                      className="flex items-baseline gap-3 py-2.5 border-b border-emerald-500/15 group hover:border-emerald-400/40 transition-colors"
+                    >
+                      <span className="font-mono text-sm font-bold text-emerald-400 shrink-0">
+                        {String(idx + 1).padStart(2, '0')}.
+                      </span>
+                      <span className="text-emerald-50/90 text-base md:text-lg leading-relaxed group-hover:text-white transition-colors">
+                        {step}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Uma Estrutura Pensada Para Crescer - Organizado em Toda a Tela sem Cards */}
+          <div id="estrutura-empresarial" className="mb-28 pt-16 border-t border-emerald-500/25">
+            <div className="max-w-4xl mb-14">
+              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold uppercase tracking-wider">
                 {t.ecosystem.structureBadge}
               </Badge>
-              <h3 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-foreground mb-4">
-                {t.ecosystem.structureTitle} <span className="text-primary">{t.ecosystem.structureTitleHighlight}</span>
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-5">
+                {t.ecosystem.structureTitle} <span className="text-emerald-400">{t.ecosystem.structureTitleHighlight}</span>
               </h3>
-              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+              <p className="text-lg md:text-xl text-emerald-100/85 leading-relaxed">
                 {t.ecosystem.structureLead}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
               {[
                 {
                   title: t.ecosystem.structureCards.holding.title,
                   desc: t.ecosystem.structureCards.holding.desc,
                   icon: <Building2 className="h-6 w-6" />,
+                  num: '01',
                 },
                 {
                   title: t.ecosystem.structureCards.brasil.title,
                   desc: t.ecosystem.structureCards.brasil.desc,
                   icon: <Globe className="h-6 w-6" />,
+                  num: '02',
                 },
                 {
                   title: t.ecosystem.structureCards.mercosul.title,
                   desc: t.ecosystem.structureCards.mercosul.desc,
                   icon: <Target className="h-6 w-6" />,
+                  num: '03',
                 },
                 {
                   title: t.ecosystem.structureCards.infra.title,
                   desc: t.ecosystem.structureCards.infra.desc,
                   icon: <Construction className="h-6 w-6" />,
+                  num: '04',
                 },
                 {
                   title: t.ecosystem.structureCards.specialized.title,
                   desc: t.ecosystem.structureCards.specialized.desc,
                   icon: <Briefcase className="h-6 w-6" />,
+                  num: '05',
                 },
                 {
                   title: t.ecosystem.structureCards.approved.title,
                   desc: t.ecosystem.structureCards.approved.desc,
                   icon: <ShieldCheck className="h-6 w-6" />,
+                  num: '06',
                 },
               ].map((item, idx) => (
                 <div 
                   key={idx}
-                  className="bg-card hover:bg-card/80 p-7 rounded-2xl border border-border shadow-sm hover:border-primary/40 transition-all group flex flex-col justify-between"
+                  id={`structure-node-${idx + 1}`}
+                  className="group relative pb-6 border-b border-emerald-500/20 hover:border-emerald-400/60 transition-colors"
                 >
-                  <div>
-                    <div className="bg-primary/10 p-3 rounded-xl w-fit text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-emerald-300 bg-emerald-900/50 p-2.5 rounded-xl border border-emerald-500/30 group-hover:bg-emerald-400 group-hover:text-[#061e14] transition-colors">
                       {item.icon}
                     </div>
-                    <h4 className="text-lg font-bold text-foreground mb-2">{item.title}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                    <span className="font-mono text-sm font-bold text-emerald-400/70 group-hover:text-emerald-300 transition-colors">
+                      {item.num}
+                    </span>
                   </div>
+                  <h4 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm md:text-base text-emerald-100/80 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Visão e Missão */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-            {/* Visão */}
-            <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 border border-slate-800 shadow-xl flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-              <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-primary bg-primary/20 px-3.5 py-1.5 rounded-full inline-block mb-6">
-                  {t.ecosystem.visionBadge}
-                </span>
-                <h4 className="text-xl md:text-3xl font-extrabold uppercase tracking-tight text-white mb-4">
-                  {t.ecosystem.visionTitle}
-                </h4>
-                <div className="space-y-4 text-slate-300 text-sm md:text-base leading-relaxed">
+          {/* Visão e Missão - Layout Editorial Amplo sem Cards */}
+          <div className="mb-28 pt-16 border-t border-emerald-500/25">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+              {/* Visão */}
+              <div className="space-y-6">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-emerald-300 bg-emerald-950/60 border border-emerald-400/30 px-3.5 py-1.5 rounded-full inline-block mb-4">
+                    {t.ecosystem.visionBadge}
+                  </span>
+                  <h4 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-white mb-6">
+                    {t.ecosystem.visionTitle}
+                  </h4>
+                </div>
+                <div className="space-y-4 text-emerald-100/90 text-base md:text-lg leading-relaxed">
                   <p>{t.ecosystem.visionP1}</p>
                   <p>{t.ecosystem.visionP2}</p>
-                  <p className="text-primary font-semibold">{t.ecosystem.visionP3}</p>
+                  <p className="text-emerald-300 font-semibold text-lg md:text-xl pt-2 border-l-2 border-emerald-400 pl-4">
+                    {t.ecosystem.visionP3}
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* Missão */}
-            <div className="bg-primary text-primary-foreground rounded-3xl p-8 md:p-12 shadow-xl flex flex-col justify-between relative overflow-hidden">
-              <div className="absolute bottom-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-              <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-white bg-black/20 px-3.5 py-1.5 rounded-full inline-block mb-6">
-                  {t.ecosystem.missionBadge}
-                </span>
-                <h4 className="text-xl md:text-3xl font-extrabold uppercase tracking-tight text-white mb-4">
-                  {t.ecosystem.missionTitle}
-                </h4>
-                <p className="text-white/90 text-sm md:text-base leading-relaxed">
+              {/* Missão */}
+              <div className="space-y-6 lg:border-l lg:border-emerald-500/25 lg:pl-16">
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-widest text-emerald-300 bg-emerald-950/60 border border-emerald-400/30 px-3.5 py-1.5 rounded-full inline-block mb-4">
+                    {t.ecosystem.missionBadge}
+                  </span>
+                  <h4 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-white mb-6">
+                    {t.ecosystem.missionTitle}
+                  </h4>
+                </div>
+                <p className="text-emerald-50/90 text-lg md:text-xl leading-relaxed font-normal">
                   {t.ecosystem.missionDesc}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Nossos Pilares */}
-          <div>
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+          {/* Nossos Pilares - Layout Aberto e Integrado */}
+          <div className="pt-16 border-t border-emerald-500/25">
+            <div className="max-w-3xl mb-14">
+              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold uppercase tracking-wider">
                 {t.ecosystem.pillarsBadge}
               </Badge>
-              <h3 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-foreground mb-3">
-                {t.ecosystem.pillarsTitle} <span className="text-primary">{t.ecosystem.pillarsTitleHighlight}</span>
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                {t.ecosystem.pillarsTitle} <span className="text-emerald-400">{t.ecosystem.pillarsTitleHighlight}</span>
               </h3>
-              <p className="text-muted-foreground text-sm md:text-base">
+              <p className="text-emerald-100/85 text-base md:text-lg">
                 {t.ecosystem.pillarsSubtitle}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {t.ecosystem.pillars.map((pilar, idx) => {
                 const icons = [
                   <Target key="0" className="h-5 w-5" />,
@@ -572,14 +590,19 @@ const HomePage = () => {
                 return (
                   <div 
                     key={idx}
-                    className="bg-card p-6 rounded-2xl border border-border hover:border-primary/40 transition-all flex items-start gap-4"
+                    id={`pillar-item-${idx + 1}`}
+                    className="flex items-start gap-4 pb-6 border-b border-emerald-500/20 group hover:border-emerald-400/50 transition-colors"
                   >
-                    <div className="bg-primary/10 p-2.5 rounded-xl text-primary shrink-0 mt-1">
+                    <div className="bg-emerald-900/50 text-emerald-300 p-3 rounded-xl border border-emerald-500/30 shrink-0 mt-0.5 group-hover:bg-emerald-400 group-hover:text-[#061e14] transition-colors">
                       {icons[idx % icons.length]}
                     </div>
                     <div>
-                      <h4 className="text-base font-bold text-foreground">{pilar.title}</h4>
-                      <p className="text-sm text-muted-foreground mt-1">{pilar.subtitle}</p>
+                      <h4 className="text-base md:text-lg font-bold text-white mb-1 group-hover:text-emerald-300 transition-colors">
+                        {pilar.title}
+                      </h4>
+                      <p className="text-sm md:text-base text-emerald-100/80 leading-relaxed">
+                        {pilar.subtitle}
+                      </p>
                     </div>
                   </div>
                 );
@@ -842,7 +865,7 @@ const HomePage = () => {
       {/* Rede Homologada Section */}
       <section id="rede-homologada" className="py-24 bg-background border-b border-border/40">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mb-16">
+          <div className="max-w-4xl mb-14">
             <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
               {t.networkSection.badge}
             </Badge>
@@ -852,6 +875,39 @@ const HomePage = () => {
             <p className="text-muted-foreground text-xl leading-relaxed">
               {t.networkSection.lead}
             </p>
+          </div>
+
+          {/* Texto Detalhado da Estruturação e Critérios (Layout Editorial Aberto - Sem Cards) */}
+          <div className="max-w-5xl mb-20">
+            <p className="text-lg md:text-2xl text-foreground font-semibold leading-relaxed mb-8">
+              {t.networkSection.detailed.intro}
+            </p>
+
+            <div className="pt-6 border-t border-border/60 mb-8">
+              <p className="text-base md:text-lg text-primary font-bold tracking-wide mb-6">
+                {t.networkSection.detailed.criteriaIntro}
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-3">
+                {t.networkSection.detailed.criteriaList.map((criterion, idx) => (
+                  <div 
+                    key={idx}
+                    className="flex items-baseline gap-3 py-2 border-b border-border/40 group hover:border-primary/50 transition-colors"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5 group-hover:scale-125 transition-transform" />
+                    <span className="text-foreground/90 text-sm md:text-base leading-relaxed group-hover:text-primary transition-colors">
+                      {criterion}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-6 border-l-2 border-primary pl-5 mt-6">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed font-medium">
+                {t.networkSection.detailed.conclusion}
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
@@ -1059,6 +1115,7 @@ const HomePage = () => {
                           <SelectItem value="gestao-prad">Gestão Ambiental e PRAD</SelectItem>
                           <SelectItem value="logistica">Logística e Transporte</SelectItem>
                           <SelectItem value="seguranca">Segurança e Vigilância</SelectItem>
+                          <SelectItem value="tecnologia-da-informacao">Tecnologia da Informação</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>

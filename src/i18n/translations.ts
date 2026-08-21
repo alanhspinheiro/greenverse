@@ -69,6 +69,18 @@ export interface TranslationDictionary {
     pillarsTitleHighlight: string;
     pillarsSubtitle: string;
     pillars: Array<{ title: string; subtitle: string }>;
+    integratedNetwork: {
+      title: string;
+      subtitle: string;
+      p1: string;
+      p2Lead: string;
+      p2Highlight: string;
+      p2Tail: string;
+      p3: string;
+      interfaceTitle: string;
+      processLead: string;
+      steps: string[];
+    };
   };
   servicesSection: {
     badge: string;
@@ -131,6 +143,12 @@ export interface TranslationDictionary {
     forClientsItems: Array<{ title: string; desc: string }>;
     forClientsConclusion: string;
     ctaButton: string;
+    detailed: {
+      intro: string;
+      criteriaIntro: string;
+      criteriaList: string[];
+      conclusion: string;
+    };
   };
   contactSection: {
     title: string;
@@ -252,6 +270,29 @@ export const translations: Record<Language, TranslationDictionary> = {
         { title: 'Execução', subtitle: 'Transformar planejamento em resultado.' },
         { title: 'Escala', subtitle: 'Construir estruturas capazes de crescer.' },
       ],
+      integratedNetwork: {
+        title: 'Rede Integrada de Soluções, Serviços e Empresas Homologadas',
+        subtitle: 'Conectamos empresas, especialistas e tecnologia para entregar soluções completas em diferentes mercados.',
+        p1: 'A GREENVERSE atua como uma plataforma de integração empresarial, conectando clientes a empresas, especialistas, fornecedores e tecnologias homologadas para atender demandas de diferentes níveis de complexidade.',
+        p2Lead: 'Nossa atuação combina ',
+        p2Highlight: 'gestão, engenharia, tecnologia, infraestrutura, meio ambiente, facilities, logística, manutenção, serviços especializados e soluções empresariais',
+        p2Tail: ', formando uma rede capaz de estruturar e executar projetos integrados.',
+        p3: 'A GREENVERSE pode atuar diretamente na execução de determinados serviços e, quando necessário, integrar empresas e especialistas homologados de acordo com a natureza, região, escala e exigência técnica de cada projeto.',
+        interfaceTitle: 'Uma única interface para múltiplas necessidades empresariais.',
+        processLead: 'A partir da demanda do cliente, a GREENVERSE:',
+        steps: [
+          'identifica a necessidade;',
+          'analisa o escopo;',
+          'estrutura a solução;',
+          'seleciona empresas e especialistas homologados;',
+          'coordena fornecedores e equipes;',
+          'acompanha a execução;',
+          'controla documentação, qualidade e conformidade;',
+          'realiza medições e acompanhamento;',
+          'consolida informações;',
+          'entrega indicadores e resultados.',
+        ],
+      },
     },
     servicesSection: {
       badge: 'Soluções Integradas',
@@ -345,6 +386,32 @@ export const translations: Record<Language, TranslationDictionary> = {
       ],
       forClientsConclusion: 'Isso reduz a necessidade de coordenar diversos fornecedores independentes e permite construir soluções integradas.',
       ctaButton: 'Falar com Nosso Time',
+      detailed: {
+        intro: 'A GREENVERSE está estruturando uma rede de empresas especializadas, fornecedores e profissionais homologados.',
+        criteriaIntro: 'A homologação considera, conforme a natureza da atividade:',
+        criteriaList: [
+          'documentação empresarial;',
+          'regularidade fiscal;',
+          'capacidade técnica;',
+          'registros profissionais;',
+          'certificações;',
+          'licenças;',
+          'experiência;',
+          'referências;',
+          'capacidade operacional;',
+          'equipamentos;',
+          'equipe técnica;',
+          'segurança do trabalho;',
+          'seguros;',
+          'compliance;',
+          'critérios ambientais;',
+          'critérios de qualidade;',
+          'capacidade de atendimento;',
+          'região de atuação;',
+          'histórico de desempenho.',
+        ],
+        conclusion: 'A rede permite selecionar parceiros de acordo com o perfil de cada projeto, evitando soluções padronizadas para problemas que exigem conhecimento especializado.',
+      },
     },
     contactSection: {
       title: 'Pronto para regularizar seu negócio?',
@@ -465,6 +532,29 @@ export const translations: Record<Language, TranslationDictionary> = {
         { title: 'Ejecución', subtitle: 'Transformar planificación en resultado.' },
         { title: 'Escala', subtitle: 'Construir estructuras capaces de crecer.' },
       ],
+      integratedNetwork: {
+        title: 'Red Integrada de Soluciones, Servicios y Empresas Homologadas',
+        subtitle: 'Conectamos empresas, especialistas y tecnología para entregar soluciones completas en diferentes mercados.',
+        p1: 'GREENVERSE actúa como una plataforma de integración empresarial, conectando clientes a empresas, especialistas, proveedores y tecnologías homologadas para atender demandas de diferentes niveles de complejidad.',
+        p2Lead: 'Nuestra actuación combina ',
+        p2Highlight: 'gestión, ingeniería, tecnología, infraestructura, medio ambiente, facilities, logística, mantenimiento, servicios especializados y soluciones empresariales',
+        p2Tail: ', formando una red capaz de estructurar y ejecutar proyectos integrados.',
+        p3: 'GREENVERSE puede actuar directamente en la ejecución de determinados servicios y, cuando sea necesario, integrar empresas y especialistas homologados de acuerdo con la naturaleza, región, escala y exigencia técnica de cada proyecto.',
+        interfaceTitle: 'Una única interfaz para múltiples necesidades empresariales.',
+        processLead: 'A partir de la demanda del cliente, GREENVERSE:',
+        steps: [
+          'identifica la necesidad;',
+          'analiza el alcance;',
+          'estructura la solución;',
+          'selecciona empresas y especialistas homologados;',
+          'coordina proveedores y equipos;',
+          'acompaña la ejecución;',
+          'controla documentación, calidad y conformidad;',
+          'realiza mediciones y seguimiento;',
+          'consolida informaciones;',
+          'entrega indicadores e resultados.',
+        ],
+      },
     },
     servicesSection: {
       badge: 'Soluciones Integradas',
@@ -558,6 +648,32 @@ export const translations: Record<Language, TranslationDictionary> = {
       ],
       forClientsConclusion: 'Esto reduce la necesidad de coordinar diversos proveedores independientes y permite construir soluciones integradas.',
       ctaButton: 'Hablar con Nuestro Equipo',
+      detailed: {
+        intro: 'GREENVERSE está estructurando una red de empresas especializadas, proveedores y profesionales homologados.',
+        criteriaIntro: 'La homologación considera, según la naturaleza de la actividad:',
+        criteriaList: [
+          'documentación empresarial;',
+          'regularidad fiscal;',
+          'capacidad técnica;',
+          'registros profesionales;',
+          'certificaciones;',
+          'licencias;',
+          'experiencia;',
+          'referencias;',
+          'capacidad operativa;',
+          'equipamiento;',
+          'equipo técnico;',
+          'seguridad laboral;',
+          'seguros;',
+          'compliance;',
+          'criterios ambientales;',
+          'criterios de calidad;',
+          'capacidad de atención;',
+          'región de actuación;',
+          'historial de desempeño.',
+        ],
+        conclusion: 'La red permite seleccionar socios de acuerdo con el perfil de cada proyecto, evitando soluciones estandarizadas para problemas que exigen conocimiento especializado.',
+      },
     },
     contactSection: {
       title: '¿Listo para regularizar su negocio?',
@@ -678,6 +794,29 @@ export const translations: Record<Language, TranslationDictionary> = {
         { title: 'Execution', subtitle: 'Turn planning into measurable results.' },
         { title: 'Scale', subtitle: 'Build structures capable of growing.' },
       ],
+      integratedNetwork: {
+        title: 'Integrated Network of Solutions, Services, and Approved Companies',
+        subtitle: 'We connect companies, specialists, and technology to deliver comprehensive solutions across diverse markets.',
+        p1: 'GREENVERSE acts as an enterprise integration platform, connecting clients with approved companies, specialists, suppliers, and technologies to meet demands across various levels of complexity.',
+        p2Lead: 'Our approach combines ',
+        p2Highlight: 'management, engineering, technology, infrastructure, environment, facilities, logistics, maintenance, specialized services, and corporate solutions',
+        p2Tail: ', creating a robust network capable of structuring and executing integrated projects.',
+        p3: 'GREENVERSE can act directly in executing specific services and, when necessary, integrate approved companies and specialists tailored to the nature, region, scale, and technical requirements of each project.',
+        interfaceTitle: 'A single interface for multiple enterprise needs.',
+        processLead: 'Based on the client’s demand, GREENVERSE:',
+        steps: [
+          'identifies the necessity;',
+          'analyzes the project scope;',
+          'structures the solution;',
+          'selects approved companies and specialists;',
+          'coordinates suppliers and teams;',
+          'monitors execution;',
+          'controls documentation, quality, and compliance;',
+          'conducts measurements and ongoing monitoring;',
+          'consolidates operational intelligence;',
+          'delivers metrics and actionable results.',
+        ],
+      },
     },
     servicesSection: {
       badge: 'Integrated Solutions',
@@ -771,6 +910,32 @@ export const translations: Record<Language, TranslationDictionary> = {
       ],
       forClientsConclusion: 'This eliminates the friction of managing fragmented vendors and enables truly integrated turnkey solutions.',
       ctaButton: 'Contact Our Team',
+      detailed: {
+        intro: 'GREENVERSE is structuring a network of approved specialized companies, suppliers, and professionals.',
+        criteriaIntro: 'Approval evaluation considers, according to the nature of the activity:',
+        criteriaList: [
+          'corporate documentation;',
+          'tax & fiscal regularity;',
+          'technical capability;',
+          'professional registrations;',
+          'certifications;',
+          'operating licenses;',
+          'proven experience;',
+          'client references;',
+          'operational capacity;',
+          'machinery & equipment;',
+          'technical staff;',
+          'occupational safety;',
+          'insurance coverage;',
+          'compliance;',
+          'environmental criteria;',
+          'quality criteria;',
+          'service responsiveness;',
+          'geographical coverage;',
+          'performance track record.',
+        ],
+        conclusion: 'The network allows selecting partners aligned with the precise profile of each project, avoiding one-size-fits-all approaches for challenges requiring specialized expertise.',
+      },
     },
     contactSection: {
       title: 'Ready to regularize your operations?',
