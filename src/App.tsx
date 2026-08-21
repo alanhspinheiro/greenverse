@@ -55,70 +55,231 @@ const NotificationBanner = () => {
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOverDark, setIsOverDark] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const { t } = useLanguage();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const handleScrollAndTheme = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      // Check if header currently overlaps any dark section
+      const darkSections = document.querySelectorAll('[data-dark-section="true"]');
+      let overDark = false;
+      const headerThreshold = 50; // offset in px where the nav sits
+
+      darkSections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= headerThreshold && rect.bottom >= headerThreshold) {
+          overDark = true;
+        }
+      });
+
+      setIsOverDark(overDark);
+    };
+
+    handleScrollAndTheme();
+    window.addEventListener('scroll', handleScrollAndTheme, { passive: true });
+    window.addEventListener('resize', handleScrollAndTheme, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScrollAndTheme);
+      window.removeEventListener('resize', handleScrollAndTheme);
+    };
+  }, [location.pathname]);
 
   const navLinks = [
-    { name: t.nav.ecosystem, href: '#quem-somos' },
-    { name: t.nav.services, href: '#servicos' },
-    { name: t.nav.sectors, href: '#setores' },
-    { name: t.nav.differentials, href: '#diferenciais' },
-    { name: t.nav.mercosul, href: '#mercosul' },
-    { name: t.nav.approvedNetwork, href: '#rede-homologada' },
-    { name: t.nav.blog, href: '/blog' },
+    { name: t.nav.ecosystem, href: '#quem-somos', icon: Users },
+    { name: t.nav.services, href: '#servicos', icon: Briefcase },
+    { name: t.nav.sectors, href: '#setores', icon: Building2 },
+    { name: t.nav.differentials, href: '#diferenciais', icon: ShieldCheck },
+    { name: t.nav.mercosul, href: '#mercosul', icon: Globe },
+    { name: t.nav.approvedNetwork, href: '#rede-homologada', icon: Target },
+    { name: t.nav.blog, href: '/blog', icon: BookOpen },
   ];
 
+  const handleNavClick = (href: string) => {
+    setMobileOpen(false);
+    if (href.startsWith('#')) {
+      if (location.pathname !== '/') {
+        navigate('/' + href);
+      } else {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    } else {
+      navigate(href);
+    }
+  };
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md border-bottom py-3 shadow-sm' : 'bg-transparent py-6'}`}>
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="group">
-          <Logo />
+    <nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? isOverDark
+            ? 'bg-[#061e14]/95 backdrop-blur-md border-b border-white/10 py-2.5 sm:py-3 shadow-lg shadow-black/20'
+            : 'bg-background/95 backdrop-blur-md border-b border-border/60 py-2.5 sm:py-3 shadow-sm'
+          : 'bg-transparent py-3.5 sm:py-6'
+      }`}
+    >
+      <div className="container mx-auto px-3.5 sm:px-6 flex items-center justify-between">
+        <Link to="/" className="group flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg">
+          <Logo light={isOverDark} />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-6">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            <a 
+              key={link.name} 
+              href={link.href} 
+              onClick={(e) => {
+                if (link.href.startsWith('#') && location.pathname === '/') {
+                  e.preventDefault();
+                  handleNavClick(link.href);
+                }
+              }}
+              className={`text-sm font-semibold transition-colors duration-200 ${
+                isOverDark 
+                  ? 'text-white hover:text-emerald-300' 
+                  : 'text-[#1A1A1A] hover:text-primary'
+              }`}
+            >
               {link.name}
             </a>
           ))}
-          <div className="h-4 w-[1px] bg-border mx-1" />
+          <div className={`h-4 w-[1px] mx-1 transition-colors ${isOverDark ? 'bg-white/20' : 'bg-border'}`} />
+          
           {/* Botão de Troca de Idioma com Bandeiras do Brasil, Espanha e Inglaterra */}
-          <LanguageSelector variant="dropdown" />
+          <LanguageSelector variant="dropdown" isDark={isOverDark} />
+          
           <Link to="/area-cliente">
-            <Button variant="ghost" size="sm" className="gap-2">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className={`gap-2 font-semibold transition-colors duration-200 ${
+                isOverDark 
+                  ? 'text-white hover:text-white hover:bg-white/10' 
+                  : 'text-[#1A1A1A] hover:text-primary hover:bg-accent/60'
+              }`}
+            >
               <Lock className="h-4 w-4" />
               {t.nav.clientArea}
             </Button>
           </Link>
         </div>
 
-        {/* Mobile Nav */}
-        <div className="lg:hidden flex items-center gap-2">
-          {/* Seletor rápido de idioma também no header mobile */}
-          <LanguageSelector variant="dropdown" />
-          <Sheet>
-            <SheetTrigger render={<Button variant="ghost" size="icon" />}>
-              <Menu className="h-6 w-6" />
+        {/* Mobile Nav Cluster: Optimized Alignment & Touch Ergonomics */}
+        <div className="lg:hidden flex items-center gap-1.5 sm:gap-2">
+          {/* Seletor rápido de idioma no topo mobile */}
+          <LanguageSelector variant="dropdown" isDark={isOverDark} />
+
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger render={
+              <button 
+                type="button"
+                className={`p-2 rounded-xl flex items-center justify-center transition-colors min-h-[42px] min-w-[42px] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+                  isOverDark 
+                    ? 'text-white bg-white/10 hover:bg-white/20 border border-white/15' 
+                    : 'text-[#1A1A1A] bg-background/80 hover:bg-accent border border-border/60'
+                }`}
+                aria-label="Abrir menu de navegação"
+              />
+            }>
+              <Menu className="h-5 w-5" />
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <div className="flex flex-col gap-6 mt-8">
-                {navLinks.map((link) => (
-                  <a key={link.name} href={link.href} className="text-lg font-semibold hover:text-primary transition-colors">
-                    {link.name}
-                  </a>
-                ))}
-                <Link to="/area-cliente" className="text-lg font-semibold hover:text-primary transition-colors">
-                  {t.nav.clientArea}
+
+            <SheetContent side="right" className="w-[88vw] max-w-[380px] p-0 flex flex-col h-full bg-background border-l border-border shadow-2xl">
+              {/* Drawer Header */}
+              <div className="p-4 sm:p-5 border-b border-border/80 flex items-center justify-between bg-card/60">
+                <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+                  <Logo className="max-h-[38px]" />
                 </Link>
-                
-                {/* Seletor detalhado de idiomas no menu mobile */}
-                <LanguageSelector variant="mobile" />
+              </div>
+
+              {/* Drawer Body - Scrollable */}
+              <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5">
+                {/* Quick Area do Cliente Card */}
+                <Link 
+                  to="/area-cliente" 
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-between p-3.5 rounded-2xl bg-primary/10 border border-primary/25 hover:bg-primary/15 transition-all text-primary font-semibold group"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shadow-sm shrink-0">
+                      <Lock className="h-4 w-4" />
+                    </div>
+                    <div className="text-left">
+                      <span className="text-sm font-bold block text-foreground">{t.nav.clientArea}</span>
+                      <span className="text-xs text-muted-foreground">Acesso ao portal e chamados</span>
+                    </div>
+                  </div>
+                  <ChevronRight className="h-4 w-4 text-primary group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+
+                {/* Navigation Links with Icons */}
+                <div className="space-y-1">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground/80 px-2 mb-2">
+                    Navegação
+                  </p>
+                  {navLinks.map((link) => {
+                    const IconComponent = link.icon;
+                    return (
+                      <button
+                        key={link.name}
+                        onClick={() => handleNavClick(link.href)}
+                        className="w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-left font-semibold text-sm text-[#1A1A1A] hover:text-primary hover:bg-accent/60 active:bg-accent transition-all group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-lg bg-muted/70 group-hover:bg-primary/10 text-muted-foreground group-hover:text-primary flex items-center justify-center transition-colors shrink-0">
+                            <IconComponent className="h-4 w-4" />
+                          </div>
+                          <span>{link.name}</span>
+                        </div>
+                        <ChevronRight className="h-4 w-4 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Direct Action Button */}
+                <div className="pt-2">
+                  <a
+                    href="https://wa.me/554899303323?text=Olá!%20Gostaria%20de%20solicitar%20uma%20proposta%20de%20serviços%20GREENVERSE."
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => setMobileOpen(false)}
+                    className="w-full flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-all active:scale-[0.99]"
+                  >
+                    <MessageCircle className="h-4 w-4 fill-white text-[#25D366]" />
+                    <span>Falar com Especialista</span>
+                  </a>
+                </div>
+
+                {/* Language Selector inside Drawer */}
+                <div className="pt-2">
+                  <LanguageSelector variant="mobile" onSelect={() => setMobileOpen(false)} />
+                </div>
+              </div>
+
+              {/* Drawer Footer with Direct Contacts */}
+              <div className="p-4 border-t border-border/80 bg-muted/30 text-xs text-muted-foreground space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-3.5 w-3.5 text-primary shrink-0" />
+                  <a href="tel:+554899303323" className="hover:text-foreground transition-colors font-medium">
+                    +55 (48) 9930-3323
+                  </a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="h-3.5 w-3.5 text-primary shrink-0" />
+                  <a href="mailto:contato@greenverse.com.br" className="hover:text-foreground transition-colors font-medium">
+                    contato@greenverse.com.br
+                  </a>
+                </div>
               </div>
             </SheetContent>
           </Sheet>
@@ -142,7 +303,7 @@ const WhatsAppButton = () => (
 const Footer = () => {
   const { t } = useLanguage();
   return (
-    <footer className="bg-foreground text-background py-16">
+    <footer data-dark-section="true" className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-1">
@@ -212,7 +373,7 @@ const Footer = () => {
 };
 
 const AuthoritySection = () => (
-  <section className="py-24 bg-primary relative overflow-hidden">
+  <section data-dark-section="true" className="py-24 bg-primary relative overflow-hidden">
     {/* Decorative background Elements */}
     <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
       <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-white/5 rounded-full blur-[100px]" />
@@ -334,7 +495,7 @@ const HomePage = () => {
       </section>
 
       {/* Quem Somos / O Ecossistema Section */}
-      <section id="quem-somos" className="relative py-28 md:py-36 overflow-hidden bg-[#061e14] text-white">
+      <section id="quem-somos" data-dark-section="true" className="relative py-28 md:py-36 overflow-hidden bg-[#061e14] text-white">
         {/* Imagem de Fundo Panorâmica Contínua com Overlay Verde Escuro Profundo que garante máxima legibilidade */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <img 
@@ -359,10 +520,10 @@ const HomePage = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold uppercase tracking-wider">
+              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold text-xs tracking-wider">
                 {t.ecosystem.badge}
               </Badge>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 leading-tight uppercase tracking-tight text-white">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight tracking-tight text-white">
                 {t.ecosystem.title} <span className="text-emerald-400">{t.ecosystem.titleHighlight}</span>
               </h2>
               
@@ -376,10 +537,10 @@ const HomePage = () => {
                 
                 <div className="pt-6 mt-8 border-t border-emerald-500/20">
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4">
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 shrink-0">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400 shrink-0">
                       {t.ecosystem.positioningBadge} —
                     </span>
-                    <p className="text-xl md:text-2xl font-bold text-white leading-snug">
+                    <p className="text-xl md:text-2xl font-semibold text-white leading-snug">
                       {t.ecosystem.positioningText}{' '}
                       <span className="text-emerald-400">{t.ecosystem.positioningHighlight}</span>
                     </p>
@@ -398,7 +559,7 @@ const HomePage = () => {
               viewport={{ once: true }}
               className="max-w-5xl"
             >
-              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4 leading-tight">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4 leading-tight">
                 {t.ecosystem.integratedNetwork.title}
               </h3>
               
@@ -421,7 +582,7 @@ const HomePage = () => {
               </div>
 
               <div className="pt-8 border-t border-emerald-500/20">
-                <h4 className="text-xl md:text-3xl font-bold text-white mb-4">
+                <h4 className="text-xl md:text-2xl font-bold text-white mb-4">
                   {t.ecosystem.integratedNetwork.interfaceTitle}
                 </h4>
                 <p className="text-emerald-200 text-base md:text-lg font-medium mb-8">
@@ -450,10 +611,10 @@ const HomePage = () => {
           {/* Uma Estrutura Pensada Para Crescer - Organizado em Toda a Tela sem Cards */}
           <div id="estrutura-empresarial" className="mb-28 pt-16 border-t border-emerald-500/25">
             <div className="max-w-4xl mb-14">
-              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold uppercase tracking-wider">
+              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold text-xs tracking-wider">
                 {t.ecosystem.structureBadge}
               </Badge>
-              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-5">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white mb-5">
                 {t.ecosystem.structureTitle} <span className="text-emerald-400">{t.ecosystem.structureTitleHighlight}</span>
               </h3>
               <p className="text-lg md:text-xl text-emerald-100/85 leading-relaxed">
@@ -530,10 +691,10 @@ const HomePage = () => {
               {/* Visão */}
               <div className="space-y-6">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-emerald-300 bg-emerald-950/60 border border-emerald-400/30 px-3.5 py-1.5 rounded-full inline-block mb-4">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-emerald-300 bg-emerald-950/60 border border-emerald-400/30 px-3.5 py-1.5 rounded-full inline-block mb-4">
                     {t.ecosystem.visionBadge}
                   </span>
-                  <h4 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-white mb-6">
+                  <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-6">
                     {t.ecosystem.visionTitle}
                   </h4>
                 </div>
@@ -549,10 +710,10 @@ const HomePage = () => {
               {/* Missão */}
               <div className="space-y-6 lg:border-l lg:border-emerald-500/25 lg:pl-16">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-emerald-300 bg-emerald-950/60 border border-emerald-400/30 px-3.5 py-1.5 rounded-full inline-block mb-4">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-emerald-300 bg-emerald-950/60 border border-emerald-400/30 px-3.5 py-1.5 rounded-full inline-block mb-4">
                     {t.ecosystem.missionBadge}
                   </span>
-                  <h4 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-white mb-6">
+                  <h4 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white mb-6">
                     {t.ecosystem.missionTitle}
                   </h4>
                 </div>
@@ -566,10 +727,10 @@ const HomePage = () => {
           {/* Nossos Pilares - Layout Aberto e Integrado */}
           <div className="pt-16 border-t border-emerald-500/25">
             <div className="max-w-3xl mb-14">
-              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold uppercase tracking-wider">
+              <Badge variant="outline" className="mb-4 border-emerald-400/40 text-emerald-300 bg-emerald-950/60 px-4 py-1.5 font-semibold text-xs tracking-wider">
                 {t.ecosystem.pillarsBadge}
               </Badge>
-              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
                 {t.ecosystem.pillarsTitle} <span className="text-emerald-400">{t.ecosystem.pillarsTitleHighlight}</span>
               </h3>
               <p className="text-emerald-100/85 text-base md:text-lg">
@@ -690,7 +851,7 @@ const HomePage = () => {
       </section>
 
       {/* Differentials Section */}
-      <section id="diferenciais" className="py-24 bg-chart-5 text-white">
+      <section id="diferenciais" data-dark-section="true" className="py-24 bg-chart-5 text-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -747,16 +908,16 @@ const HomePage = () => {
       </section>
 
       {/* Mercosul Section */}
-      <section id="mercosul" className="py-24 bg-slate-950 text-white relative overflow-hidden">
+      <section id="mercosul" data-dark-section="true" className="py-24 bg-slate-950 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           
           {/* Header */}
           <div className="max-w-4xl mb-16">
-            <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+            <Badge variant="outline" className="mb-4 border-primary/50 text-primary px-4 py-1 font-semibold text-xs tracking-wider">
               {t.mercosulSection.badge}
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase mb-4 text-white">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-white">
               {t.mercosulSection.title} <span className="text-primary">{t.mercosulSection.titleHighlight}</span>
             </h2>
             <p className="text-xl md:text-2xl font-semibold text-primary/90 mb-6">
@@ -768,7 +929,7 @@ const HomePage = () => {
 
             {/* Mercados Estratégicos */}
             <div className="mt-8 pt-8 border-t border-white/10">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">
                 {t.mercosulSection.strategicMarkets}
               </h3>
               <div className="flex flex-wrap gap-3">
@@ -798,7 +959,7 @@ const HomePage = () => {
               <div className="bg-primary/20 p-2 rounded-xl text-primary">
                 <Target className="h-5 w-5" />
               </div>
-              <h3 className="text-2xl font-extrabold uppercase tracking-tight text-white">
+              <h3 className="text-xl md:text-2xl font-bold tracking-tight text-white">
                 {t.mercosulSection.whatWeDoTitle}
               </h3>
             </div>
@@ -831,11 +992,11 @@ const HomePage = () => {
           {/* Corredor Estratégico */}
           <div className="bg-gradient-to-r from-primary/20 via-slate-900 to-primary/20 border border-primary/30 rounded-3xl p-8 md:p-12">
             <div className="max-w-4xl mx-auto text-center space-y-6">
-              <span className="text-xs uppercase tracking-widest font-bold text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 inline-block">
+              <span className="text-xs uppercase tracking-wider font-semibold text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 inline-block">
                 {t.mercosulSection.corridorBadge}
               </span>
               
-              <h3 className="text-xl sm:text-2xl md:text-4xl font-extrabold tracking-tight text-white">
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white">
                 {t.mercosulSection.corridorTitle}
               </h3>
 
@@ -866,10 +1027,10 @@ const HomePage = () => {
       <section id="rede-homologada" className="py-24 bg-background border-b border-border/40">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mb-14">
-            <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold uppercase tracking-wider">
+            <Badge variant="outline" className="mb-4 border-primary text-primary px-4 py-1 font-semibold text-xs tracking-wider">
               {t.networkSection.badge}
             </Badge>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase mb-6 text-foreground">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-foreground">
               {t.networkSection.title} <span className="text-primary">{t.networkSection.titleHighlight}</span>.
             </h2>
             <p className="text-muted-foreground text-xl leading-relaxed">
@@ -918,7 +1079,7 @@ const HomePage = () => {
                   <div className="bg-primary/10 p-2.5 rounded-xl text-primary">
                     <ShieldCheck className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold uppercase tracking-tight text-foreground">
+                  <h3 className="text-lg font-bold tracking-tight text-foreground">
                     {t.networkSection.criteriaTitle}
                   </h3>
                 </div>
@@ -940,7 +1101,7 @@ const HomePage = () => {
                   <div className="bg-primary/10 p-2.5 rounded-xl text-primary">
                     <Building2 className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold uppercase tracking-tight text-foreground">
+                  <h3 className="text-lg font-bold tracking-tight text-foreground">
                     {t.networkSection.specializationTitle}
                   </h3>
                 </div>
@@ -964,7 +1125,7 @@ const HomePage = () => {
                   <div className="bg-primary/20 p-2.5 rounded-xl text-primary">
                     <Users className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold uppercase tracking-tight text-white">
+                  <h3 className="text-lg font-bold tracking-tight text-white">
                     {t.networkSection.forClientsTitle}
                   </h3>
                 </div>

@@ -39,11 +39,15 @@ export const LANGUAGE_OPTIONS: LanguageOption[] = [
 interface LanguageSelectorProps {
   variant?: 'dropdown' | 'segmented' | 'mobile';
   className?: string;
+  isDark?: boolean;
+  onSelect?: () => void;
 }
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ 
   variant = 'dropdown',
-  className = '' 
+  className = '',
+  isDark = false,
+  onSelect
 }) => {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
@@ -51,6 +55,14 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
   const currentOption = LANGUAGE_OPTIONS.find((opt) => opt.code === language) || LANGUAGE_OPTIONS[0];
   const CurrentFlag = currentOption.FlagComponent;
+
+  const handleLanguageChange = (code: Language) => {
+    setLanguage(code);
+    setIsOpen(false);
+    if (onSelect) {
+      onSelect();
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -79,7 +91,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           return (
             <button
               key={opt.code}
-              onClick={() => setLanguage(opt.code)}
+              onClick={() => handleLanguageChange(opt.code)}
               title={`${opt.flagName} - ${opt.label}`}
               aria-label={`${opt.flagName} - ${opt.label}`}
               className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
@@ -110,7 +122,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             return (
               <button
                 key={opt.code}
-                onClick={() => setLanguage(opt.code)}
+                onClick={() => handleLanguageChange(opt.code)}
                 className={`flex items-center justify-between w-full px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
                   isSelected 
                     ? 'bg-primary/10 text-primary border border-primary/30 font-bold' 
@@ -136,7 +148,11 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       <button
         onClick={() => setIsOpen(!isOpen)}
         type="button"
-        className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-border/80 bg-background/80 hover:bg-background shadow-sm hover:border-primary/50 transition-all text-xs md:text-sm font-semibold text-foreground"
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-sm transition-all text-xs md:text-sm font-semibold ${
+          isDark
+            ? 'border-white/25 bg-white/10 hover:bg-white/20 text-white hover:border-white/40'
+            : 'border-border/80 bg-background/80 hover:bg-background text-[#1A1A1A] hover:border-primary/50'
+        }`}
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-label="Mudar idioma do site"
@@ -144,7 +160,7 @@ export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       >
         <CurrentFlag className="w-5 h-3.5 shadow-sm" />
         <span>{currentOption.shortLabel}</span>
-        <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ${isOpen ? 'rotate-180 text-primary' : ''}`} />
+        <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-200 ${isDark ? 'text-white/70' : 'text-muted-foreground'} ${isOpen ? 'rotate-180 text-primary' : ''}`} />
       </button>
 
       {isOpen && (
