@@ -35,24 +35,6 @@ const ScrollToTop = () => {
   return null;
 };
 
-const NotificationBanner = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const { t } = useLanguage();
-  if (!isVisible) return null;
-
-  return (
-    <div className="bg-primary text-primary-foreground py-2 px-4 text-center text-sm font-medium relative">
-      <span className="flex items-center justify-center gap-2">
-        <Bell className="h-4 w-4" />
-        {t.banner.alert} <Link to="/blog" className="underline hover:opacity-80">{t.banner.learnMore}</Link>
-      </span>
-      <button onClick={() => setIsVisible(false)} className="absolute right-4 top-1/2 -translate-y-1/2">
-        <X className="h-4 w-4" />
-      </button>
-    </div>
-  );
-};
-
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOverDark, setIsOverDark] = useState(false);
@@ -336,13 +318,13 @@ const Footer = () => {
               <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-primary shrink-0 mt-1" /> <span>Rua Caetano Silveira de Matos nº 2455, sala 02, Centro Palhoça/SC, CEP 88130-005</span></li>
               <li className="pt-1">
                 <a 
-                  href="http://www.instagram.com/greenverse2026" 
+                  href="https://www.instagram.com/greenverse26" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-background/80 hover:text-primary transition-colors group"
                 >
                   <Instagram className="h-4 w-4 text-primary shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="group-hover:underline">@greenverse2026</span>
+                  <span className="group-hover:underline">@greenverse26</span>
                 </a>
               </li>
             </ul>
@@ -1219,12 +1201,12 @@ const HomePage = () => {
                     <div className="flex items-center gap-4">
                       <div className="bg-white/10 p-2 rounded-lg shrink-0"><Instagram className="h-5 w-5" /></div>
                       <a 
-                        href="http://www.instagram.com/greenverse2026" 
+                        href="https://www.instagram.com/greenverse26" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="hover:underline transition-all font-medium"
                       >
-                        @greenverse2026
+                        @greenverse26
                       </a>
                     </div>
                   </div>
@@ -3845,7 +3827,6 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <div className="min-h-screen bg-background font-sans selection:bg-primary/20 selection:text-primary">
-          <NotificationBanner />
           <Navbar />
           <main>
             <Routes>
