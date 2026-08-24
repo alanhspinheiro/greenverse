@@ -77,6 +77,7 @@ export interface TranslationDictionary {
       p2Highlight: string;
       p2Tail: string;
       p3: string;
+      p4: string;
       interfaceTitle: string;
       processLead: string;
       steps: string[];
@@ -278,6 +279,7 @@ export const translations: Record<Language, TranslationDictionary> = {
         p2Highlight: 'gestão, engenharia, tecnologia, infraestrutura, meio ambiente, facilities, logística, manutenção, serviços especializados e soluções empresariais',
         p2Tail: ', formando uma rede capaz de estruturar e executar projetos integrados.',
         p3: 'A GREENVERSE pode atuar diretamente na execução de determinados serviços e, quando necessário, integrar empresas e especialistas homologados de acordo com a natureza, região, escala e exigência técnica de cada projeto.',
+        p4: 'A Greenverse Circular Services at Work, junto com sua rede de empresas homologadas, vem desenvolvendo um programa de valorização dos fluxos industriais, identificando oportunidades que possam transformar subprodutos, energia, água, carbono e resíduos em eficiência, novos produtos e novas receitas.',
         interfaceTitle: 'Uma única interface para múltiplas necessidades empresariais.',
         processLead: 'A partir da demanda do cliente, a GREENVERSE:',
         steps: [
@@ -540,6 +542,7 @@ export const translations: Record<Language, TranslationDictionary> = {
         p2Highlight: 'gestión, ingeniería, tecnología, infraestructura, medio ambiente, facilities, logística, mantenimiento, servicios especializados y soluciones empresariales',
         p2Tail: ', formando una red capaz de estructurar y ejecutar proyectos integrados.',
         p3: 'GREENVERSE puede actuar directamente en la ejecución de determinados servicios y, cuando sea necesario, integrar empresas y especialistas homologados de acuerdo con la naturaleza, región, escala y exigencia técnica de cada proyecto.',
+        p4: 'Greenverse Circular Services at Work, junto con su red de empresas homologadas, viene desarrollando un programa de valorización de flujos industriales, identificando oportunidades que puedan transformar subproductos, energía, agua, carbono y residuos en eficiencia, nuevos productos y nuevos ingresos.',
         interfaceTitle: 'Una única interfaz para múltiples necesidades empresariales.',
         processLead: 'A partir de la demanda del cliente, GREENVERSE:',
         steps: [
@@ -802,6 +805,7 @@ export const translations: Record<Language, TranslationDictionary> = {
         p2Highlight: 'management, engineering, technology, infrastructure, environment, facilities, logistics, maintenance, specialized services, and corporate solutions',
         p2Tail: ', creating a robust network capable of structuring and executing integrated projects.',
         p3: 'GREENVERSE can act directly in executing specific services and, when necessary, integrate approved companies and specialists tailored to the nature, region, scale, and technical requirements of each project.',
+        p4: 'Greenverse Circular Services at Work, together with its network of approved companies, has been developing an industrial flow valorization program, identifying opportunities that can transform by-products, energy, water, carbon, and waste into efficiency, new products, and new revenue streams.',
         interfaceTitle: 'A single interface for multiple enterprise needs.',
         processLead: 'Based on the client’s demand, GREENVERSE:',
         steps: [

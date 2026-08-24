@@ -561,6 +561,9 @@ const HomePage = () => {
                 <p>
                   {t.ecosystem.integratedNetwork.p3}
                 </p>
+                <p>
+                  {t.ecosystem.integratedNetwork.p4}
+                </p>
               </div>
 
               <div className="pt-8 border-t border-emerald-500/20">
