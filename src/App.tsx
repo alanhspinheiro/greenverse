@@ -79,7 +79,6 @@ const Navbar = () => {
     { name: t.nav.differentials, href: '#diferenciais', icon: ShieldCheck },
     { name: t.nav.mercosul, href: '#mercosul', icon: Globe },
     { name: t.nav.approvedNetwork, href: '#rede-homologada', icon: Target },
-    { name: t.nav.blog, href: '/blog', icon: BookOpen },
   ];
 
   const handleNavClick = (href: string) => {
