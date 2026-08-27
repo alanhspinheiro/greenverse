@@ -7,7 +7,7 @@ import {
   ChevronRight, Download, Lock, Bell, MessageCircle, CheckCircle2,
   Leaf, BarChart3, FileText, Globe, Users, Target, Briefcase, ArrowLeft, ShieldCheck,
   Waves, Activity, FlaskConical, FileSpreadsheet, BookOpen, Wrench, Cpu, Construction, Lightbulb, AlertTriangle,
-  Droplets, Factory, Heart, Home, Building2, Sprout, Instagram
+  Droplets, Factory, Heart, Home, Building2, Sprout, Instagram, Linkedin
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -248,7 +248,7 @@ const Navbar = () => {
               </div>
 
               {/* Drawer Footer with Direct Contacts */}
-              <div className="p-4 border-t border-border/80 bg-muted/30 text-xs text-muted-foreground space-y-1.5">
+              <div className="p-4 border-t border-border/80 bg-muted/30 text-xs text-muted-foreground space-y-2">
                 <div className="flex items-center gap-2">
                   <Phone className="h-3.5 w-3.5 text-primary shrink-0" />
                   <a href="tel:+554899303323" className="hover:text-foreground transition-colors font-medium">
@@ -259,6 +259,26 @@ const Navbar = () => {
                   <Mail className="h-3.5 w-3.5 text-primary shrink-0" />
                   <a href="mailto:contato@greenverse.com.br" className="hover:text-foreground transition-colors font-medium">
                     contato@greenverse.com.br
+                  </a>
+                </div>
+                <div className="flex items-center gap-4 pt-1">
+                  <a 
+                    href="https://www.instagram.com/greenverse26" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 hover:text-foreground transition-colors font-medium"
+                  >
+                    <Instagram className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <span>Instagram</span>
+                  </a>
+                  <a 
+                    href="https://www.linkedin.com/company/greenverse-ecossistema/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 hover:text-foreground transition-colors font-medium"
+                  >
+                    <Linkedin className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <span>LinkedIn</span>
                   </a>
                 </div>
               </div>
@@ -315,7 +335,7 @@ const Footer = () => {
               <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary shrink-0" /> (48) 9930-3323</li>
               <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary shrink-0" /> contato@greenverse.com.br</li>
               <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-primary shrink-0 mt-1" /> <span>Rua Caetano Silveira de Matos nº 2455, sala 02, Centro Palhoça/SC, CEP 88130-005</span></li>
-              <li className="pt-1">
+              <li className="pt-1 flex flex-wrap items-center gap-4">
                 <a 
                   href="https://www.instagram.com/greenverse26" 
                   target="_blank" 
@@ -324,6 +344,15 @@ const Footer = () => {
                 >
                   <Instagram className="h-4 w-4 text-primary shrink-0 group-hover:scale-110 transition-transform" />
                   <span className="group-hover:underline">@greenverse26</span>
+                </a>
+                <a 
+                  href="https://www.linkedin.com/company/greenverse-ecossistema/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-background/80 hover:text-primary transition-colors group"
+                >
+                  <Linkedin className="h-4 w-4 text-primary shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="group-hover:underline">LinkedIn</span>
                 </a>
               </li>
             </ul>
@@ -1209,6 +1238,17 @@ const HomePage = () => {
                         className="hover:underline transition-all font-medium"
                       >
                         @greenverse26
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="bg-white/10 p-2 rounded-lg shrink-0"><Linkedin className="h-5 w-5" /></div>
+                      <a 
+                        href="https://www.linkedin.com/company/greenverse-ecossistema/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:underline transition-all font-medium"
+                      >
+                        LinkedIn
                       </a>
                     </div>
                   </div>
