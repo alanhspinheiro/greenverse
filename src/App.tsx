@@ -499,41 +499,6 @@ const HomePage = () => {
                   {t.hero.ctaSecondary}
                 </Button>
               </div>
-
-              {/* Tagline, Setores e Proposta de Valor */}
-              <div className="mt-12 pt-8 border-t border-emerald-800/15 dark:border-emerald-400/20 max-w-3xl mx-auto space-y-8">
-                <div>
-                  <div className="inline-block px-3.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 text-xs font-semibold tracking-wider uppercase mb-4 border border-emerald-200/70 dark:border-emerald-800/60">
-                    GREENVERSE - CONNECT. INTEGRATE. CONTROL. DELIVER
-                  </div>
-                  
-                  <p className="text-xs sm:text-[13px] font-mono font-medium tracking-normal text-emerald-800/90 dark:text-emerald-300/90 leading-relaxed mb-4">
-                    Aeroportos | Portos | Portos Secos | Centros Logísticos | Grandes Corporações | Plataformas Industriais | Usinas | Barragens | Terminais | Complexos Industriais | Telecomunicações | Saneamento | Circular Services | Outros
-                  </p>
-
-                  <p className="text-sm sm:text-base text-emerald-900/95 dark:text-emerald-200/95 font-medium leading-relaxed">
-                    Conectamos empresas, especialistas, tecnologia e capital para entregar soluções complexas em diferentes mercados.
-                  </p>
-                </div>
-
-                <div className="pt-6 border-t border-emerald-800/10 dark:border-emerald-400/15">
-                  <div className="inline-block px-3.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300 text-xs font-semibold tracking-wider uppercase mb-3 border border-emerald-200/70 dark:border-emerald-800/60">
-                    GREENVERSE SERVICES
-                  </div>
-                  
-                  <p className="text-sm font-semibold text-emerald-900/90 dark:text-emerald-200/90 mb-3">
-                    Serviços que sustentam empresas, instalações e operações.
-                  </p>
-
-                  <p className="text-xs sm:text-[13px] font-mono font-medium tracking-normal text-emerald-800/90 dark:text-emerald-300/90 leading-relaxed mb-4">
-                    Facilities | Segurança | Manutenção | Paisagismo | Conservação | Ambiental | Serviços Técnicos | Apoio Operacional
-                  </p>
-
-                  <p className="text-sm sm:text-base text-emerald-900/95 dark:text-emerald-200/95 font-medium leading-relaxed">
-                    Conectamos especialistas e empresas homologadas para entregar soluções sob gestão e controle GREENVERSE.
-                  </p>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
