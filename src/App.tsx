@@ -788,11 +788,92 @@ const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-24 bg-secondary/10">
+      <section id="servicos" className="py-24 bg-secondary/10 scroll-mt-16 sm:scroll-mt-20 overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-4xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossas Soluções</h2>
-            <p className="text-muted-foreground">Oferecemos um portfólio completo para atender às demandas mais complexas do mercado.</p>
+            <p className="text-muted-foreground text-base md:text-lg mb-8">Oferecemos um portfólio completo para atender às demandas mais complexas do mercado.</p>
+
+            {/* Diferenciação Estética dos Serviços e Mercados */}
+            <div className="pt-8 border-t border-emerald-800/15 dark:border-emerald-400/20 space-y-8">
+              <div>
+                <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-bold tracking-wider uppercase mb-3 border border-emerald-200/80 dark:border-emerald-800/60 shadow-xs">
+                  GREENVERSE - CONNECT. INTEGRATE. CONTROL. DELIVER
+                </div>
+                
+                {/* Faixa animada horizontalmente de um lado ao outro da página */}
+                <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden py-3.5 my-5 bg-gradient-to-r from-emerald-800 via-emerald-700 to-emerald-800 dark:from-emerald-900 dark:via-emerald-800 dark:to-emerald-900 border-y border-emerald-600/70 dark:border-emerald-600/50 shadow-md select-none">
+                  <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-r from-emerald-800 dark:from-emerald-900 to-transparent z-10" />
+                  <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-l from-emerald-800 dark:from-emerald-900 to-transparent z-10" />
+
+                  <motion.div
+                    className="flex whitespace-nowrap text-xs sm:text-sm font-mono font-semibold tracking-wide text-white"
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{
+                      repeat: Infinity,
+                      ease: "linear",
+                      duration: 38,
+                    }}
+                  >
+                    <div className="flex shrink-0 items-center gap-6 pr-6">
+                      <span className="text-white drop-shadow-xs">Aeroportos | Portos | Portos Secos | Centros Logísticos | Grandes Corporações | Plataformas Industriais | Usinas | Barragens | Terminais | Complexos Industriais | Telecomunicações | Saneamento | Circular Services | Outros</span>
+                      <span className="text-emerald-200 font-sans font-bold">•</span>
+                      <span className="text-white drop-shadow-xs">Aeroportos | Portos | Portos Secos | Centros Logísticos | Grandes Corporações | Plataformas Industriais | Usinas | Barragens | Terminais | Complexos Industriais | Telecomunicações | Saneamento | Circular Services | Outros</span>
+                      <span className="text-emerald-200 font-sans font-bold">•</span>
+                    </div>
+                    <div className="flex shrink-0 items-center gap-6 pr-6" aria-hidden="true">
+                      <span className="text-white drop-shadow-xs">Aeroportos | Portos | Portos Secos | Centros Logísticos | Grandes Corporações | Plataformas Industriais | Usinas | Barragens | Terminais | Complexos Industriais | Telecomunicações | Saneamento | Circular Services | Outros</span>
+                      <span className="text-emerald-200 font-sans font-bold">•</span>
+                      <span className="text-white drop-shadow-xs">Aeroportos | Portos | Portos Secos | Centros Logísticos | Grandes Corporações | Plataformas Industriais | Usinas | Barragens | Terminais | Complexos Industriais | Telecomunicações | Saneamento | Circular Services | Outros</span>
+                      <span className="text-emerald-200 font-sans font-bold">•</span>
+                    </div>
+                  </motion.div>
+                </div>
+
+                <p className="text-sm sm:text-base text-emerald-950 dark:text-emerald-100 font-medium leading-relaxed max-w-2xl mx-auto">
+                  Conectamos empresas, especialistas, tecnologia e capital para entregar soluções complexas em diferentes mercados.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-emerald-800/10 dark:border-emerald-400/15">
+                <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-bold tracking-wider uppercase mb-2 border border-emerald-200/80 dark:border-emerald-800/60 shadow-xs">
+                  GREENVERSE SERVICES
+                </div>
+                
+                <p className="text-sm sm:text-base font-semibold text-emerald-900/95 dark:text-emerald-200 mb-3">
+                  Serviços que sustentam empresas, instalações e operações.
+                </p>
+
+                {/* Faixa animada horizontalmente de um lado ao outro da página para GREENVERSE SERVICES */}
+                <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden py-3.5 my-5 bg-gradient-to-r from-emerald-800 via-emerald-700 to-emerald-800 dark:from-emerald-900 dark:via-emerald-800 dark:to-emerald-900 border-y border-emerald-600/70 dark:border-emerald-600/50 shadow-md select-none">
+                  <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-r from-emerald-800 dark:from-emerald-900 to-transparent z-10" />
+                  <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-32 bg-gradient-to-l from-emerald-800 dark:from-emerald-900 to-transparent z-10" />
+
+                  <motion.div
+                    className="flex whitespace-nowrap text-xs sm:text-sm font-mono font-semibold tracking-wide text-white"
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{
+                      repeat: Infinity,
+                      ease: "linear",
+                      duration: 32,
+                    }}
+                  >
+                    <div className="flex shrink-0 items-center gap-6 pr-6">
+                      <span className="text-white drop-shadow-xs">Facilities | Segurança | Manutenção | Paisagismo | Conservação | Ambiental | Serviços Técnicos | Apoio Operacional</span>
+                      <span className="text-emerald-200 font-sans font-bold">•</span>
+                      <span className="text-white drop-shadow-xs">Facilities | Segurança | Manutenção | Paisagismo | Conservação | Ambiental | Serviços Técnicos | Apoio Operacional</span>
+                      <span className="text-emerald-200 font-sans font-bold">•</span>
+                    </div>
+                    <div className="flex shrink-0 items-center gap-6 pr-6" aria-hidden="true">
+                      <span className="text-white drop-shadow-xs">Facilities | Segurança | Manutenção | Paisagismo | Conservação | Ambiental | Serviços Técnicos | Apoio Operacional</span>
+                      <span className="text-emerald-200 font-sans font-bold">•</span>
+                      <span className="text-white drop-shadow-xs">Facilities | Segurança | Manutenção | Paisagismo | Conservação | Ambiental | Serviços Técnicos | Apoio Operacional</span>
+                      <span className="text-emerald-200 font-sans font-bold">•</span>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((service, index) => (
