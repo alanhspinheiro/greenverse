@@ -245,7 +245,7 @@ const Navbar = () => {
                     className="w-full flex items-center justify-center gap-2.5 py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm shadow-md transition-all active:scale-[0.99]"
                   >
                     <MessageCircle className="h-4 w-4 fill-white text-[#25D366]" />
-                    <span>Falar com Especialista</span>
+                    <span>Quero estruturar uma demanda</span>
                   </a>
                 </div>
 
@@ -1050,7 +1050,7 @@ const ServiceDetailPage = () => {
                     Solicitar Proposta Agora
                   </Button>
                   <Button size="lg" variant="outline" className="h-14 px-8 border-white/20 bg-transparent hover:bg-white/10 text-white" onClick={() => navigate('/#contato')}>
-                    Falar com Especialista
+                    Quero estruturar uma demanda
                   </Button>
                 </div>
               </div>
@@ -2925,8 +2925,8 @@ const ServiceDetailPage = () => {
                 <Button size="lg" className="h-14 px-8 bg-primary hover:bg-primary/90 text-white" onClick={() => navigate('/#contato')}>
                   Solicitar Proposta Agora
                 </Button>
-                <Button size="lg" variant="outline" className="h-14 px-8 border-white/20 bg-transparent hover:bg-white/10 text-white">
-                  Falar com Especialista
+                <Button size="lg" variant="outline" className="h-14 px-8 border-white/20 bg-transparent hover:bg-white/10 text-white" onClick={() => navigate('/#contato')}>
+                  Quero estruturar uma demanda
                 </Button>
               </div>
             </div>
@@ -3012,8 +3012,8 @@ const ServiceDetailPage = () => {
                   <Button size="lg" className="h-14 px-8 bg-primary hover:bg-primary/90 text-white" onClick={() => navigate('/#contato')}>
                     Solicitar Proposta Agora
                   </Button>
-                  <Button size="lg" variant="outline" className="h-14 px-8 border-white/20 bg-transparent hover:bg-white/10 text-white">
-                    Falar com Especialista
+                  <Button size="lg" variant="outline" className="h-14 px-8 border-white/20 bg-transparent hover:bg-white/10 text-white" onClick={() => navigate('/#contato')}>
+                    Quero estruturar uma demanda
                   </Button>
                 </div>
               </div>

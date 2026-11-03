@@ -39,7 +39,7 @@ export const HeroSection: React.FC = () => {
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-semibold tracking-wide mb-6"
           >
             <ShieldCheck className="h-4 w-4" />
-            <span>{t.hero.badge || 'ECOSSISTEMA INTEGRADO DE GESTÃO'}</span>
+            <span>{t.hero.badge || 'Ecossistema empresarial · Sul do Brasil e América do Sul'}</span>
           </motion.div>
 
           {/* Impactful Headline */}
@@ -50,7 +50,8 @@ export const HeroSection: React.FC = () => {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.08] mb-6"
           >
             {t.hero.titleStart}{' '}
-            <span className="text-primary">{t.hero.titleHighlight}</span>.
+            <span className="text-primary">{t.hero.titleHighlight}</span>
+            {!t.hero.titleHighlight.endsWith('.') && '.'}
           </motion.h1>
 
           {/* Concise 2-line Subtitle */}
@@ -58,7 +59,7 @@ export const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.16 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10 font-normal"
+            className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-10 font-normal"
           >
             {t.hero.subtitle}
           </motion.p>
@@ -86,7 +87,7 @@ export const HeroSection: React.FC = () => {
               className="w-full sm:w-auto h-13 px-7 text-base font-semibold border-border hover:bg-accent text-foreground transition-all"
             >
               <MessageCircle className="h-4 w-4 mr-2 text-primary" />
-              <span>Falar com Especialista</span>
+              <span>{t.hero.ctaPrimary || 'Quero estruturar uma demanda'}</span>
             </Button>
           </motion.div>
         </div>
