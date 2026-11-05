@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Building2, ChevronRight, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SECTORS } from '../constants';
 import { useLanguage } from '../i18n/LanguageContext';
 
 export const SectorsSection: React.FC = () => {
   const { t } = useLanguage();
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState(true);
 
-  // Show 8 sectors initially, or all if toggled
-  const displayedSectors = showAll ? SECTORS : SECTORS.slice(0, 8);
+  // Show all 9 sectors in a balanced 3x3 grid, or 6 if toggled
+  const displayedSectors = showAll ? SECTORS : SECTORS.slice(0, 6);
 
   return (
-    <section id="setores" className="py-24 lg:py-32 bg-secondary/10 scroll-mt-20">
+    <section id="setores" className="py-24 lg:py-32 bg-secondary/15 scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -34,55 +34,75 @@ export const SectorsSection: React.FC = () => {
           <Button 
             variant="outline"
             onClick={() => setShowAll(!showAll)}
-            className="self-start md:self-auto text-xs sm:text-sm font-semibold"
+            className="self-start md:self-auto text-xs sm:text-sm font-semibold border-border hover:bg-accent"
           >
-            {showAll ? 'Mostrar Menos' : `Ver Todos (${SECTORS.length})`}
+            {showAll ? 'Mostrar Menos (6)' : `Ver Todos (${SECTORS.length})`}
           </Button>
         </div>
 
-        {/* Clean, Scannable Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Rich Photo Card Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {displayedSectors.map((sector, idx) => {
             const Icon = sector.icon;
             return (
               <motion.div
                 key={sector.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: (idx % 4) * 0.05 }}
+                transition={{ duration: 0.35, delay: (idx % 3) * 0.06 }}
                 viewport={{ once: true }}
-                className="group relative bg-card border border-border/70 hover:border-primary/50 rounded-2xl p-5 flex flex-col justify-between transition-all hover:shadow-sm"
+                className="group relative bg-card border border-border/70 hover:border-primary/50 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <span className="text-[11px] font-mono font-medium text-muted-foreground">
-                      SET-0{idx + 1}
-                    </span>
+                {/* Sector Image Header */}
+                <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-muted">
+                  <img
+                    src={sector.image}
+                    alt={sector.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    loading="lazy"
+                  />
+                  
+                  {/* Subtle dark gradient overlay for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+
+                  {/* Floating Icon Badge */}
+                  <div className="absolute top-3.5 left-3.5 w-10 h-10 rounded-xl bg-background/90 backdrop-blur-md text-primary flex items-center justify-center shadow-md border border-white/20">
+                    <Icon className="h-5 w-5" />
                   </div>
 
-                  <h3 className="text-base font-bold text-foreground mb-1.5 group-hover:text-primary transition-colors">
-                    {sector.title}
-                  </h3>
+                  {/* Sector Tag */}
+                  <span className="absolute top-3.5 right-3.5 text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white/90 border border-white/10 tracking-wider">
+                    SET-0{idx + 1}
+                  </span>
 
-                  <p className="text-xs text-muted-foreground leading-relaxed font-normal line-clamp-2">
-                    {sector.description}
-                  </p>
+                  {/* Title Overlaid on Image Base */}
+                  <div className="absolute bottom-3.5 left-4 right-4">
+                    <h3 className="text-xl font-bold text-white drop-shadow-md group-hover:text-emerald-300 transition-colors">
+                      {sector.title}
+                    </h3>
+                  </div>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-border/50 flex items-center justify-between">
-                  <span className="text-[11px] font-medium text-muted-foreground/80">Soluções Dedicadas</span>
-                  <button
-                    onClick={() => {
-                      document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="text-xs font-semibold text-primary group-hover:translate-x-0.5 transition-transform flex items-center gap-1"
-                  >
-                    <span>Consultar</span>
-                    <ChevronRight className="h-3 w-3" />
-                  </button>
+                {/* Card Body */}
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-normal line-clamp-3">
+                    {sector.description}
+                  </p>
+
+                  <div className="mt-5 pt-3.5 border-t border-border/60 flex items-center justify-between">
+                    <span className="text-[11px] font-semibold text-muted-foreground/90 uppercase tracking-wider">
+                      Soluções Dedicadas
+                    </span>
+                    <button
+                      onClick={() => {
+                        document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                      className="text-xs font-semibold text-primary hover:text-primary/80 group-hover:translate-x-0.5 transition-all flex items-center gap-1 focus:outline-none"
+                    >
+                      <span>Consultar</span>
+                      <ChevronRight className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             );

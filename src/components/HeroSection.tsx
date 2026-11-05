@@ -34,6 +34,9 @@ export const HeroSection: React.FC = () => {
           className="w-full h-full object-cover object-right lg:object-[90%_center]"
           loading="eager"
         />
+
+        {/* Degradê suave inferior na altura das métricas para legibilidade perfeita */}
+        <div className="absolute bottom-0 left-0 right-0 h-80 sm:h-96 bg-gradient-to-t from-white via-white/95 via-50% to-transparent pointer-events-none" />
       </div>
 
       {/* Main Content Area - High Contrast for White Background */}
@@ -103,24 +106,27 @@ export const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Minimalist Executive Metric Strip - Light Theme Contrast */}
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-20">
+      {/* Minimalist Executive Metric Strip - With Degradê & Backdrop for total legibility */}
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 mt-14 sm:mt-18">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.32 }}
-          className="pt-8 border-t border-border/80"
+          className="relative rounded-2xl p-6 sm:p-7 bg-gradient-to-r from-white/95 via-white/90 to-white/80 backdrop-blur-md border border-slate-200/80 shadow-sm"
         >
+          {/* Subtle gradient highlight line at top of container */}
+          <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-primary/30 via-slate-200 to-transparent" />
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {metrics.map((m, idx) => (
               <div key={idx} className="text-left group">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
+                <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 group-hover:text-primary transition-colors">
                   {m.value}
                 </div>
-                <div className="text-sm font-semibold text-foreground/90 mt-1">
+                <div className="text-sm font-bold text-slate-800 mt-1">
                   {m.label}
                 </div>
-                <div className="text-xs text-muted-foreground mt-0.5 hidden sm:block">
+                <div className="text-xs text-slate-600 mt-0.5 hidden sm:block font-medium">
                   {m.detail}
                 </div>
               </div>
@@ -129,10 +135,10 @@ export const HeroSection: React.FC = () => {
         </motion.div>
 
         {/* Subtle scroll down indicator */}
-        <div className="flex justify-start mt-10">
+        <div className="flex justify-start mt-6">
           <button
             onClick={() => handleScrollTo('quem-somos')}
-            className="text-muted-foreground hover:text-primary p-2 transition-colors focus:outline-none flex items-center gap-2 text-xs uppercase tracking-wider font-semibold"
+            className="text-slate-600 hover:text-primary p-2 transition-colors focus:outline-none flex items-center gap-2 text-xs uppercase tracking-wider font-semibold"
             aria-label="Rolar para Ecossistema"
           >
             <span>Explorar Ecossistema</span>
