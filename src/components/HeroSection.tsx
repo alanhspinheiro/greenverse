@@ -39,7 +39,7 @@ export const HeroSection: React.FC = () => {
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-semibold tracking-wide mb-6"
           >
             <ShieldCheck className="h-4 w-4" />
-            <span>{t.hero.badge || 'Ecossistema empresarial · Sul do Brasil e América do Sul'}</span>
+            <span>{t.hero.badge || 'Ecossistema empresarial · Brasil e América do Sul'}</span>
           </motion.div>
 
           {/* Impactful Headline */}
