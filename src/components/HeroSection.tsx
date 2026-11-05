@@ -27,28 +27,33 @@ export const HeroSection: React.FC = () => {
       data-dark-section="true"
       className="relative min-h-[92vh] flex flex-col justify-between pt-36 pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-[#061e14] text-white"
     >
-      {/* Background Image with Right-Side Emphasis & Directional Lighting */}
+      {/* Background Image with Right-Side Emphasis & Clean Top for Logo and Navigation */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <img
           src="/hero-bg.jpg"
           alt="GREENVERSE Engenharia, Infraestrutura e Sustentabilidade"
-          className="w-full h-full object-cover object-right lg:object-[80%_center] scale-105 opacity-55 lg:opacity-70 brightness-[0.88] contrast-[1.12] transition-opacity duration-700"
+          className="w-full h-full object-cover object-right lg:object-[80%_center] scale-105 opacity-65 lg:opacity-80 brightness-[0.92] contrast-[1.10] transition-opacity duration-700"
           loading="eager"
         />
 
-        {/* Directional horizontal gradient: solid emerald backdrop on left for text legibility, transparent on the right showcasing the infrastructure */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061e14] via-[#061e14]/92 via-40% sm:via-48% to-[#061e14]/20" />
+        {/* Subtle, soft top vignette only for text contrast - does NOT mask or darken the image behind logo/menus */}
+        <div className="absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-black/35 via-black/15 to-transparent" />
         
-        {/* Vertical blending gradients for seamless navbar and bottom flow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#061e14]/85 via-transparent via-35% to-[#061e14]" />
+        {/* Soft bottom blending gradient for smooth flow into next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#061e14] via-[#061e14]/75 to-transparent" />
         
         {/* Subtle ambient emerald glow */}
-        <div className="absolute top-1/3 left-10 w-[550px] h-[350px] bg-emerald-500/10 rounded-full blur-[140px]" />
+        <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[450px] h-[350px] bg-emerald-500/10 rounded-full blur-[140px]" />
       </div>
 
       {/* Main Content Area - Left Aligned */}
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center">
-        <div className="max-w-3xl lg:max-w-4xl mr-auto text-left">
+        <div className="max-w-3xl lg:max-w-4xl mr-auto text-left relative">
+          {/* Gradiente direcional de leitura restrito exclusivamente à área do headline e subheadline */}
+          <div 
+            className="absolute -top-8 -bottom-8 -left-6 sm:-left-10 -right-4 sm:-right-20 -z-10 bg-gradient-to-r from-[#061e14]/95 via-[#061e14]/85 via-60% to-transparent rounded-3xl blur-2xl pointer-events-none" 
+            aria-hidden="true"
+          />
           {/* Eyebrow badge */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
