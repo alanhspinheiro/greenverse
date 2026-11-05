@@ -30,17 +30,17 @@ export const HeroSection: React.FC = () => {
       {/* Background Image with Right-Side Emphasis & Directional Lighting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=85&w=2160"
-          alt="GREENVERSE Engenharia e Infraestrutura Sustentável"
-          className="w-full h-full object-cover object-right md:object-center lg:object-right-top scale-105 opacity-40 lg:opacity-55 mix-blend-luminosity brightness-80 contrast-120 transition-opacity duration-700"
+          src="/hero-bg.jpg"
+          alt="GREENVERSE Engenharia, Infraestrutura e Sustentabilidade"
+          className="w-full h-full object-cover object-right lg:object-[80%_center] scale-105 opacity-55 lg:opacity-70 brightness-[0.88] contrast-[1.12] transition-opacity duration-700"
           loading="eager"
         />
 
-        {/* Directional horizontal gradient: opaque on the left for text readability, clear on the right to reveal the image */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061e14] via-[#061e14]/92 via-45% sm:via-50% to-[#061e14]/30" />
+        {/* Directional horizontal gradient: solid emerald backdrop on left for text legibility, transparent on the right showcasing the infrastructure */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061e14] via-[#061e14]/92 via-40% sm:via-48% to-[#061e14]/20" />
         
         {/* Vertical blending gradients for seamless navbar and bottom flow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#061e14]/85 via-transparent via-40% to-[#061e14]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#061e14]/85 via-transparent via-35% to-[#061e14]" />
         
         {/* Subtle ambient emerald glow */}
         <div className="absolute top-1/3 left-10 w-[550px] h-[350px] bg-emerald-500/10 rounded-full blur-[140px]" />
