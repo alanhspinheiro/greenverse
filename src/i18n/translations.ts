@@ -311,10 +311,10 @@ export const translations: Record<Language, TranslationDictionary> = {
       seeScopeBtn: 'Conhecer Escopo',
     },
     differentialsSection: {
-      badge: 'Por Que a Greenverse',
-      title: 'Nossos',
-      titleHighlight: 'Diferenciais',
-      lead: 'Combinamos inteligência técnica, visão de negócios e agilidade operacional para entregar soluções sustentáveis de alto impacto.',
+      badge: 'Governança & Método',
+      title: 'Um processo claro.',
+      titleHighlight: 'Responsabilidades definidas.',
+      lead: 'Eliminamos a incerteza e a fragmentação operacional com uma esteira estruturada em quatro etapas fundamentais.',
     },
     mercosulSection: {
       badge: 'Plataforma Regional',
@@ -574,10 +574,10 @@ export const translations: Record<Language, TranslationDictionary> = {
       seeScopeBtn: 'Conocer Alcance',
     },
     differentialsSection: {
-      badge: 'Por Qué Greenverse',
-      title: 'Nuestros',
-      titleHighlight: 'Diferenciales',
-      lead: 'Combinamos inteligencia técnica, visión de negocios y agilidad operativa para entregar soluciones sostenibles de alto impacto.',
+      badge: 'Gobernanza & Método',
+      title: 'Un proceso claro.',
+      titleHighlight: 'Responsabilidades definidas.',
+      lead: 'Eliminamos la incertidumbre y la fragmentación operativa con un flujo estructurado en cuatro etapas fundamentales.',
     },
     mercosulSection: {
       badge: 'Plataforma Regional',
@@ -837,10 +837,10 @@ export const translations: Record<Language, TranslationDictionary> = {
       seeScopeBtn: 'Explore Scope',
     },
     differentialsSection: {
-      badge: 'Why Greenverse',
-      title: 'Our Key',
-      titleHighlight: 'Differentials',
-      lead: 'We combine technical intelligence, business acumen, and operational agility to deliver high-impact sustainable solutions.',
+      badge: 'Governance & Method',
+      title: 'A clear process.',
+      titleHighlight: 'Defined responsibilities.',
+      lead: 'We eliminate operational friction and fragmentation through a structured pipeline across four key stages.',
     },
     mercosulSection: {
       badge: 'Regional Platform',

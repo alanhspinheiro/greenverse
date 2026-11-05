@@ -390,51 +390,6 @@ const Footer = () => {
   );
 };
 
-const AuthoritySection = () => (
-  <section data-dark-section="true" className="py-24 bg-primary relative overflow-hidden text-white">
-    <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-      <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-white/5 rounded-full blur-[100px]" />
-      <div className="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-white/5 rounded-full blur-[100px]" />
-    </div>
-
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div className="max-w-3xl mx-auto space-y-6">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wider uppercase backdrop-blur-sm border border-white/15"
-        >
-          <Target className="h-4 w-4" />
-          <span>Posicionamento Estratégico</span>
-        </motion.div>
-
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-          Mais que prestadores de serviço: parceiros da sua governança.
-        </h2>
-
-        <p className="text-lg sm:text-xl text-white/85 max-w-2xl mx-auto leading-relaxed font-normal">
-          Transformamos desafios técnicos e regulatórios em operações organizadas, previsíveis e com conformidade contínua.
-        </p>
-
-        <div className="pt-6 flex flex-wrap items-center justify-center gap-6 sm:gap-12 text-xs sm:text-sm font-semibold tracking-wider uppercase text-white/70">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
-            <span>Inteligência Técnica</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
-            <span>Governança & Riscos</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
-            <span>Execução de Alto Rigor</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
 
 // --- Pages ---
 
@@ -452,51 +407,6 @@ const HomePage = () => {
       <DifferentialsSection />
       <MercosulSection />
       <ApprovedNetworkSection />
-      <AuthoritySection />
-
-      {/* Blog / Intelligence Preview */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary block mb-2">
-                CONHECIMENTO TÉCNICO
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-                Central de Inteligência Ambiental & ESG
-              </h2>
-            </div>
-            <Link to="/blog">
-              <Button variant="ghost" className="gap-1.5 text-primary hover:text-primary/80 font-semibold p-0 sm:p-3">
-                <span>Ver Todos os Artigos</span>
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {BLOG_POSTS.map((post) => (
-              <Card key={post.id} className="p-6 rounded-2xl border border-border/70 hover:border-primary/40 transition-all hover:shadow-sm bg-card flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Badge variant="secondary" className="text-[10px] uppercase font-semibold tracking-wider">{post.category}</Badge>
-                    <span className="text-[11px] text-muted-foreground">{post.date}</span>
-                  </div>
-                  <CardTitle className="text-base sm:text-lg font-bold leading-snug hover:text-primary transition-colors cursor-pointer mb-2">
-                    {post.title}
-                  </CardTitle>
-                  <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed font-normal">{post.excerpt}</p>
-                </div>
-                <div className="pt-4 mt-4 border-t border-border/60">
-                  <Link to="/blog" className="text-xs font-bold text-primary hover:underline">
-                    Ler Artigo Completo →
-                  </Link>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <ContactSection />
 
