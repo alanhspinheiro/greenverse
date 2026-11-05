@@ -298,9 +298,9 @@ export const translations: Record<Language, TranslationDictionary> = {
     },
     servicesSection: {
       badge: 'Soluções Integradas',
-      title: 'Nossos',
-      titleHighlight: 'Serviços Especializados',
-      lead: 'Oferecemos soluções completas ponta a ponta com rigor técnico, conformidade legal e governança corporativa.',
+      title: 'Mais que uma lista de serviços.',
+      titleHighlight: 'Um modelo para conectar capacidades.',
+      lead: 'Cada demanda exige competências diferentes. Nosso papel é entender a necessidade, estruturar o caminho, conectar as partes adequadas e apoiar o acompanhamento conforme o escopo contratado.',
       exploreBtn: 'Ver Detalhes do Serviço',
     },
     sectorsSection: {
@@ -561,9 +561,9 @@ export const translations: Record<Language, TranslationDictionary> = {
     },
     servicesSection: {
       badge: 'Soluciones Integradas',
-      title: 'Nuestros',
-      titleHighlight: 'Servicios Especializados',
-      lead: 'Ofrecemos soluciones completas de extremo a extremo con rigor técnico, cumplimiento legal y gobernanza corporativa.',
+      title: 'Más que una lista de servicios.',
+      titleHighlight: 'Un modelo para conectar capacidades.',
+      lead: 'Cada demanda exige competencias diferentes. Nuestro rol es entender la necesidad, estructurar el camino, conectar las partes adecuadas y apoyar el seguimiento conforme al alcance contratado.',
       exploreBtn: 'Ver Detalles del Servicio',
     },
     sectorsSection: {
@@ -824,9 +824,9 @@ export const translations: Record<Language, TranslationDictionary> = {
     },
     servicesSection: {
       badge: 'Integrated Solutions',
-      title: 'Our',
-      titleHighlight: 'Specialized Services',
-      lead: 'We provide comprehensive end-to-end solutions with technical rigor, legal compliance, and corporate governance.',
+      title: 'More than a service catalog.',
+      titleHighlight: 'A framework for connecting capabilities.',
+      lead: 'Every demand requires different competencies. Our role is to understand the need, structure the roadmap, connect the right stakeholders, and support monitoring in accordance with the contracted scope.',
       exploreBtn: 'View Service Details',
     },
     sectorsSection: {

@@ -70,7 +70,7 @@ export const SolutionsSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="max-w-2xl">
+          <div className="max-w-3xl lg:max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider uppercase mb-3">
               {t.servicesSection.badge || 'PORTFÓLIO DE SOLUÇÕES'}
             </div>
