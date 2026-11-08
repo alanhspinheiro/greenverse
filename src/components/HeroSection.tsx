@@ -24,19 +24,19 @@ export const HeroSection: React.FC = () => {
   return (
     <section 
       id="inicio"
-      className="relative min-h-[90vh] flex flex-col justify-between pt-36 pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-white text-foreground"
+      className="relative min-h-[90vh] flex flex-col justify-between pt-32 pb-14 sm:pt-40 sm:pb-16 lg:pt-44 lg:pb-24 overflow-hidden bg-white text-foreground"
     >
-      {/* Background Image - Clean white-ground engineering composition */}
+      {/* Background Image - Corporate & Technical */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <img
           src="/hero-bg.jpg"
           alt="GREENVERSE Engenharia, Infraestrutura e Sustentabilidade"
-          className="w-full h-full object-cover object-right lg:object-[90%_center]"
+          className="w-full h-full object-cover object-[80%_center] lg:object-[90%_center]"
           loading="eager"
         />
 
         {/* Degradê suave inferior na altura das métricas para legibilidade perfeita */}
-        <div className="absolute bottom-0 left-0 right-0 h-80 sm:h-96 bg-gradient-to-t from-white via-white/95 via-50% to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-72 sm:h-96 bg-gradient-to-t from-white via-white/95 via-50% to-transparent pointer-events-none" />
       </div>
 
       {/* Main Content Area - High Contrast for White Background */}
@@ -47,18 +47,18 @@ export const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-semibold tracking-wide mb-6"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-semibold tracking-wide mb-5 sm:mb-6"
           >
-            <ShieldCheck className="h-4 w-4 text-primary" />
+            <ShieldCheck className="h-4 w-4 text-primary shrink-0" />
             <span>{t.hero.badge || 'Ecossistema empresarial · Brasil e América do Sul'}</span>
           </motion.div>
 
-          {/* Impactful Headline - Crisp dark text */}
+          {/* Impactful Headline - Crisp dark text with refined scale */}
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.08 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground leading-[1.08] mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground leading-[1.12] mb-5 sm:mb-6"
           >
             {t.hero.titleStart}{' '}
             <span className="text-primary">
@@ -67,12 +67,12 @@ export const HeroSection: React.FC = () => {
             {!t.hero.titleHighlight.endsWith('.') && '.'}
           </motion.h1>
 
-          {/* Subtitle - High contrast muted text */}
+          {/* Subtitle - Refined comfortable scale */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.16 }}
-            className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10 font-normal"
+            className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-7 sm:mb-9 font-normal"
           >
             {t.hero.subtitle}
           </motion.p>
