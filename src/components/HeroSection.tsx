@@ -33,9 +33,9 @@ export const HeroSection: React.FC = () => {
           <div className="absolute -bottom-10 left-10 w-[450px] h-[450px] bg-slate-100/70 rounded-full blur-2xl" />
         </div>
 
-        {/* Alinhamento de 2 Colunas com espaçamento aproximado e globo ampliado */}
+        {/* Alinhamento de 2 Colunas com espaçamento reduzido e tipografia refinada */}
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl lg:max-w-6xl xl:max-w-[1240px] flex-1 flex flex-col justify-center">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-7 xl:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-10 items-center">
             
             {/* Coluna Esquerda: Mensagem Institucional, Descrição e Botões de Ação */}
             <div className="text-left flex flex-col justify-center max-w-lg xl:max-w-xl">
@@ -104,23 +104,23 @@ export const HeroSection: React.FC = () => {
               </motion.div>
             </div>
 
-            {/* Coluna Direita: Globo 3D em Destaque Ampliado */}
+            {/* Coluna Direita: Imagem Visual em Destaque, Centralizada Verticalmente */}
             <div className="relative flex justify-center lg:justify-end items-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className="relative w-full max-w-md sm:max-w-lg lg:max-w-[520px] xl:max-w-[570px] aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-emerald-950/15 border border-slate-200/80 bg-slate-50 group"
+                className="relative w-full max-w-md sm:max-w-lg lg:max-w-[490px] xl:max-w-[530px] aspect-[4/3] lg:aspect-square xl:aspect-[1.12/1] rounded-3xl overflow-hidden shadow-2xl shadow-slate-300/40 border border-slate-200/80 bg-slate-100 group"
               >
                 <img
-                  src="/hero-globe-zoomed.jpg"
-                  alt="GREENVERSE Ecossistema Sustentável"
-                  className="w-full h-full object-cover object-center scale-115 sm:scale-120 group-hover:scale-125 transition-transform duration-700"
+                  src="/hero-bg.jpg"
+                  alt="GREENVERSE Engenharia, Infraestrutura e Sustentabilidade"
+                  className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-700"
                   loading="eager"
                 />
 
                 {/* Brilho e profundidade sutis */}
-                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/20 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent pointer-events-none" />
               </motion.div>
             </div>
 
