@@ -213,8 +213,8 @@ export const translations: Record<Language, TranslationDictionary> = {
     },
     hero: {
       badge: 'Ecossistema empresarial · Brasil e América do Sul',
-      titleStart: 'Conectamos capacidade. Estruturamos soluções.',
-      titleHighlight: 'Acompanhamos resultados.',
+      titleStart: 'Conectamos capacidade.',
+      titleHighlight: 'Estruturamos soluções.',
       subtitle: 'A GREENVERSE integra clientes, empresas especializadas, fabricantes, tecnologia e conhecimento para estruturar oportunidades, intermediar soluções e apoiar a gestão de projetos e operações complexas.',
       ctaPrimary: 'Quero estruturar uma demanda',
       ctaSecondary: 'Conhecer Serviços',
@@ -476,8 +476,8 @@ export const translations: Record<Language, TranslationDictionary> = {
     },
     hero: {
       badge: 'Ecosistema empresarial · Brasil y América del Sur',
-      titleStart: 'Conectamos capacidad. Estructuramos soluciones.',
-      titleHighlight: 'Acompañamos resultados.',
+      titleStart: 'Conectamos capacidad.',
+      titleHighlight: 'Estructuramos soluciones.',
       subtitle: 'GREENVERSE integra clientes, empresas especializadas, fabricantes, tecnología y conocimiento para estructurar oportunidades, intermediar soluciones y apoyar la gestión de proyectos y operaciones complejas.',
       ctaPrimary: 'Quiero estructurar una demanda',
       ctaSecondary: 'Conocer Servicios',
@@ -739,8 +739,8 @@ export const translations: Record<Language, TranslationDictionary> = {
     },
     hero: {
       badge: 'Business Ecosystem · Brazil & South America',
-      titleStart: 'Connecting capacity. Structuring solutions.',
-      titleHighlight: 'Tracking results.',
+      titleStart: 'Connecting capacity.',
+      titleHighlight: 'Structuring solutions.',
       subtitle: 'GREENVERSE integrates clients, specialized firms, manufacturers, technology, and expertise to structure opportunities, broker solutions, and support the management of complex projects and operations.',
       ctaPrimary: 'Structure a Demand',
       ctaSecondary: 'Explore Services',

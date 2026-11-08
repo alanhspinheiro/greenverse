@@ -33,35 +33,37 @@ export const HeroSection: React.FC = () => {
           <div className="absolute -bottom-10 left-10 w-[450px] h-[450px] bg-slate-100/70 rounded-full blur-2xl" />
         </div>
 
-        {/* Alinhamento de 2 Colunas idêntico à referência: Centralizado verticalmente */}
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex-1 flex flex-col justify-center">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 xl:gap-20 items-center">
+        {/* Alinhamento de 2 Colunas com espaçamento aproximado e globo ampliado */}
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl lg:max-w-6xl xl:max-w-[1240px] flex-1 flex flex-col justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-7 xl:gap-8 items-center">
             
             {/* Coluna Esquerda: Mensagem Institucional, Descrição e Botões de Ação */}
-            <div className="text-left flex flex-col justify-center max-w-xl xl:max-w-2xl">
+            <div className="text-left flex flex-col justify-center max-w-lg xl:max-w-xl">
               {/* Eyebrow badge discreto */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide mb-5 w-fit"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide mb-4 w-fit"
               >
                 <ShieldCheck className="h-3.5 w-3.5 text-primary shrink-0" />
                 <span>{t.hero.badge || 'Ecossistema empresarial · Brasil e América do Sul'}</span>
               </motion.div>
 
-              {/* Título Principal de Alto Impacto */}
+              {/* Título Principal com escala proporcional */}
               <motion.h1
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.08 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold tracking-tight text-slate-900 leading-[1.12] mb-6"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.35rem] xl:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.16] mb-4 sm:mb-5"
               >
                 {t.hero.titleStart}{' '}
-                <span className="text-primary">
-                  {t.hero.titleHighlight}
-                </span>
-                {!t.hero.titleHighlight.endsWith('.') && '.'}
+                {t.hero.titleHighlight && (
+                  <span className="text-primary">
+                    {t.hero.titleHighlight}
+                  </span>
+                )}
+                {!t.hero.titleHighlight && !t.hero.titleStart.endsWith('.') && '.'}
               </motion.h1>
 
               {/* Descrição Subtítulo */}
@@ -69,7 +71,7 @@ export const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.16 }}
-                className="text-base sm:text-lg lg:text-xl text-slate-600 leading-relaxed mb-8 sm:mb-9 font-normal max-w-lg"
+                className="text-sm sm:text-base lg:text-[1.05rem] text-slate-600 leading-relaxed mb-6 sm:mb-7 font-normal max-w-lg"
               >
                 {t.hero.subtitle}
               </motion.p>
@@ -79,12 +81,12 @@ export const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.24 }}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-4"
+                className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3.5"
               >
                 <Button
                   size="lg"
                   onClick={() => handleScrollTo('servicos')}
-                  className="h-12 px-7 text-base font-semibold bg-slate-900 hover:bg-slate-800 text-white rounded-xl shadow-sm hover:shadow transition-all group"
+                  className="h-11 px-6 text-sm sm:text-base font-semibold bg-slate-900 hover:bg-slate-800 text-white rounded-xl shadow-sm hover:shadow transition-all group"
                 >
                   <span>{t.hero.ctaSecondary || 'Explorar Soluções'}</span>
                   <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -94,7 +96,7 @@ export const HeroSection: React.FC = () => {
                   size="lg"
                   variant="outline"
                   onClick={() => handleScrollTo('contato')}
-                  className="h-12 px-7 text-base font-semibold bg-white hover:bg-slate-50 text-slate-900 border border-slate-300 rounded-xl transition-all"
+                  className="h-11 px-6 text-sm sm:text-base font-semibold bg-white hover:bg-slate-50 text-slate-900 border border-slate-300 rounded-xl transition-all"
                 >
                   <MessageCircle className="h-4 w-4 mr-2 text-primary" />
                   <span>{t.hero.ctaPrimary || 'Quero estruturar uma demanda'}</span>
@@ -102,23 +104,23 @@ export const HeroSection: React.FC = () => {
               </motion.div>
             </div>
 
-            {/* Coluna Direita: Imagem Visual em Destaque, Centralizada Verticalmente */}
+            {/* Coluna Direita: Globo 3D em Destaque Ampliado */}
             <div className="relative flex justify-center lg:justify-end items-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
-                className="relative w-full max-w-md sm:max-w-lg lg:max-w-none aspect-[4/3] lg:aspect-square xl:aspect-[1.15/1] rounded-3xl overflow-hidden shadow-2xl shadow-slate-300/40 border border-slate-200/80 bg-slate-100 group"
+                className="relative w-full max-w-md sm:max-w-lg lg:max-w-[520px] xl:max-w-[570px] aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-emerald-950/15 border border-slate-200/80 bg-slate-50 group"
               >
                 <img
-                  src="/hero-bg.jpg"
-                  alt="GREENVERSE Engenharia, Infraestrutura e Sustentabilidade"
-                  className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-700"
+                  src="/hero-globe-zoomed.jpg"
+                  alt="GREENVERSE Ecossistema Sustentável"
+                  className="w-full h-full object-cover object-center scale-115 sm:scale-120 group-hover:scale-125 transition-transform duration-700"
                   loading="eager"
                 />
 
                 {/* Brilho e profundidade sutis */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/20 via-transparent to-transparent pointer-events-none" />
               </motion.div>
             </div>
 
