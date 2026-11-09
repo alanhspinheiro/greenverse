@@ -6,7 +6,7 @@ import {
   ArrowUpRight, ArrowRight, Eye, CheckCircle2, 
   HardHat, Leaf, Building2, ShieldCheck, Cpu, 
   Layers, Search, Sparkles, PhoneCall, ChevronRight,
-  ExternalLink, Check
+  ExternalLink, Check, X, Filter
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -251,7 +251,6 @@ export const getTagsForService = (id: string): string[] => {
 
 export const SolutionsSection: React.FC = () => {
   const { t } = useLanguage();
-  // By default, show all or default to the first area if preferred
   const [selectedAreaId, setSelectedAreaId] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [previewService, setPreviewService] = useState<typeof SERVICES[0] | null>(null);
@@ -261,28 +260,80 @@ export const SolutionsSection: React.FC = () => {
     return STRATEGIC_AREAS.find((a) => a.id === selectedAreaId) || null;
   }, [selectedAreaId]);
 
-  // Filtered services
+  // Calculate live matching service counts for each strategic area while typing
+  const areaMatchCounts = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    const counts: Record<string, number> = {};
+
+    STRATEGIC_AREAS.forEach((area) => {
+      if (!q) {
+        counts[area.id] = area.serviceIds.length;
+        return;
+      }
+
+      const areaSelfMatch = 
+        area.title.toLowerCase().includes(q) ||
+        area.shortTitle.toLowerCase().includes(q) ||
+        area.description.toLowerCase().includes(q) ||
+        area.keyHighlights.some((h) => h.toLowerCase().includes(q));
+
+      const matchingServicesInArea = SERVICES.filter((s) => {
+        if (!area.serviceIds.includes(s.id)) return false;
+        if (areaSelfMatch) return true;
+        const matchTitle = s.title.toLowerCase().includes(q);
+        const matchDesc = s.description.toLowerCase().includes(q);
+        const tags = getTagsForService(s.id);
+        const matchTags = tags.some((t) => t.toLowerCase().includes(q));
+        const matchDetails = s.details?.some((d: any) =>
+          d.category?.toLowerCase().includes(q) ||
+          d.items?.some((it: string) => it.toLowerCase().includes(q))
+        );
+        return matchTitle || matchDesc || matchTags || matchDetails;
+      });
+
+      counts[area.id] = matchingServicesInArea.length;
+    });
+
+    return counts;
+  }, [searchQuery]);
+
+  // Total matching strategic areas
+  const matchingAreasCount = useMemo(() => {
+    return STRATEGIC_AREAS.filter((area) => (areaMatchCounts[area.id] || 0) > 0).length;
+  }, [areaMatchCounts]);
+
+  // Filtered services based on current search query and selected area
   const filteredServices = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+
     return SERVICES.filter((service) => {
-      // Area filter
-      if (selectedAreaId !== 'all') {
-        const area = STRATEGIC_AREAS.find((a) => a.id === selectedAreaId);
-        if (!area || !area.serviceIds.includes(service.id)) {
-          return false;
-        }
+      const area = getAreaForService(service.id);
+
+      // If user selected an area, respect it (unless user is in 'all')
+      if (selectedAreaId !== 'all' && !area.serviceIds.includes(service.id)) {
+        return false;
       }
 
-      // Search query filter
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase().trim();
-        const matchTitle = service.title.toLowerCase().includes(q);
-        const matchDesc = service.description.toLowerCase().includes(q);
-        const tags = getTagsForService(service.id);
-        const matchTags = tags.some((tag) => tag.toLowerCase().includes(q));
-        return matchTitle || matchDesc || matchTags;
-      }
+      // If no search query, then area filter is sufficient
+      if (!q) return true;
 
-      return true;
+      // Area-level match
+      const areaMatch = 
+        area.title.toLowerCase().includes(q) ||
+        area.shortTitle.toLowerCase().includes(q) ||
+        area.description.toLowerCase().includes(q) ||
+        area.keyHighlights.some((h) => h.toLowerCase().includes(q));
+
+      const matchTitle = service.title.toLowerCase().includes(q);
+      const matchDesc = service.description.toLowerCase().includes(q);
+      const tags = getTagsForService(service.id);
+      const matchTags = tags.some((tag) => tag.toLowerCase().includes(q));
+      const matchDetails = service.details?.some((d: any) =>
+        d.category?.toLowerCase().includes(q) ||
+        d.items?.some((it: string) => it.toLowerCase().includes(q))
+      );
+
+      return areaMatch || matchTitle || matchDesc || matchTags || matchDetails;
     });
   }, [selectedAreaId, searchQuery]);
 
@@ -343,7 +394,7 @@ export const SolutionsSection: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header (Inspired by reference image "Our Services" layout) */}
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wider uppercase mb-3.5">
             <Sparkles className="h-3.5 w-3.5" />
             <span>{t.servicesSection.badge || 'PORTFÓLIO DE SOLUÇÕES'}</span>
@@ -355,6 +406,98 @@ export const SolutionsSection: React.FC = () => {
           <p className="text-muted-foreground text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
             {t.servicesSection.lead || 'Cada demanda exige competências diferentes. Nosso papel é entender a necessidade, estruturar o caminho, conectar as partes adequadas e apoiar o acompanhamento conforme o escopo contratado.'}
           </p>
+        </div>
+
+        {/* PROMINENT TOP SEARCH BAR (Permite ao usuário filtrar rapidamente áreas e serviços enquanto digita) */}
+        <div className="mb-10 max-w-4xl">
+          <div className="relative flex items-center bg-card rounded-2xl border-2 border-border/80 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 shadow-sm transition-all p-1.5 sm:p-2">
+            <div className="pl-3 pr-2 text-primary flex items-center pointer-events-none">
+              <Search className="h-5 w-5" />
+            </div>
+            
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Buscar por área estratégica, serviço, norma técnica (ex: NR-13, ESG, facilities, segurança, TI)..."
+              className="w-full bg-transparent px-2 py-2 text-sm sm:text-base text-foreground placeholder:text-muted-foreground/70 focus:outline-none"
+            />
+
+            {/* Clear Button */}
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="p-1.5 mr-1 rounded-xl text-muted-foreground hover:text-foreground hover:bg-muted transition-colors flex items-center gap-1 text-xs font-semibold shrink-0"
+                title="Limpar busca"
+              >
+                <X className="h-4 w-4" />
+                <span className="hidden sm:inline">Limpar</span>
+              </button>
+            )}
+
+            {/* Live Count Indicator Badge */}
+            <div className="hidden sm:flex items-center gap-1.5 pr-2.5 pl-2.5 border-l border-border/70 text-xs font-mono text-muted-foreground shrink-0">
+              <span className={`px-2 py-0.5 rounded-md font-bold ${
+                filteredServices.length > 0 
+                  ? 'bg-primary/10 text-primary border border-primary/20' 
+                  : 'bg-muted text-muted-foreground'
+              }`}>
+                {filteredServices.length}
+              </span>
+              <span>{filteredServices.length === 1 ? 'serviço' : 'serviços'}</span>
+            </div>
+          </div>
+
+          {/* Quick Filter Tag Suggestions */}
+          <div className="flex flex-wrap items-center gap-1.5 mt-3 text-xs text-muted-foreground">
+            <span className="font-semibold text-foreground/80 flex items-center gap-1 mr-1">
+              <Sparkles className="h-3 w-3 text-primary" /> Sugestões:
+            </span>
+            {['NR-13', 'ESG & Carbono', 'Facilities', 'PMOC Climatização', 'Vigilância CFTV', 'Licenciamento', 'Obras Industriais', 'TI & Cibersegurança'].map((chip) => {
+              const isSelected = searchQuery.toLowerCase() === chip.toLowerCase();
+              return (
+                <button
+                  key={chip}
+                  onClick={() => setSearchQuery(isSelected ? '' : chip)}
+                  className={`px-2.5 py-1 rounded-lg border text-[11px] font-medium transition-colors ${
+                    isSelected
+                      ? 'bg-primary text-primary-foreground border-primary shadow-xs'
+                      : 'bg-card hover:bg-muted text-foreground/80 border-border/70 hover:border-primary/40'
+                  }`}
+                >
+                  {chip}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Live Search Active Feedback Banner */}
+          {searchQuery && (
+            <div className="mt-3.5 p-3 rounded-xl bg-primary/5 border border-primary/20 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <div className="flex items-center gap-2 text-foreground/90 font-medium">
+                <Filter className="h-3.5 w-3.5 text-primary" />
+                <span>
+                  Filtrando por <strong>"{searchQuery}"</strong>: {filteredServices.length} {filteredServices.length === 1 ? 'serviço encontrado' : 'serviços encontrados'} em {matchingAreasCount} {matchingAreasCount === 1 ? 'área estratégica' : 'áreas estratégicas'}.
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {selectedAreaId !== 'all' && (
+                  <button
+                    onClick={() => setSelectedAreaId('all')}
+                    className="text-primary hover:underline font-bold"
+                  >
+                    Ver em todas as áreas
+                  </button>
+                )}
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="text-muted-foreground hover:text-foreground underline ml-1"
+                >
+                  Limpar filtro
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Minimalist Animated Continuous Ribbon (Preserved) */}
@@ -389,28 +532,12 @@ export const SolutionsSection: React.FC = () => {
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
-                Áreas Estratégicas · Selecione uma categoria para explorar
+                Áreas Estratégicas · Filtre por categoria ou navegue livremente
               </span>
             </div>
 
-            {/* Quick search input */}
-            <div className="relative max-w-xs w-full">
-              <Search className="h-3.5 w-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Buscar por serviço ou norma..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-9 pr-3 py-1.5 text-xs rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-1 focus:ring-primary shadow-2xs"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground hover:text-foreground font-semibold"
-                >
-                  Limpar
-                </button>
-              )}
+            <div className="text-xs font-mono text-muted-foreground">
+              {matchingAreasCount} de 5 áreas com serviços disponíveis
             </div>
           </div>
 
@@ -419,13 +546,17 @@ export const SolutionsSection: React.FC = () => {
             {STRATEGIC_AREAS.map((area) => {
               const AreaIcon = area.icon;
               const isSelected = selectedAreaId === area.id;
+              const matchCount = areaMatchCounts[area.id] ?? area.serviceIds.length;
+              const hasMatches = matchCount > 0;
 
               return (
                 <button
                   key={area.id}
                   onClick={() => setSelectedAreaId(isSelected ? 'all' : area.id)}
                   className={`text-left p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between group relative overflow-hidden bg-card ${
-                    isSelected
+                    !hasMatches && searchQuery
+                      ? 'opacity-40 grayscale-[40%] border-border/40 hover:opacity-75'
+                      : isSelected
                       ? area.colorClasses.cardActiveBorder
                       : `border-border/80 ${area.colorClasses.cardBorderHover} shadow-xs hover:shadow-sm hover:-translate-y-0.5`
                   }`}
@@ -467,8 +598,10 @@ export const SolutionsSection: React.FC = () => {
 
                   {/* Card Footer with count and indicator */}
                   <div className="pt-3 border-t border-border/50 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-muted-foreground">
-                      {area.serviceIds.length} serviços específicos
+                    <span className={`text-[11px] font-semibold ${
+                      searchQuery && hasMatches ? 'text-primary font-bold' : 'text-muted-foreground'
+                    }`}>
+                      {searchQuery ? `${matchCount} encontrados` : `${area.serviceIds.length} serviços`}
                     </span>
                     <span className={`text-[10px] font-bold uppercase tracking-wider ${
                       isSelected ? 'text-primary font-extrabold' : 'text-muted-foreground/80 group-hover:text-foreground'
@@ -482,7 +615,7 @@ export const SolutionsSection: React.FC = () => {
           </div>
 
           {/* Quick Filter Pill for All Services */}
-          <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setSelectedAreaId('all')}
@@ -504,8 +637,8 @@ export const SolutionsSection: React.FC = () => {
               )}
             </div>
 
-            <span className="font-mono text-[11px] hidden sm:inline">
-              {filteredServices.length} serviços exibidos
+            <span className="font-mono text-[11px]">
+              {filteredServices.length} {filteredServices.length === 1 ? 'serviço exibido' : 'serviços exibidos'}
             </span>
           </div>
         </div>
@@ -570,6 +703,34 @@ export const SolutionsSection: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Empty Search State */}
+        {filteredServices.length === 0 && (
+          <div className="py-16 text-center border rounded-3xl bg-card border-dashed border-border mb-12">
+            <Layers className="h-10 w-10 mx-auto text-muted-foreground mb-3 opacity-60" />
+            <h4 className="text-base font-bold text-foreground mb-1">Nenhum serviço correspondente</h4>
+            <p className="text-xs text-muted-foreground max-w-md mx-auto mb-4">
+              Não encontramos resultados para <strong>"{searchQuery}"</strong>{selectedAreaId !== 'all' ? ` dentro de ${activeArea?.shortTitle}` : ''}. Tente outros termos ou redefina o filtro.
+            </p>
+            <div className="flex items-center justify-center gap-3">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSearchQuery('')}
+              >
+                Limpar Busca
+              </Button>
+              {selectedAreaId !== 'all' && (
+                <Button
+                  size="sm"
+                  onClick={() => setSelectedAreaId('all')}
+                >
+                  Buscar em Todas as Áreas
+                </Button>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* 2. SPECIFIC SERVICES GRID (Adopting the reference image card visual concept with diagonal arrow ↗) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
