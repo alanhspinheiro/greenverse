@@ -178,9 +178,16 @@ export const DifferentialsSection: React.FC = () => {
             return (
               <motion.div
                 key={step.num}
+                initial={{ opacity: 0, y: 36 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ 
+                  duration: 0.55, 
+                  delay: idx * 0.12, 
+                  ease: [0.21, 0.47, 0.32, 0.98] 
+                }}
                 onClick={() => setActiveStep(idx)}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
+                whileHover={{ y: -6, scale: 1.02 }}
                 className={`group cursor-pointer rounded-2xl p-6 transition-all duration-300 relative flex flex-col justify-between overflow-hidden border ${
                   isCurrent
                     ? 'bg-gradient-to-b from-emerald-950/70 via-[#08291c] to-[#061e14] border-emerald-400 shadow-xl shadow-emerald-950/70 ring-1 ring-emerald-400/60'
@@ -273,7 +280,13 @@ export const DifferentialsSection: React.FC = () => {
         </div>
 
         {/* Industrial SCADA Control & Telemetry Bar */}
-        <div className="mt-10 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-10 p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
           <div className="flex items-center gap-3 text-left">
             <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
               <motion.div
@@ -322,7 +335,7 @@ export const DifferentialsSection: React.FC = () => {
               <ArrowRight className="h-3.5 w-3.5 ml-1.5" />
             </Button>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

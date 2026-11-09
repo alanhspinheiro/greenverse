@@ -543,73 +543,85 @@ export const SolutionsSection: React.FC = () => {
 
           {/* 5 Clean Strategic Area Cards matching reference image layout */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {STRATEGIC_AREAS.map((area) => {
+            {STRATEGIC_AREAS.map((area, idx) => {
               const AreaIcon = area.icon;
               const isSelected = selectedAreaId === area.id;
               const matchCount = areaMatchCounts[area.id] ?? area.serviceIds.length;
               const hasMatches = matchCount > 0;
 
               return (
-                <button
+                <motion.div
                   key={area.id}
-                  onClick={() => setSelectedAreaId(isSelected ? 'all' : area.id)}
-                  className={`text-left p-5 rounded-2xl border transition-all duration-300 ease-out transform-gpu hover:scale-105 hover:shadow-xl relative hover:z-20 flex flex-col justify-between group overflow-hidden bg-card ${
-                    !hasMatches && searchQuery
-                      ? 'opacity-40 grayscale-[40%] border-border/40 hover:opacity-75'
-                      : isSelected
-                      ? area.colorClasses.cardActiveBorder
-                      : `border-border/80 ${area.colorClasses.cardBorderHover} shadow-xs`
-                  }`}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: idx * 0.08, 
+                    ease: [0.21, 0.47, 0.32, 0.98] 
+                  }}
+                  className="h-full"
                 >
-                  <div>
-                    {/* Top row: Title + Diagonal Arrow (↗) as shown in the reference image */}
-                    <div className="flex items-start justify-between gap-2 mb-3">
-                      <div className="flex items-center gap-2.5">
-                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                          isSelected ? 'bg-primary text-primary-foreground' : area.colorClasses.iconBg
-                        }`}>
-                          <AreaIcon className="h-4 w-4" />
+                  <button
+                    onClick={() => setSelectedAreaId(isSelected ? 'all' : area.id)}
+                    className={`w-full h-full text-left p-5 rounded-2xl border transition-all duration-300 ease-out transform-gpu hover:scale-105 hover:shadow-xl relative hover:z-20 flex flex-col justify-between group overflow-hidden bg-card ${
+                      !hasMatches && searchQuery
+                        ? 'opacity-40 grayscale-[40%] border-border/40 hover:opacity-75'
+                        : isSelected
+                        ? area.colorClasses.cardActiveBorder
+                        : `border-border/80 ${area.colorClasses.cardBorderHover} shadow-xs`
+                    }`}
+                  >
+                    <div>
+                      {/* Top row: Title + Diagonal Arrow (↗) as shown in the reference image */}
+                      <div className="flex items-start justify-between gap-2 mb-3">
+                        <div className="flex items-center gap-2.5">
+                          <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                            isSelected ? 'bg-primary text-primary-foreground' : area.colorClasses.iconBg
+                          }`}>
+                            <AreaIcon className="h-4 w-4" />
+                          </div>
+                          <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground">
+                            {area.number}
+                          </span>
                         </div>
-                        <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-md bg-muted text-muted-foreground">
-                          {area.number}
-                        </span>
+                        
+                        {/* Diagonal Arrow Icon ↗ */}
+                        <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
+                          isSelected ? 'bg-primary/20 text-primary' : area.colorClasses.arrow
+                        }`}>
+                          <ArrowUpRight className="h-4 w-4" />
+                        </div>
                       </div>
-                      
-                      {/* Diagonal Arrow Icon ↗ */}
-                      <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
-                        isSelected ? 'bg-primary/20 text-primary' : area.colorClasses.arrow
+
+                      {/* Area Title */}
+                      <h3 className={`text-sm sm:text-base font-bold mb-2 leading-snug transition-colors ${
+                        isSelected ? 'text-primary' : area.colorClasses.title
                       }`}>
-                        <ArrowUpRight className="h-4 w-4" />
-                      </div>
+                        {area.title}
+                      </h3>
+
+                      {/* Short Objective Description */}
+                      <p className="text-xs text-muted-foreground leading-relaxed font-normal line-clamp-3 mb-4">
+                        {area.description}
+                      </p>
                     </div>
 
-                    {/* Area Title */}
-                    <h3 className={`text-sm sm:text-base font-bold mb-2 leading-snug transition-colors ${
-                      isSelected ? 'text-primary' : area.colorClasses.title
-                    }`}>
-                      {area.title}
-                    </h3>
-
-                    {/* Short Objective Description */}
-                    <p className="text-xs text-muted-foreground leading-relaxed font-normal line-clamp-3 mb-4">
-                      {area.description}
-                    </p>
-                  </div>
-
-                  {/* Card Footer with count and indicator */}
-                  <div className="pt-3 border-t border-border/50 flex items-center justify-between">
-                    <span className={`text-[11px] font-semibold ${
-                      searchQuery && hasMatches ? 'text-primary font-bold' : 'text-muted-foreground'
-                    }`}>
-                      {searchQuery ? `${matchCount} encontrados` : `${area.serviceIds.length} serviços`}
-                    </span>
-                    <span className={`text-[10px] font-bold uppercase tracking-wider ${
-                      isSelected ? 'text-primary font-extrabold' : 'text-muted-foreground/80 group-hover:text-foreground'
-                    }`}>
-                      {isSelected ? 'Ativo ✓' : 'Explorar'}
-                    </span>
-                  </div>
-                </button>
+                    {/* Card Footer with count and indicator */}
+                    <div className="pt-3 border-t border-border/50 flex items-center justify-between">
+                      <span className={`text-[11px] font-semibold ${
+                        searchQuery && hasMatches ? 'text-primary font-bold' : 'text-muted-foreground'
+                      }`}>
+                        {searchQuery ? `${matchCount} encontrados` : `${area.serviceIds.length} serviços`}
+                      </span>
+                      <span className={`text-[10px] font-bold uppercase tracking-wider ${
+                        isSelected ? 'text-primary font-extrabold' : 'text-muted-foreground/80 group-hover:text-foreground'
+                      }`}>
+                        {isSelected ? 'Ativo ✓' : 'Explorar'}
+                      </span>
+                    </div>
+                  </button>
+                </motion.div>
               );
             })}
           </div>
@@ -742,10 +754,14 @@ export const SolutionsSection: React.FC = () => {
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 14 }}
+                initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: Math.min(idx * 0.02, 0.25) }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: (idx % 4) * 0.08, 
+                  ease: [0.21, 0.47, 0.32, 0.98] 
+                }}
               >
                 {/* Clean, high-fidelity card concept directly matching reference image with hover:scale-105 */}
                 <Card className={`h-full flex flex-col justify-between p-5 rounded-2xl border border-border/80 bg-card ${area.colorClasses.cardBorderHover} shadow-xs hover:shadow-xl hover:scale-105 relative hover:z-20 transition-all duration-300 ease-out transform-gpu group`}>
