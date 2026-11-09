@@ -553,12 +553,12 @@ export const SolutionsSection: React.FC = () => {
                 <button
                   key={area.id}
                   onClick={() => setSelectedAreaId(isSelected ? 'all' : area.id)}
-                  className={`text-left p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between group relative overflow-hidden bg-card ${
+                  className={`text-left p-5 rounded-2xl border transition-all duration-300 ease-out transform-gpu hover:scale-105 hover:shadow-xl relative hover:z-20 flex flex-col justify-between group overflow-hidden bg-card ${
                     !hasMatches && searchQuery
                       ? 'opacity-40 grayscale-[40%] border-border/40 hover:opacity-75'
                       : isSelected
                       ? area.colorClasses.cardActiveBorder
-                      : `border-border/80 ${area.colorClasses.cardBorderHover} shadow-xs hover:shadow-sm hover:-translate-y-0.5`
+                      : `border-border/80 ${area.colorClasses.cardBorderHover} shadow-xs`
                   }`}
                 >
                   <div>
@@ -747,8 +747,8 @@ export const SolutionsSection: React.FC = () => {
                 transition={{ duration: 0.3, delay: Math.min(idx * 0.02, 0.25) }}
                 viewport={{ once: true }}
               >
-                {/* Clean, high-fidelity card concept directly matching reference image */}
-                <Card className={`h-full flex flex-col justify-between p-5 rounded-2xl border border-border/80 bg-card ${area.colorClasses.cardBorderHover} shadow-xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group`}>
+                {/* Clean, high-fidelity card concept directly matching reference image with hover:scale-105 */}
+                <Card className={`h-full flex flex-col justify-between p-5 rounded-2xl border border-border/80 bg-card ${area.colorClasses.cardBorderHover} shadow-xs hover:shadow-xl hover:scale-105 relative hover:z-20 transition-all duration-300 ease-out transform-gpu group`}>
                   <div>
                     {/* Top row: Category tag + Diagonal Arrow (↗) linking to service */}
                     <div className="flex items-center justify-between gap-2 mb-3">
@@ -768,7 +768,7 @@ export const SolutionsSection: React.FC = () => {
 
                     {/* Icon and Title */}
                     <div className="flex items-start gap-3 mb-3">
-                      <div className={`w-9 h-9 rounded-xl shrink-0 flex items-center justify-center transition-colors ${area.colorClasses.iconBg}`}>
+                      <div className={`w-9 h-9 rounded-xl shrink-0 flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${area.colorClasses.iconBg}`}>
                         <Icon className="h-4 w-4" />
                       </div>
                       <Link
