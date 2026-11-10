@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Building2, Globe, Target, Construction, Briefcase, ShieldCheck, 
   Lightbulb, Activity, CheckCircle2, ChevronRight, Layers, ArrowRight,
-  Sparkles, FileText, Check, ChevronDown
+  Sparkles, FileText, Check, ChevronDown, MessageCircle
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,13 @@ export const EcosystemSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'hub' | 'estrutura' | 'esteira' | 'pilares'>('hub');
   const [isDeepTextOpen, setIsDeepTextOpen] = useState(false);
   const [selectedStructureId, setSelectedStructureId] = useState<number | null>(null);
+
+  const handleScrollToContact = () => {
+    const el = document.getElementById('contato');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const tabs = [
     { id: 'hub', label: 'Hub Integrado', icon: Layers },
@@ -506,6 +513,28 @@ export const EcosystemSection: React.FC = () => {
               </div>
             </motion.div>
           )}
+        </div>
+
+        {/* Encerramento da Seção: CTA Contate-nos (Azul Esverdeado Diferenciado) */}
+        <div className="mt-14 sm:mt-16 pt-8 sm:pt-10 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 bg-gradient-to-r from-teal-950/40 via-white/[0.03] to-transparent p-6 sm:p-8 rounded-2xl border border-teal-500/20 backdrop-blur-sm">
+          <div className="text-center sm:text-left">
+            <h4 className="text-lg sm:text-xl font-bold text-white mb-1.5 flex items-center justify-center sm:justify-start gap-2">
+              <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+              Pronto para integrar sua demanda ao ecossistema?
+            </h4>
+            <p className="text-sm text-emerald-100/75 max-w-xl">
+              Nossa equipe técnica estrutura o diagnóstico preliminar e conecta as competências ideais para o seu projeto.
+            </p>
+          </div>
+
+          <Button
+            onClick={handleScrollToContact}
+            className="h-12 px-8 text-sm sm:text-base font-bold text-white bg-gradient-to-r from-teal-600 via-teal-500 to-cyan-600 hover:from-teal-500 hover:via-teal-400 hover:to-cyan-500 border border-teal-300/30 rounded-xl shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all group shrink-0 inline-flex items-center gap-2.5 cursor-pointer"
+          >
+            <MessageCircle className="h-4 w-4 text-teal-100 group-hover:scale-110 transition-transform" />
+            <span>Contate-nos</span>
+            <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
+          </Button>
         </div>
       </div>
     </section>

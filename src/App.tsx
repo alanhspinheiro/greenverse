@@ -20,14 +20,13 @@ import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import { Logo } from './components/Logo';
 import SEO from './components/SEO';
-import { SERVICES, SECTORS, DIFFERENTIALS, BLOG_POSTS, BRAZIL_STATES } from './constants';
+import { SERVICES, DIFFERENTIALS, BLOG_POSTS, BRAZIL_STATES } from './constants';
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import { LanguageSelector } from './components/LanguageSelector';
 import ecosystemBg from './assets/images/ecosystem_panoramic_bg_1787333228456.jpg';
 import { HeroSection } from './components/HeroSection';
 import { EcosystemSection } from './components/EcosystemSection';
 import { SolutionsSection } from './components/SolutionsSection';
-import { SectorsSection } from './components/SectorsSection';
 import { DifferentialsSection } from './components/DifferentialsSection';
 import { MercosulSection } from './components/MercosulSection';
 import { ApprovedNetworkSection } from './components/ApprovedNetworkSection';
@@ -83,7 +82,6 @@ const Navbar = () => {
   const navLinks = [
     { name: t.nav.ecosystem, href: '#quem-somos', icon: Users },
     { name: t.nav.services, href: '#servicos', icon: Briefcase },
-    { name: t.nav.sectors, href: '#setores', icon: Building2 },
     { name: t.nav.differentials, href: '#diferenciais', icon: ShieldCheck },
     { name: t.nav.mercosul, href: '#mercosul', icon: Globe },
     { name: t.nav.approvedNetwork, href: '#rede-homologada', icon: Target },
@@ -403,7 +401,6 @@ const HomePage = () => {
       <HeroSection />
       <EcosystemSection />
       <SolutionsSection />
-      <SectorsSection />
       <DifferentialsSection />
       <MercosulSection />
       <ApprovedNetworkSection />
