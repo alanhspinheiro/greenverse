@@ -6,7 +6,7 @@ import {
   ArrowUpRight, ArrowRight, Eye, CheckCircle2, 
   HardHat, Leaf, Building2, ShieldCheck, Cpu, 
   Layers, Search, Sparkles, PhoneCall, ChevronRight,
-  ExternalLink, Check, X, Filter
+  ExternalLink, Check, X, Filter, Target
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -249,6 +249,113 @@ export const getTagsForService = (id: string): string[] => {
   return map[id] || ['Gestão Técnica', 'Conformidade', 'Execução Especializada'];
 };
 
+// Component that highlights matched keywords inside any text
+export const HighlightText: React.FC<{ text: string; query: string; className?: string }> = ({ 
+  text, 
+  query, 
+  className = '' 
+}) => {
+  if (!query || !query.trim()) {
+    return <span className={className}>{text}</span>;
+  }
+
+  const trimmed = query.trim();
+  const escaped = trimmed.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  try {
+    const regex = new RegExp(`(${escaped})`, 'gi');
+    const parts = text.split(regex);
+
+    return (
+      <span className={className}>
+        {parts.map((part, i) =>
+          regex.test(part) ? (
+            <mark
+              key={i}
+              className="bg-amber-300 dark:bg-amber-400/30 text-amber-950 dark:text-amber-200 font-extrabold px-1 py-0.5 rounded shadow-2xs border border-amber-400/40"
+            >
+              {part}
+            </mark>
+          ) : (
+            <React.Fragment key={i}>{part}</React.Fragment>
+          )
+        )}
+      </span>
+    );
+  } catch {
+    return <span className={className}>{text}</span>;
+  }
+};
+
+// Helper that detects exactly why a service matched the search query
+export const getMatchReason = (service: typeof SERVICES[0], query: string) => {
+  if (!query || !query.trim()) return null;
+  const q = query.toLowerCase().trim();
+
+  // 1. Tag match
+  const tags = getTagsForService(service.id);
+  const matchedTag = tags.find((t) => t.toLowerCase().includes(q));
+  if (matchedTag) {
+    return {
+      type: 'Tag / Competência',
+      snippet: matchedTag,
+      inTag: true
+    };
+  }
+
+  // 2. Title match
+  if (service.title.toLowerCase().includes(q)) {
+    return {
+      type: 'Título do Serviço',
+      snippet: service.title,
+      inTitle: true
+    };
+  }
+
+  // 3. Details match
+  for (const group of service.details || []) {
+    if (group.category?.toLowerCase().includes(q)) {
+      return {
+        type: 'Pilar Técnico',
+        snippet: group.category,
+        inDetails: true
+      };
+    }
+    const matchedItem = group.items?.find((item: string) => item.toLowerCase().includes(q));
+    if (matchedItem) {
+      return {
+        type: 'Escopo Detalhado',
+        snippet: matchedItem,
+        inDetails: true
+      };
+    }
+  }
+
+  // 4. Description match
+  if (service.description.toLowerCase().includes(q)) {
+    return {
+      type: 'Descrição do Serviço',
+      snippet: service.description,
+      inDesc: true
+    };
+  }
+
+  // 5. Area match
+  const area = getAreaForService(service.id);
+  if (area.title.toLowerCase().includes(q) || area.shortTitle.toLowerCase().includes(q)) {
+    return {
+      type: 'Área Estratégica',
+      snippet: area.shortTitle,
+      inArea: true
+    };
+  }
+
+  return {
+    type: 'Catálogo de Serviços',
+    snippet: query
+  };
+};
+
 export const SolutionsSection: React.FC = () => {
   const { t } = useLanguage();
   const [selectedAreaId, setSelectedAreaId] = useState<string>('all');
@@ -259,6 +366,30 @@ export const SolutionsSection: React.FC = () => {
   const activeArea = useMemo(() => {
     return STRATEGIC_AREAS.find((a) => a.id === selectedAreaId) || null;
   }, [selectedAreaId]);
+
+  // Total matches across the entire catalog (regardless of selectedAreaId)
+  const totalMatchesAcrossCatalog = useMemo(() => {
+    if (!searchQuery.trim()) return SERVICES.length;
+    const q = searchQuery.toLowerCase().trim();
+    return SERVICES.filter((service) => {
+      const area = getAreaForService(service.id);
+      const matchTitle = service.title.toLowerCase().includes(q);
+      const matchDesc = service.description.toLowerCase().includes(q);
+      const tags = getTagsForService(service.id);
+      const matchTags = tags.some((tag) => tag.toLowerCase().includes(q));
+      const matchDetails = service.details?.some((d: any) =>
+        d.category?.toLowerCase().includes(q) ||
+        d.items?.some((it: string) => it.toLowerCase().includes(q))
+      );
+      const areaMatch = 
+        area.title.toLowerCase().includes(q) ||
+        area.shortTitle.toLowerCase().includes(q) ||
+        area.description.toLowerCase().includes(q) ||
+        area.keyHighlights.some((h) => h.toLowerCase().includes(q));
+
+      return areaMatch || matchTitle || matchDesc || matchTags || matchDetails;
+    }).length;
+  }, [searchQuery]);
 
   // Calculate live matching service counts for each strategic area while typing
   const areaMatchCounts = useMemo(() => {
@@ -352,6 +483,8 @@ export const SolutionsSection: React.FC = () => {
     }
   };
 
+  const isSearchActive = Boolean(searchQuery.trim());
+
   return (
     <section id="servicos" className="py-24 lg:py-32 bg-background relative overflow-hidden scroll-mt-20">
       
@@ -439,7 +572,7 @@ export const SolutionsSection: React.FC = () => {
             <div className="hidden sm:flex items-center gap-1.5 pr-2.5 pl-2.5 border-l border-border/70 text-xs font-mono text-muted-foreground shrink-0">
               <span className={`px-2 py-0.5 rounded-md font-bold ${
                 filteredServices.length > 0 
-                  ? 'bg-primary/10 text-primary border border-primary/20' 
+                  ? 'bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30' 
                   : 'bg-muted text-muted-foreground'
               }`}>
                 {filteredServices.length}
@@ -451,7 +584,7 @@ export const SolutionsSection: React.FC = () => {
           {/* Quick Filter Tag Suggestions */}
           <div className="flex flex-wrap items-center gap-1.5 mt-3 text-xs text-muted-foreground">
             <span className="font-semibold text-foreground/80 flex items-center gap-1 mr-1">
-              <Sparkles className="h-3 w-3 text-primary" /> Sugestões:
+              <Sparkles className="h-3 w-3 text-primary" /> Sugestões rápidas:
             </span>
             {['NR-13', 'ESG & Carbono', 'Facilities', 'PMOC Climatização', 'Vigilância CFTV', 'Licenciamento', 'Obras Industriais', 'TI & Cibersegurança'].map((chip) => {
               const isSelected = searchQuery.toLowerCase() === chip.toLowerCase();
@@ -461,7 +594,7 @@ export const SolutionsSection: React.FC = () => {
                   onClick={() => setSearchQuery(isSelected ? '' : chip)}
                   className={`px-2.5 py-1 rounded-lg border text-[11px] font-medium transition-colors ${
                     isSelected
-                      ? 'bg-primary text-primary-foreground border-primary shadow-xs'
+                      ? 'bg-amber-500 text-slate-950 border-amber-600 font-extrabold shadow-xs'
                       : 'bg-card hover:bg-muted text-foreground/80 border-border/70 hover:border-primary/40'
                   }`}
                 >
@@ -471,32 +604,54 @@ export const SolutionsSection: React.FC = () => {
             })}
           </div>
 
-          {/* Live Search Active Feedback Banner */}
-          {searchQuery && (
-            <div className="mt-3.5 p-3 rounded-xl bg-primary/5 border border-primary/20 flex flex-wrap items-center justify-between gap-2 text-xs">
-              <div className="flex items-center gap-2 text-foreground/90 font-medium">
-                <Filter className="h-3.5 w-3.5 text-primary" />
-                <span>
-                  Filtrando por <strong>"{searchQuery}"</strong>: {filteredServices.length} {filteredServices.length === 1 ? 'serviço encontrado' : 'serviços encontrados'} em {matchingAreasCount} {matchingAreasCount === 1 ? 'área estratégica' : 'áreas estratégicas'}.
-                </span>
+          {/* Live Search Active Feedback Banner with high visual prominence */}
+          {isSearchActive && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-4 p-4 rounded-2xl bg-amber-500/10 dark:bg-amber-950/30 border-2 border-amber-500/40 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs"
+            >
+              <div className="flex items-start sm:items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-800 dark:text-amber-300 flex items-center justify-center shrink-0">
+                  <Target className="h-4.5 w-4.5" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-extrabold text-foreground text-xs sm:text-sm">
+                      Resultados destacados para <span className="underline decoration-amber-500 underline-offset-2">"{searchQuery}"</span>
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 text-[10px] font-black uppercase">
+                      {filteredServices.length} {filteredServices.length === 1 ? 'encontrado' : 'encontrados'}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">
+                    As palavras-chave e escopos correspondentes estão realçados visualmente em amarelo nos cards abaixo.
+                  </p>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                {selectedAreaId !== 'all' && (
-                  <button
+
+              <div className="flex items-center gap-2 self-start md:self-auto shrink-0">
+                {selectedAreaId !== 'all' && totalMatchesAcrossCatalog > filteredServices.length && (
+                  <Button
+                    size="sm"
+                    variant="outline"
                     onClick={() => setSelectedAreaId('all')}
-                    className="text-primary hover:underline font-bold"
+                    className="text-xs font-bold border-amber-500/50 hover:bg-amber-500/15 text-amber-900 dark:text-amber-200"
                   >
-                    Ver em todas as áreas
-                  </button>
+                    Ver todas as {matchingAreasCount} áreas ({totalMatchesAcrossCatalog})
+                  </Button>
                 )}
-                <button
+                <Button
+                  size="sm"
+                  variant="ghost"
                   onClick={() => setSearchQuery('')}
-                  className="text-muted-foreground hover:text-foreground underline ml-1"
+                  className="text-xs text-muted-foreground hover:text-foreground"
                 >
+                  <X className="h-3.5 w-3.5 mr-1" />
                   Limpar filtro
-                </button>
+                </Button>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
 
@@ -565,8 +720,10 @@ export const SolutionsSection: React.FC = () => {
                   <button
                     onClick={() => setSelectedAreaId(isSelected ? 'all' : area.id)}
                     className={`w-full h-full text-left p-5 rounded-2xl border transition-all duration-300 ease-out transform-gpu hover:scale-105 hover:shadow-xl relative hover:z-20 flex flex-col justify-between group overflow-hidden bg-card ${
-                      !hasMatches && searchQuery
-                        ? 'opacity-40 grayscale-[40%] border-border/40 hover:opacity-75'
+                      isSearchActive && !hasMatches
+                        ? 'opacity-35 grayscale-[50%] border-border/40 hover:opacity-75'
+                        : isSearchActive && hasMatches
+                        ? 'border-amber-500/80 ring-2 ring-amber-500/40 bg-gradient-to-b from-amber-500/[0.04] to-card shadow-md shadow-amber-500/10'
                         : isSelected
                         ? area.colorClasses.cardActiveBorder
                         : `border-border/80 ${area.colorClasses.cardBorderHover} shadow-xs`
@@ -608,17 +765,28 @@ export const SolutionsSection: React.FC = () => {
                     </div>
 
                     {/* Card Footer with count and indicator */}
-                    <div className="pt-3 border-t border-border/50 flex items-center justify-between">
-                      <span className={`text-[11px] font-semibold ${
-                        searchQuery && hasMatches ? 'text-primary font-bold' : 'text-muted-foreground'
-                      }`}>
-                        {searchQuery ? `${matchCount} encontrados` : `${area.serviceIds.length} serviços`}
-                      </span>
-                      <span className={`text-[10px] font-bold uppercase tracking-wider ${
-                        isSelected ? 'text-primary font-extrabold' : 'text-muted-foreground/80 group-hover:text-foreground'
-                      }`}>
-                        {isSelected ? 'Ativo ✓' : 'Explorar'}
-                      </span>
+                    <div className="pt-3 border-t border-border/50">
+                      {isSearchActive ? (
+                        <div className={`py-1 px-2 rounded-lg text-[10px] font-bold flex items-center justify-between ${
+                          hasMatches
+                            ? 'bg-amber-500/20 text-amber-900 dark:text-amber-300 border border-amber-500/40 font-extrabold'
+                            : 'bg-muted text-muted-foreground'
+                        }`}>
+                          <span>{hasMatches ? `✓ ${matchCount} no filtro` : '0 correspondências'}</span>
+                          {hasMatches && <Sparkles className="h-3 w-3 text-amber-600 shrink-0" />}
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-between">
+                          <span className="text-[11px] font-semibold text-muted-foreground">
+                            {area.serviceIds.length} serviços
+                          </span>
+                          <span className={`text-[10px] font-bold uppercase tracking-wider ${
+                            isSelected ? 'text-primary font-extrabold' : 'text-muted-foreground/80 group-hover:text-foreground'
+                          }`}>
+                            {isSelected ? 'Ativo ✓' : 'Explorar'}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </button>
                 </motion.div>
@@ -750,6 +918,7 @@ export const SolutionsSection: React.FC = () => {
             const Icon = service.icon;
             const area = getAreaForService(service.id);
             const tags = getTagsForService(service.id);
+            const matchReason = isSearchActive ? getMatchReason(service, searchQuery) : null;
 
             return (
               <motion.div
@@ -763,9 +932,26 @@ export const SolutionsSection: React.FC = () => {
                   ease: [0.21, 0.47, 0.32, 0.98] 
                 }}
               >
-                {/* Clean, high-fidelity card concept directly matching reference image with hover:scale-105 */}
-                <Card className={`h-full flex flex-col justify-between p-5 rounded-2xl border border-border/80 bg-card ${area.colorClasses.cardBorderHover} shadow-xs hover:shadow-xl hover:scale-105 relative hover:z-20 transition-all duration-300 ease-out transform-gpu group`}>
+                {/* High-visibility card with evident search match styling */}
+                <Card className={`h-full flex flex-col justify-between p-5 rounded-2xl border bg-card shadow-xs hover:shadow-xl hover:scale-105 relative hover:z-20 transition-all duration-300 ease-out transform-gpu group ${
+                  isSearchActive
+                    ? 'border-amber-500/80 ring-2 ring-amber-500/40 bg-gradient-to-b from-amber-500/[0.05] via-card to-card shadow-md shadow-amber-500/10'
+                    : `border-border/80 ${area.colorClasses.cardBorderHover}`
+                }`}>
                   <div>
+                    {/* Evident Match Notification Banner on Matched Cards */}
+                    {isSearchActive && matchReason && (
+                      <div className="mb-3 px-2.5 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-[11px] font-bold flex items-center justify-between gap-1 shadow-2xs">
+                        <span className="flex items-center gap-1.5 truncate">
+                          <Sparkles className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+                          <span className="truncate">Resultado correspondente</span>
+                        </span>
+                        <span className="px-1.5 py-0.5 rounded bg-amber-500/25 text-[9px] font-mono uppercase tracking-wider shrink-0 font-extrabold">
+                          {matchReason.type}
+                        </span>
+                      </div>
+                    )}
+
                     {/* Top row: Category tag + Diagonal Arrow (↗) linking to service */}
                     <div className="flex items-center justify-between gap-2 mb-3">
                       <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${area.colorClasses.badge}`}>
@@ -775,43 +961,72 @@ export const SolutionsSection: React.FC = () => {
                       {/* Top-right diagonal arrow link */}
                       <Link
                         to={`/servicos/${service.id}`}
-                        className={`w-7 h-7 rounded-xl flex items-center justify-center bg-muted/60 hover:bg-primary hover:text-white transition-all text-muted-foreground group-hover:text-foreground`}
+                        className={`w-7 h-7 rounded-xl flex items-center justify-center transition-all ${
+                          isSearchActive
+                            ? 'bg-amber-500 text-slate-950 hover:bg-amber-400 shadow-xs'
+                            : 'bg-muted/60 hover:bg-primary hover:text-white text-muted-foreground group-hover:text-foreground'
+                        }`}
                         title="Ver escopo completo"
                       >
                         <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                       </Link>
                     </div>
 
-                    {/* Icon and Title */}
+                    {/* Icon and Title (with highlighted search query) */}
                     <div className="flex items-start gap-3 mb-3">
-                      <div className={`w-9 h-9 rounded-xl shrink-0 flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${area.colorClasses.iconBg}`}>
+                      <div className={`w-9 h-9 rounded-xl shrink-0 flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${
+                        isSearchActive
+                          ? 'bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30'
+                          : area.colorClasses.iconBg
+                      }`}>
                         <Icon className="h-4 w-4" />
                       </div>
                       <Link
                         to={`/servicos/${service.id}`}
-                        className="group/link block"
+                        className="group/link block min-w-0"
                       >
-                        <h3 className={`text-sm sm:text-base font-bold leading-snug transition-colors ${area.colorClasses.title}`}>
-                          {service.title}
+                        <h3 className={`text-sm sm:text-base font-bold leading-snug transition-colors ${
+                          isSearchActive ? 'text-foreground group-hover:text-amber-600' : area.colorClasses.title
+                        }`}>
+                          <HighlightText text={service.title} query={searchQuery} />
                         </h3>
                       </Link>
                     </div>
 
-                    {/* Short Objective Description */}
+                    {/* Highlighted Match Snippet Callout (when matched in deep items/normas) */}
+                    {isSearchActive && matchReason?.inDetails && matchReason.snippet && (
+                      <div className="mb-3.5 p-2.5 rounded-xl bg-amber-500/10 dark:bg-amber-950/40 border border-amber-500/30 text-[11px]">
+                        <span className="text-[10px] font-mono font-bold uppercase tracking-wide text-amber-800 dark:text-amber-300 block mb-0.5">
+                          Trecho no escopo técnico:
+                        </span>
+                        <p className="text-foreground/90 font-medium italic line-clamp-2">
+                          "<HighlightText text={matchReason.snippet} query={searchQuery} />"
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Short Objective Description (with highlighted query) */}
                     <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-4 font-normal">
-                      {service.description}
+                      <HighlightText text={service.description} query={searchQuery} />
                     </p>
 
-                    {/* Capability Tags */}
+                    {/* Capability Tags (Highlighted when matched) */}
                     <div className="flex flex-wrap gap-1.5 mb-5">
-                      {tags.slice(0, 3).map((tag, tIdx) => (
-                        <span
-                          key={tIdx}
-                          className="text-[10px] font-medium bg-muted/70 px-2 py-0.5 rounded-md text-foreground/75 border border-border/50"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      {tags.slice(0, 3).map((tag, tIdx) => {
+                        const isTagMatched = isSearchActive && tag.toLowerCase().includes(searchQuery.toLowerCase().trim());
+                        return (
+                          <span
+                            key={tIdx}
+                            className={`text-[10px] px-2 py-0.5 rounded-md transition-all ${
+                              isTagMatched
+                                ? 'bg-amber-500 text-slate-950 font-extrabold border border-amber-600 shadow-xs ring-2 ring-amber-400/40'
+                                : 'bg-muted/70 text-foreground/75 border border-border/50 font-medium'
+                            }`}
+                          >
+                            <HighlightText text={tag} query={searchQuery} />
+                          </span>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -819,7 +1034,11 @@ export const SolutionsSection: React.FC = () => {
                   <div className="pt-3 border-t border-border/60 flex items-center justify-between gap-2">
                     <button
                       onClick={() => handleScrollToContact(service.title)}
-                      className={`text-xs font-bold px-3 py-1.5 rounded-xl border transition-all ${area.colorClasses.ctaButton}`}
+                      className={`text-xs font-bold px-3 py-1.5 rounded-xl border transition-all ${
+                        isSearchActive
+                          ? 'bg-amber-500/15 hover:bg-amber-500 hover:text-slate-950 text-amber-900 dark:text-amber-200 border-amber-500/40'
+                          : area.colorClasses.ctaButton
+                      }`}
                       title={`Solicitar atendimento para ${service.title}`}
                     >
                       <span>Estruturar Demanda</span>
@@ -843,9 +1062,12 @@ export const SolutionsSection: React.FC = () => {
         {/* 3. PROMINENT BOTTOM ACTION BUTTON (Matching the "View all services" button in the reference image) */}
         <div className="mt-14 text-center">
           <div className="inline-flex flex-col sm:flex-row items-center gap-3">
-            {selectedAreaId !== 'all' ? (
+            {selectedAreaId !== 'all' || isSearchActive ? (
               <Button
-                onClick={() => setSelectedAreaId('all')}
+                onClick={() => {
+                  setSelectedAreaId('all');
+                  setSearchQuery('');
+                }}
                 size="lg"
                 className="px-8 py-3 rounded-2xl font-bold text-sm bg-primary text-primary-foreground shadow-md hover:shadow-lg hover:opacity-95 transition-all"
               >
@@ -904,10 +1126,10 @@ export const SolutionsSection: React.FC = () => {
                   </div>
 
                   <SheetTitle className="text-xl font-bold text-foreground">
-                    {previewService.title}
+                    <HighlightText text={previewService.title} query={searchQuery} />
                   </SheetTitle>
                   <SheetDescription className="text-sm text-muted-foreground leading-relaxed">
-                    {previewService.description}
+                    <HighlightText text={previewService.description} query={searchQuery} />
                   </SheetDescription>
                 </SheetHeader>
 
@@ -915,7 +1137,7 @@ export const SolutionsSection: React.FC = () => {
                 <div className="flex flex-wrap gap-1.5 pt-2">
                   {tags.map((tag, tIdx) => (
                     <span key={tIdx} className="text-xs font-semibold px-2.5 py-1 rounded-md bg-muted text-foreground/80">
-                      {tag}
+                      <HighlightText text={tag} query={searchQuery} />
                     </span>
                   ))}
                 </div>
@@ -928,9 +1150,11 @@ export const SolutionsSection: React.FC = () => {
                   <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
                     {previewService.details?.slice(0, 4).map((d: any, dIdx: number) => (
                       <div key={dIdx} className="p-3.5 rounded-xl bg-muted/50 border border-border/60">
-                        <p className="text-xs font-bold text-foreground mb-1">{d.category}</p>
+                        <p className="text-xs font-bold text-foreground mb-1">
+                          <HighlightText text={d.category} query={searchQuery} />
+                        </p>
                         <p className="text-xs text-muted-foreground leading-relaxed">
-                          {d.items?.slice(0, 4).join(', ')}...
+                          <HighlightText text={d.items?.slice(0, 4).join(', ') + '...'} query={searchQuery} />
                         </p>
                       </div>
                     )) || (
