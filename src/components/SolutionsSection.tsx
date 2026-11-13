@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ArrowUpRight, ArrowRight, Eye, CheckCircle2, 
-  HardHat, Leaf, Building2, ShieldCheck, Cpu, 
+  HardHat, Leaf, Building2, ShieldCheck, Cpu, Truck, Briefcase,
   Layers, Search, Sparkles, PhoneCall, ChevronRight,
   ExternalLink, Check, X, Filter, Target
 } from 'lucide-react';
@@ -20,10 +20,11 @@ export interface StrategicArea {
   number: string;
   title: string;
   shortTitle: string;
+  badgeLabel: string;
   description: string;
   tagline: string;
   icon: React.ComponentType<{ className?: string }>;
-  accentColor: 'amber' | 'emerald' | 'blue' | 'indigo' | 'purple';
+  accentColor: 'amber' | 'emerald' | 'blue' | 'cyan' | 'rose' | 'purple' | 'indigo';
   colorClasses: {
     title: string;
     arrow: string;
@@ -44,9 +45,10 @@ export const STRATEGIC_AREAS: StrategicArea[] = [
   {
     id: 'engenharia-infraestrutura',
     number: '01',
-    title: 'Engenharia e Infraestrutura',
+    title: 'Engenharia & Infraestrutura',
     shortTitle: 'Engenharia & Infraestrutura',
-    description: 'Obras civis e industriais, infraestrutura pesada, instalações prediais, adequações técnicas (NR-13) e fiscalização de ponta a ponta.',
+    badgeLabel: 'Engenharia',
+    description: 'Obras civis e industriais, infraestrutura pesada, instalações prediais, adequações técnicas (NR-13), terraplanagem e fiscalização de ponta a ponta.',
     tagline: 'Execução técnica de alta precisão com conformidade normativa, cronogramas rigorosos e segurança operacional.',
     icon: HardHat,
     accentColor: 'amber',
@@ -77,11 +79,12 @@ export const STRATEGIC_AREAS: StrategicArea[] = [
     keyHighlights: ['Adequação NR-13 & NBRs', 'Obras Civis & Industriais', 'Fiscalização Técnica', 'Infraestrutura Hídrica'],
   },
   {
-    id: 'gestao-ambiental-esg',
+    id: 'ambiental-esg',
     number: '02',
-    title: 'Gestão Ambiental e ESG',
-    shortTitle: 'Gestão Ambiental & ESG',
-    description: 'Consultoria estratégica ESG, inventário de emissões (GEE), licenciamento ambiental, gestão integral de resíduos, água e transição energética.',
+    title: 'Ambiental & ESG',
+    shortTitle: 'Ambiental & ESG',
+    badgeLabel: 'Ambiental & ESG',
+    description: 'Consultoria estratégica ESG, inventário de emissões (GEE), licenciamento ambiental, gestão integral de resíduos, ETEs e transição energética.',
     tagline: 'Sustentabilidade corporativa mensurável, conformidade legal contínua e valorização de fluxos industriais circulares.',
     icon: Leaf,
     accentColor: 'emerald',
@@ -109,9 +112,10 @@ export const STRATEGIC_AREAS: StrategicArea[] = [
   {
     id: 'facilities-operacoes',
     number: '03',
-    title: 'Facilities e Operações',
+    title: 'Facilities & Operações',
     shortTitle: 'Facilities & Operações',
-    description: 'Manutenção predial integrada, conservação técnica, PMOC climatização, controle sanitário e governança operacional com SLA único.',
+    badgeLabel: 'Facilities',
+    description: 'Manutenção predial integrada, conservação técnica, PMOC climatização, pintura predial, paisagismo, controle sanitário e serviços gerais.',
     tagline: 'Gestão operacional contínua, alta disponibilidade de instalações e valorização dos ativos prediais corporativos.',
     icon: Building2,
     accentColor: 'blue',
@@ -134,46 +138,73 @@ export const STRATEGIC_AREAS: StrategicArea[] = [
       'pintura-predial',
       'paisagismo',
       'pragas',
-      'gestao-imobiliaria',
     ],
     keyHighlights: ['SLA Centralizado', 'PMOC Conforme Lei 13.589', 'Auditorias ANVISA', 'Manutenção Preventiva'],
   },
   {
-    id: 'logistica-seguranca',
+    id: 'logistica-transporte',
     number: '04',
-    title: 'Logística e Segurança',
-    shortTitle: 'Logística & Segurança',
-    description: 'Segurança patrimonial com inteligência eletrônica, controle de acesso, movimentação de cargas, portos secos e infraestrutura aeroportuária.',
-    tagline: 'Proteção patrimonial integrada, rastreabilidade contínua de cargas e operações aduaneiras especializadas.',
-    icon: ShieldCheck,
-    accentColor: 'indigo',
+    title: 'Logística & Transporte',
+    shortTitle: 'Logística & Transporte',
+    badgeLabel: 'Logística',
+    description: 'Movimentação multimodal de cargas, armazenagem estratégica, gestão de portos secos (EADI) e operação técnica de infraestrutura aeroportuária.',
+    tagline: 'Rastreabilidade contínua de cargas, cadeias de suprimento ágeis e operações aduaneiras e aeroportuárias especializadas.',
+    icon: Truck,
+    accentColor: 'cyan',
     colorClasses: {
-      title: 'text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-600',
-      arrow: 'text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-500',
-      badge: 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border-indigo-500/30',
-      iconBg: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white',
-      iconText: 'text-indigo-600 dark:text-indigo-400',
-      cardBorderHover: 'hover:border-indigo-500/50 hover:shadow-indigo-500/10',
-      cardActiveBorder: 'border-indigo-500 shadow-md ring-2 ring-indigo-500/20 bg-indigo-500/5',
-      ctaButton: 'text-indigo-700 dark:text-indigo-300 hover:bg-indigo-500/15 border-indigo-500/30 bg-indigo-500/5',
-      bannerGradient: 'from-indigo-500/10 via-indigo-500/5 to-transparent border-indigo-500/30',
-      pillActive: 'bg-indigo-600 text-white border-indigo-600 shadow-xs',
+      title: 'text-cyan-700 dark:text-cyan-400 group-hover:text-cyan-600',
+      arrow: 'text-cyan-600 dark:text-cyan-400 group-hover:text-cyan-500',
+      badge: 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border-cyan-500/30',
+      iconBg: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-600 group-hover:text-white',
+      iconText: 'text-cyan-600 dark:text-cyan-400',
+      cardBorderHover: 'hover:border-cyan-500/50 hover:shadow-cyan-500/10',
+      cardActiveBorder: 'border-cyan-500 shadow-md ring-2 ring-cyan-500/20 bg-cyan-500/5',
+      ctaButton: 'text-cyan-700 dark:text-cyan-300 hover:bg-cyan-500/15 border-cyan-500/30 bg-cyan-500/5',
+      bannerGradient: 'from-cyan-500/10 via-cyan-500/5 to-transparent border-cyan-500/30',
+      pillActive: 'bg-cyan-600 text-white border-cyan-600 shadow-xs',
     },
     serviceIds: [
-      'seguranca',
       'logistica',
       'porto-seco',
       'gestao-aeroportuaria',
     ],
-    keyHighlights: ['Vigilância CFTV & Biometria', 'Gestão de Frotas & Rastreamento', 'Terminais Aduaneiros', 'Normas Regulatórias ANAC'],
+    keyHighlights: ['Transporte Multimodal', 'Terminais Aduaneiros (EADI)', 'Operações Aeroportuárias ANAC', 'Gestão de Frotas & Tracking'],
   },
   {
-    id: 'tecnologia-gestao',
+    id: 'seguranca-patrimonial',
     number: '05',
-    title: 'Tecnologia e Gestão Corporativa',
-    shortTitle: 'Tecnologia & Gestão',
-    description: 'Governança corporativa, compliance regulatório, auditorias integradas, arquitetura e infraestrutura de TI, cibersegurança e PMO.',
-    tagline: 'Integridade jurídica, proteção de ativos digitais, transparência institucional e inteligência executiva.',
+    title: 'Segurança Patrimonial',
+    shortTitle: 'Segurança Patrimonial',
+    badgeLabel: 'Segurança',
+    description: 'Vigilância patrimonial armada e desarmada, segurança eletrônica com CFTV inteligente, controle de acesso biométrico e monitoramento 24/7.',
+    tagline: 'Proteção física e eletrônica de ativos críticos, prevenção de perdas e resposta tática em tempo real.',
+    icon: ShieldCheck,
+    accentColor: 'rose',
+    colorClasses: {
+      title: 'text-rose-700 dark:text-rose-400 group-hover:text-rose-600',
+      arrow: 'text-rose-600 dark:text-rose-400 group-hover:text-rose-500',
+      badge: 'bg-rose-500/10 text-rose-700 dark:text-rose-400 border-rose-500/30',
+      iconBg: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 group-hover:bg-rose-600 group-hover:text-white',
+      iconText: 'text-rose-600 dark:text-rose-400',
+      cardBorderHover: 'hover:border-rose-500/50 hover:shadow-rose-500/10',
+      cardActiveBorder: 'border-rose-500 shadow-md ring-2 ring-rose-500/20 bg-rose-500/5',
+      ctaButton: 'text-rose-700 dark:text-rose-300 hover:bg-rose-500/15 border-rose-500/30 bg-rose-500/5',
+      bannerGradient: 'from-rose-500/10 via-rose-500/5 to-transparent border-rose-500/30',
+      pillActive: 'bg-rose-600 text-white border-rose-600 shadow-xs',
+    },
+    serviceIds: [
+      'seguranca',
+    ],
+    keyHighlights: ['Vigilância 24/7 & Portaria', 'CFTV Analítico & IA', 'Controle Biométrico', 'Gestão de Riscos Físicos'],
+  },
+  {
+    id: 'tecnologia-inteligencia',
+    number: '06',
+    title: 'Tecnologia & Inteligência',
+    shortTitle: 'Tecnologia & Inteligência',
+    badgeLabel: 'Tecnologia',
+    description: 'Infraestrutura de TI, cloud computing, cibersegurança corporativa, adequação à LGPD, aerofotogrametria com drones (UAVs) e gêmeos digitais.',
+    tagline: 'Transformação digital segura, inteligência geoespacial de alta precisão e proteção integral de dados e sistemas.',
     icon: Cpu,
     accentColor: 'purple',
     colorClasses: {
@@ -190,11 +221,38 @@ export const STRATEGIC_AREAS: StrategicArea[] = [
     },
     serviceIds: [
       'tecnologia-da-informacao',
-      'compliance',
-      'administracao',
       'projetos',
     ],
-    keyHighlights: ['Compliance & Integridade', 'LGPD & Cibersegurança', 'Gestão de Riscos ERM', 'PMO & Governança de Projetos'],
+    keyHighlights: ['Cibersegurança & SOC', 'LGPD & Cloud TI', 'Drones UAV & Mapeamento 3D', 'Digital Twin & GIS/BIM'],
+  },
+  {
+    id: 'gestao-corporativa-governanca-compliance',
+    number: '07',
+    title: 'Gestão Corporativa, Governança & Compliance',
+    shortTitle: 'Gestão Corporativa, Governança & Compliance',
+    badgeLabel: 'Gestão & Compliance',
+    description: 'Administração executiva e BPO, programas de integridade e compliance regulatório, gestão de riscos corporativos e gestão estratégica imobiliária.',
+    tagline: 'Integridade institucional, transparência societária, eficiência administrativa e valorização de portfólios corporativos.',
+    icon: Briefcase,
+    accentColor: 'indigo',
+    colorClasses: {
+      title: 'text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-600',
+      arrow: 'text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-500',
+      badge: 'bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border-indigo-500/30',
+      iconBg: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white',
+      iconText: 'text-indigo-600 dark:text-indigo-400',
+      cardBorderHover: 'hover:border-indigo-500/50 hover:shadow-indigo-500/10',
+      cardActiveBorder: 'border-indigo-500 shadow-md ring-2 ring-indigo-500/20 bg-indigo-500/5',
+      ctaButton: 'text-indigo-700 dark:text-indigo-300 hover:bg-indigo-500/15 border-indigo-500/30 bg-indigo-500/5',
+      bannerGradient: 'from-indigo-500/10 via-indigo-500/5 to-transparent border-indigo-500/30',
+      pillActive: 'bg-indigo-600 text-white border-indigo-600 shadow-xs',
+    },
+    serviceIds: [
+      'administracao',
+      'compliance',
+      'gestao-imobiliaria',
+    ],
+    keyHighlights: ['Programas de Integridade', 'Governança Societária', 'Gestão Executiva & BPO', 'Gestão de Ativos Imobiliários'],
   },
 ];
 
@@ -206,7 +264,7 @@ export const getAreaForService = (serviceId: string): StrategicArea => {
 // Tags helper for every service
 export const getTagsForService = (id: string): string[] => {
   const map: Record<string, string[]> = {
-    // 1 - Engenharia e Infraestrutura
+    // 1 - Engenharia & Infraestrutura
     'engenharia-industrial': ['Adequação NR-13', 'Caldeiras e Vasos', 'Inspeção Técnica'],
     'infraestrutura-engenharia': ['Infraestrutura Pesada', 'Obras de Arte', 'Drenagem & Redes'],
     'construcao': ['Construção Civil', 'Montagens Industriais', 'Turnkey'],
@@ -218,33 +276,37 @@ export const getTagsForService = (id: string): string[] => {
     'instalacoes-hidraulicas': ['Redes de Distribuição', 'Sistemas de Bombeamento', 'Prevenção de Incêndio'],
     'barragens-infraestrutura-hidrica': ['Segurança de Barragens', 'Obras Hidráulicas', 'Controle de Cheias'],
 
-    // 2 - Gestão Ambiental e ESG
+    // 2 - Ambiental & ESG
     'licenciamento': ['Padrões ESG (GRI/IFRS)', 'LP, LI e LO', 'Conformidade Legal'],
     'residuos': ['PGRS Corporativo', 'Logística Reversa', 'Coleta & Destinação'],
     'ete-tratamento-esgoto': ['Tratamento de Efluentes', 'Reúso de Água', 'Conformidade CONAMA'],
     'mercado-livre-energia': ['Migração ACL', 'Energia Renovável', 'Gestão de Fatura & I-REC'],
     'servicos-ambientais-nr13-instalacoes': ['Inspeções NR-13', 'Laudos Ambientais', 'Prevenção de Riscos'],
 
-    // 3 - Facilities e Operações
+    // 3 - Facilities & Operações
     'facilities': ['Gestão Predial Integrada', 'SLA Centralizado', 'Operações Contínuas'],
     'servicos-gerais': ['Conservação & Limpeza', 'Higienização Técnica', 'Apoio Operacional'],
     'pmoc-climatizacao': ['PMOC Conforme Lei 13.589', 'Qualidade do Ar', 'Manutenção Climatização'],
     'pintura-predial': ['Pintura em Altura (NR-35)', 'Tratamento de Fachadas', 'Impermeabilização'],
     'paisagismo': ['Manutenção Verde', 'Projetos Paisagísticos', 'Poda & Conservação'],
     'pragas': ['CIP - Controle Integrado', 'Auditoria Sanitária', 'Laudos ANVISA'],
-    'gestao-imobiliaria': ['Gestão de Ativos', 'Vistorias Técnicas', 'Contratos & Ocupação'],
 
-    // 4 - Logística e Segurança
-    'seguranca': ['Vigilância Patrimonial', 'Controle Eletrônico', 'Monitoramento 24/7'],
+    // 4 - Logística & Transporte
     'logistica': ['Gestão de Cargas', 'Armazenagem Dedicada', 'Rastreamento & Frota'],
     'porto-seco': ['Operações Aduaneiras', 'Entreposto Tributário', 'Cross-Docking'],
     'gestao-aeroportuaria': ['Ground Handling', 'Operações de Pátio', 'Normas ANAC'],
 
-    // 5 - Tecnologia e Gestão Corporativa
+    // 5 - Segurança Patrimonial
+    'seguranca': ['Vigilância Patrimonial', 'Controle Eletrônico', 'Monitoramento 24/7'],
+
+    // 6 - Tecnologia & Inteligência
     'tecnologia-da-informacao': ['Cibersegurança', 'Infraestrutura Cloud & TI', 'Adequação LGPD'],
+    'projetos': ['Drones & UAVs', 'Mapeamento 2D/3D', 'Ortofotos & GIS'],
+
+    // 7 - Gestão Corporativa, Governança & Compliance
+    'administracao': ['BPO Administrativo', 'Governança Corporativa', 'Auditoria Operacional'],
     'compliance': ['Integridade & Ética', 'Due Diligence', 'Canal de Denúncias'],
-    'administracao': ['BPO Administrativo', 'Processos Corporativos', 'Auditoria Operacional'],
-    'projetos': ['PMO Estratégico', 'Metodologias Ágeis', 'Governança de Projetos'],
+    'gestao-imobiliaria': ['Gestão de Ativos', 'Vistorias Técnicas', 'Contratos & Ocupação'],
   };
   return map[id] || ['Gestão Técnica', 'Conformidade', 'Execução Especializada'];
 };
@@ -586,7 +648,7 @@ export const SolutionsSection: React.FC = () => {
             <span className="font-semibold text-foreground/80 flex items-center gap-1 mr-1">
               <Sparkles className="h-3 w-3 text-primary" /> Sugestões rápidas:
             </span>
-            {['NR-13', 'ESG & Carbono', 'Facilities', 'PMOC Climatização', 'Vigilância CFTV', 'Licenciamento', 'Obras Industriais', 'TI & Cibersegurança'].map((chip) => {
+            {['NR-13', 'ESG & Carbono', 'Facilities', 'Logística', 'Vigilância CFTV', 'TI & Drones', 'Compliance', 'Licenciamento'].map((chip) => {
               const isSelected = searchQuery.toLowerCase() === chip.toLowerCase();
               return (
                 <button
@@ -681,23 +743,23 @@ export const SolutionsSection: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* 1. TOP-LEVEL STRATEGIC AREAS CARDS (Directly applying the visual concept from the reference image) */}
+        {/* 1. TOP-LEVEL STRATEGIC AREAS CARDS (7 Strategic Areas in 4-column desktop grid) */}
         <div className="mb-14">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
-                Áreas Estratégicas · Filtre por categoria ou navegue livremente
+                7 Áreas Estratégicas de Soluções · Filtre por categoria ou navegue livremente
               </span>
             </div>
 
             <div className="text-xs font-mono text-muted-foreground">
-              {matchingAreasCount} de 5 áreas com serviços disponíveis
+              {matchingAreasCount} de 7 áreas com serviços disponíveis
             </div>
           </div>
 
-          {/* 5 Clean Strategic Area Cards matching reference image layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {/* 7 Strategic Area Cards + 1 Full Catalog Overview Card in a balanced 4-column desktop grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {STRATEGIC_AREAS.map((area, idx) => {
               const AreaIcon = area.icon;
               const isSelected = selectedAreaId === area.id;
@@ -712,7 +774,7 @@ export const SolutionsSection: React.FC = () => {
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ 
                     duration: 0.5, 
-                    delay: idx * 0.08, 
+                    delay: (idx % 4) * 0.08, 
                     ease: [0.21, 0.47, 0.32, 0.98] 
                   }}
                   className="h-full"
@@ -745,7 +807,7 @@ export const SolutionsSection: React.FC = () => {
                       />
                     )}
                     <div className="relative z-10">
-                      {/* Top row: Title + Diagonal Arrow (↗) as shown in the reference image */}
+                      {/* Top row: Icon + Number + Diagonal Arrow (↗) */}
                       <div className="flex items-start justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2.5">
                           <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
@@ -780,7 +842,7 @@ export const SolutionsSection: React.FC = () => {
                     </div>
 
                     {/* Card Footer with count and indicator */}
-                    <div className="pt-3 border-t border-border/50">
+                    <div className="pt-3 border-t border-border/50 relative z-10">
                       {isSearchActive ? (
                         <div className={`py-1 px-2 rounded-lg text-[10px] font-bold flex items-center justify-between ${
                           hasMatches
@@ -793,7 +855,7 @@ export const SolutionsSection: React.FC = () => {
                       ) : (
                         <div className="flex items-center justify-between">
                           <span className="text-[11px] font-semibold text-muted-foreground">
-                            {area.serviceIds.length} serviços
+                            {area.serviceIds.length} {area.serviceIds.length === 1 ? 'serviço' : 'serviços'}
                           </span>
                           <span className={`text-[10px] font-bold uppercase tracking-wider ${
                             isSelected ? 'text-primary font-extrabold' : 'text-muted-foreground/80 group-hover:text-foreground'
@@ -807,6 +869,68 @@ export const SolutionsSection: React.FC = () => {
                 </motion.div>
               );
             })}
+
+            {/* 8th Balanced Grid Card: Full Portfolio Overview / Reset Filter */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{
+                duration: 0.5,
+                delay: 3 * 0.08,
+                ease: [0.21, 0.47, 0.32, 0.98]
+              }}
+              className="h-full"
+            >
+              <button
+                onClick={() => setSelectedAreaId('all')}
+                className={`w-full h-full text-left p-5 rounded-2xl border transition-all duration-300 ease-out transform-gpu hover:scale-105 hover:shadow-xl relative hover:z-20 flex flex-col justify-between group overflow-hidden ${
+                  selectedAreaId === 'all'
+                    ? 'border-primary/60 bg-gradient-to-br from-primary/10 via-card to-emerald-500/5 shadow-md ring-2 ring-primary/20'
+                    : 'border-dashed border-border/90 bg-muted/30 hover:bg-card hover:border-primary/50 shadow-xs'
+                }`}
+              >
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-2.5">
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                        selectedAreaId === 'all'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground'
+                      }`}>
+                        <Layers className="h-4 w-4" />
+                      </div>
+                      <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-md bg-primary/10 text-primary">
+                        7 ÁREAS
+                      </span>
+                    </div>
+
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                      <Sparkles className="h-4 w-4" />
+                    </div>
+                  </div>
+
+                  <h3 className="text-sm sm:text-base font-bold mb-2 leading-snug text-foreground group-hover:text-primary transition-colors">
+                    Portfólio Completo
+                  </h3>
+
+                  <p className="text-xs text-muted-foreground leading-relaxed font-normal line-clamp-3 mb-4">
+                    Visualize todas as {SERVICES.length} soluções técnicas integradas das 7 áreas estratégicas da Greenverse em uma única matriz.
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-border/50 relative z-10 flex items-center justify-between">
+                  <span className="text-[11px] font-semibold text-muted-foreground">
+                    {SERVICES.length} soluções totais
+                  </span>
+                  <span className={`text-[10px] font-bold uppercase tracking-wider ${
+                    selectedAreaId === 'all' ? 'text-primary font-extrabold' : 'text-muted-foreground/80 group-hover:text-foreground'
+                  }`}>
+                    {selectedAreaId === 'all' ? 'Exibindo Tudo ✓' : 'Ver Todas'}
+                  </span>
+                </div>
+              </button>
+            </motion.div>
           </div>
 
           {/* Quick Filter Pill for All Services */}
@@ -1001,7 +1125,7 @@ export const SolutionsSection: React.FC = () => {
                     {/* Top row: Category tag + Diagonal Arrow (↗) linking to service */}
                     <div className="flex items-center justify-between gap-2 mb-3">
                       <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border ${area.colorClasses.badge}`}>
-                        {area.number} • {area.shortTitle.split(' & ')[0]}
+                        {area.number} • {area.badgeLabel}
                       </span>
 
                       {/* Top-right diagonal arrow link */}

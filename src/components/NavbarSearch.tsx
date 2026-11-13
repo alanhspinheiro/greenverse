@@ -340,7 +340,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5 mb-0.5">
                             <span className={`text-[9px] font-mono font-bold px-1.5 py-0.2 rounded border ${area.colorClasses.badge}`}>
-                              {area.shortTitle.split(' & ')[0]}
+                              {area.badgeLabel}
                             </span>
                           </div>
                           <h4 className="text-xs font-bold leading-snug truncate group-hover:text-primary transition-colors">
@@ -490,7 +490,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                       <div className="min-w-0">
                         <div className="flex items-center gap-1.5 mb-0.5">
                           <span className={`text-[9px] font-mono font-bold px-1.5 py-0.2 rounded border ${area.colorClasses.badge}`}>
-                            {area.shortTitle.split(' & ')[0]}
+                            {area.badgeLabel}
                           </span>
                         </div>
                         <h4 className="text-xs font-bold leading-snug truncate group-hover:text-primary transition-colors">
