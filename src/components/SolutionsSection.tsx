@@ -723,13 +723,28 @@ export const SolutionsSection: React.FC = () => {
                       isSearchActive && !hasMatches
                         ? 'opacity-35 grayscale-[50%] border-border/40 hover:opacity-75'
                         : isSearchActive && hasMatches
-                        ? 'border-amber-500/80 ring-2 ring-amber-500/40 bg-gradient-to-b from-amber-500/[0.04] to-card shadow-md shadow-amber-500/10'
+                        ? 'border-amber-500 ring-2 ring-amber-400/50 bg-gradient-to-b from-amber-500/[0.08] to-card shadow-[0_0_24px_-4px_rgba(245,158,11,0.35)]'
                         : isSelected
                         ? area.colorClasses.cardActiveBorder
                         : `border-border/80 ${area.colorClasses.cardBorderHover} shadow-xs`
                     }`}
                   >
-                    <div>
+                    {/* Animated shimmer sweep on matched strategic area */}
+                    {isSearchActive && hasMatches && (
+                      <motion.div
+                        aria-hidden="true"
+                        initial={{ x: '-120%' }}
+                        animate={{ x: '220%' }}
+                        transition={{
+                          duration: 2.2,
+                          repeat: Infinity,
+                          repeatDelay: 3,
+                          ease: 'easeInOut',
+                        }}
+                        className="pointer-events-none absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-amber-300/25 to-transparent -skew-x-12 z-0"
+                      />
+                    )}
+                    <div className="relative z-10">
                       {/* Top row: Title + Diagonal Arrow (↗) as shown in the reference image */}
                       <div className="flex items-start justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2.5">
@@ -922,31 +937,62 @@ export const SolutionsSection: React.FC = () => {
 
             return (
               <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                key={`${service.id}-${isSearchActive ? 'matched' : 'default'}`}
+                initial={{ opacity: 0, y: 24, scale: isSearchActive ? 0.97 : 1 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ 
-                  duration: 0.5, 
-                  delay: (idx % 4) * 0.08, 
+                  duration: 0.45, 
+                  delay: (idx % 4) * 0.06, 
                   ease: [0.21, 0.47, 0.32, 0.98] 
                 }}
+                className="relative"
               >
-                {/* High-visibility card with evident search match styling */}
-                <Card className={`h-full flex flex-col justify-between p-5 rounded-2xl border bg-card shadow-xs hover:shadow-xl hover:scale-105 relative hover:z-20 transition-all duration-300 ease-out transform-gpu group ${
+                {/* Animated luminous outer glow aura behind matched service cards */}
+                {isSearchActive && (
+                  <motion.div
+                    aria-hidden="true"
+                    animate={{ opacity: [0.35, 0.75, 0.35] }}
+                    transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+                    className="pointer-events-none -inset-0.5 absolute rounded-2xl bg-gradient-to-r from-amber-400/40 via-emerald-400/35 to-amber-500/40 blur-md z-0"
+                  />
+                )}
+
+                {/* High-visibility card with evident search match styling + shimmer animation */}
+                <Card className={`h-full flex flex-col justify-between p-5 rounded-2xl border bg-card shadow-xs hover:shadow-xl hover:scale-105 relative hover:z-20 transition-all duration-300 ease-out transform-gpu group overflow-hidden z-10 ${
                   isSearchActive
-                    ? 'border-amber-500/80 ring-2 ring-amber-500/40 bg-gradient-to-b from-amber-500/[0.05] via-card to-card shadow-md shadow-amber-500/10'
+                    ? 'border-amber-500 ring-2 ring-amber-400/60 bg-gradient-to-b from-amber-500/[0.07] via-card to-card shadow-[0_10px_30px_-8px_rgba(245,158,11,0.35)]'
                     : `border-border/80 ${area.colorClasses.cardBorderHover}`
                 }`}>
-                  <div>
+                  {/* Animated diagonal light-shimmer sweep across matched cards */}
+                  {isSearchActive && (
+                    <motion.div
+                      aria-hidden="true"
+                      initial={{ x: '-130%' }}
+                      animate={{ x: '240%' }}
+                      transition={{
+                        duration: 1.8,
+                        delay: (idx % 4) * 0.15,
+                        repeat: Infinity,
+                        repeatDelay: 3.2,
+                        ease: 'easeInOut',
+                      }}
+                      className="pointer-events-none absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-amber-300/30 dark:via-amber-400/20 to-transparent -skew-x-12 z-0"
+                    />
+                  )}
+
+                  <div className="relative z-10">
                     {/* Evident Match Notification Banner on Matched Cards */}
                     {isSearchActive && matchReason && (
-                      <div className="mb-3 px-2.5 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-900 dark:text-amber-200 text-[11px] font-bold flex items-center justify-between gap-1 shadow-2xs">
+                      <div className="mb-3 px-2.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-950 dark:text-amber-200 text-[11px] font-bold flex items-center justify-between gap-1 shadow-2xs">
                         <span className="flex items-center gap-1.5 truncate">
-                          <Sparkles className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+                          <span className="relative flex h-2 w-2 shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-600" />
+                          </span>
                           <span className="truncate">Resultado correspondente</span>
                         </span>
-                        <span className="px-1.5 py-0.5 rounded bg-amber-500/25 text-[9px] font-mono uppercase tracking-wider shrink-0 font-extrabold">
+                        <span className="px-1.5 py-0.5 rounded bg-amber-500/30 text-[9px] font-mono uppercase tracking-wider shrink-0 font-extrabold">
                           {matchReason.type}
                         </span>
                       </div>
@@ -1031,7 +1077,7 @@ export const SolutionsSection: React.FC = () => {
                   </div>
 
                   {/* Contextual Action Footer */}
-                  <div className="pt-3 border-t border-border/60 flex items-center justify-between gap-2">
+                  <div className="pt-3 border-t border-border/60 flex items-center justify-between gap-2 relative z-10">
                     <button
                       onClick={() => handleScrollToContact(service.title)}
                       className={`text-xs font-bold px-3 py-1.5 rounded-xl border transition-all ${

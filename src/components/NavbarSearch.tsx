@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { 
   Search, X, ArrowUpRight, Sparkles, ChevronRight, 
   Layers, CornerDownLeft, Command
 } from 'lucide-react';
 import { SERVICES } from '../constants';
-import { getAreaForService, getTagsForService } from './SolutionsSection';
+import { getAreaForService, getTagsForService, HighlightText } from './SolutionsSection';
 
 interface NavbarSearchProps {
   isDark?: boolean;
@@ -221,56 +222,83 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
     );
   }
 
-  // Hero full-width search bar positioned below the Hero image
+  // Hero full-width search bar positioned below the Hero image with visual highlight & ambient glow
   if (variant === 'hero') {
     return (
-      <div ref={containerRef} className="relative w-full">
-        <div className="flex items-center rounded-2xl bg-white border border-slate-200/90 hover:border-primary/40 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 shadow-sm transition-all duration-200 p-1.5">
-          <div className="pl-2.5 pr-2 text-primary flex items-center pointer-events-none shrink-0">
-            <Search className="h-4 w-4" />
-          </div>
+      <div ref={containerRef} className="relative w-full group/hero-search">
+        {/* Soft animated luminous emerald halo behind the Hero search bar */}
+        <motion.div
+          aria-hidden="true"
+          animate={{ opacity: isOpen ? 0.85 : [0.4, 0.72, 0.4], scale: isOpen ? 1.015 : [1, 1.01, 1] }}
+          transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+          className="pointer-events-none -inset-1 absolute rounded-[20px] bg-gradient-to-r from-emerald-400/35 via-teal-400/45 to-emerald-500/35 blur-lg z-0 transition-all duration-300 group-hover/hero-search:opacity-90"
+        />
 
-          <input
-            ref={inputRef}
-            type="text"
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setIsOpen(true);
-            }}
-            onFocus={() => setIsOpen(true)}
-            onKeyDown={handleInputKeyDown}
-            placeholder="Buscar serviço no catálogo (ex: NR-13, ESG, Facilities, TI)..."
-            className="w-full bg-transparent px-1 py-1.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
-          />
+        {/* Gradient border shell */}
+        <div className={`relative z-10 p-[1.5px] rounded-2xl transition-all duration-300 shadow-lg ${
+          isOpen
+            ? 'bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-600 shadow-emerald-600/20'
+            : 'bg-gradient-to-r from-emerald-500/50 via-teal-400/65 to-emerald-600/50 hover:from-emerald-500 hover:via-teal-400 hover:to-emerald-600 shadow-emerald-900/10'
+        }`}>
+          <div className="relative flex items-center rounded-[14.5px] bg-white/95 backdrop-blur-md transition-all duration-200 p-1.5 overflow-hidden">
+            {/* Subtle periodic diagonal light shimmer across the search bar when idle */}
+            {!isOpen && !query && (
+              <motion.div
+                aria-hidden="true"
+                initial={{ x: '-120%' }}
+                animate={{ x: '240%' }}
+                transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 3.5, ease: 'easeInOut' }}
+                className="pointer-events-none absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-emerald-300/25 to-transparent -skew-x-12 z-0"
+              />
+            )}
 
-          {query ? (
-            <button
-              type="button"
-              onClick={() => {
-                setQuery('');
-                inputRef.current?.focus();
-              }}
-              className="p-1.5 mr-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors shrink-0"
-              title="Limpar busca"
-            >
-              <X className="h-3.5 w-3.5" />
-            </button>
-          ) : (
-            <div className="hidden sm:flex items-center gap-1.5 mr-1.5 pointer-events-none shrink-0">
-              <span className="text-[10px] font-medium text-slate-400">
-                {SERVICES.length} serviços
-              </span>
-              <kbd className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded-md border bg-slate-50 border-slate-200 text-slate-500">
-                ⌘K
-              </kbd>
+            <div className="relative z-10 w-8 h-8 rounded-xl bg-primary text-white flex items-center justify-center shadow-xs shrink-0 mr-2 ml-0.5 group-hover/hero-search:scale-105 transition-transform">
+              <Search className="h-4 w-4" />
             </div>
-          )}
+
+            <input
+              ref={inputRef}
+              type="text"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setIsOpen(true);
+              }}
+              onFocus={() => setIsOpen(true)}
+              onKeyDown={handleInputKeyDown}
+              placeholder="Buscar serviço no catálogo (ex: NR-13, ESG, Facilities, TI)..."
+              className="relative z-10 w-full bg-transparent px-1 py-1.5 text-xs sm:text-sm font-medium text-slate-900 placeholder:text-slate-500/80 focus:outline-none"
+            />
+
+            {query ? (
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery('');
+                  inputRef.current?.focus();
+                }}
+                className="relative z-10 p-1.5 mr-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors shrink-0"
+                title="Limpar busca"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            ) : (
+              <div className="relative z-10 hidden sm:flex items-center gap-1.5 mr-1.5 pointer-events-none shrink-0">
+                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-lg">
+                  <Sparkles className="h-2.5 w-2.5 text-emerald-600" />
+                  {SERVICES.length} serviços
+                </span>
+                <kbd className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded-md border bg-slate-50 border-slate-200 text-slate-500">
+                  ⌘K
+                </kbd>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Floating Dynamic Results Dropdown */}
         {isOpen && (
-          <div className="absolute top-full left-0 right-0 mt-2 bg-card rounded-2xl border border-border shadow-2xl overflow-hidden z-50 text-foreground animate-in fade-in-0 zoom-in-95 duration-150">
+          <div className="absolute top-full left-0 right-0 mt-2.5 bg-card rounded-2xl border border-emerald-500/30 shadow-2xl shadow-emerald-950/15 overflow-hidden z-50 text-foreground animate-in fade-in-0 zoom-in-95 duration-150">
             {/* Header */}
             <div className="px-3.5 py-2.5 border-b border-border/80 bg-muted/40 flex items-center justify-between text-xs">
               <span className="font-semibold text-muted-foreground text-[11px] uppercase tracking-wider flex items-center gap-1.5">
@@ -298,7 +326,7 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                       onMouseEnter={() => setSelectedIndex(idx)}
                       className={`w-full p-2.5 rounded-xl text-left transition-all flex items-start justify-between gap-3 group ${
                         isItemActive
-                          ? 'bg-primary/10 text-primary'
+                          ? 'bg-primary/10 text-primary ring-1 ring-primary/25'
                           : 'hover:bg-muted/70 text-foreground'
                       }`}
                     >
@@ -316,10 +344,10 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                             </span>
                           </div>
                           <h4 className="text-xs font-bold leading-snug truncate group-hover:text-primary transition-colors">
-                            {service.title}
+                            <HighlightText text={service.title} query={query} />
                           </h4>
                           <p className="text-[11px] text-muted-foreground line-clamp-1 font-normal mt-0.5">
-                            {service.description}
+                            <HighlightText text={service.description} query={query} />
                           </p>
                         </div>
                       </div>
