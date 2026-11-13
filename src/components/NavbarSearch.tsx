@@ -11,7 +11,7 @@ import { getAreaForService, getTagsForService } from './SolutionsSection';
 interface NavbarSearchProps {
   isDark?: boolean;
   onSelect?: () => void;
-  variant?: 'desktop' | 'mobile';
+  variant?: 'desktop' | 'mobile' | 'hero';
 }
 
 export const NavbarSearch: React.FC<NavbarSearchProps> = ({ 
@@ -215,6 +215,148 @@ export const NavbarSearch: React.FC<NavbarSearchProps> = ({
                 </button>
               </div>
             )}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Hero full-width search bar positioned below the Hero image
+  if (variant === 'hero') {
+    return (
+      <div ref={containerRef} className="relative w-full">
+        <div className="flex items-center rounded-2xl bg-white border border-slate-200/90 hover:border-primary/40 focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 shadow-sm transition-all duration-200 p-1.5">
+          <div className="pl-2.5 pr-2 text-primary flex items-center pointer-events-none shrink-0">
+            <Search className="h-4 w-4" />
+          </div>
+
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setIsOpen(true);
+            }}
+            onFocus={() => setIsOpen(true)}
+            onKeyDown={handleInputKeyDown}
+            placeholder="Buscar serviço no catálogo (ex: NR-13, ESG, Facilities, TI)..."
+            className="w-full bg-transparent px-1 py-1.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none"
+          />
+
+          {query ? (
+            <button
+              type="button"
+              onClick={() => {
+                setQuery('');
+                inputRef.current?.focus();
+              }}
+              className="p-1.5 mr-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors shrink-0"
+              title="Limpar busca"
+            >
+              <X className="h-3.5 w-3.5" />
+            </button>
+          ) : (
+            <div className="hidden sm:flex items-center gap-1.5 mr-1.5 pointer-events-none shrink-0">
+              <span className="text-[10px] font-medium text-slate-400">
+                {SERVICES.length} serviços
+              </span>
+              <kbd className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded-md border bg-slate-50 border-slate-200 text-slate-500">
+                ⌘K
+              </kbd>
+            </div>
+          )}
+        </div>
+
+        {/* Floating Dynamic Results Dropdown */}
+        {isOpen && (
+          <div className="absolute top-full left-0 right-0 mt-2 bg-card rounded-2xl border border-border shadow-2xl overflow-hidden z-50 text-foreground animate-in fade-in-0 zoom-in-95 duration-150">
+            {/* Header */}
+            <div className="px-3.5 py-2.5 border-b border-border/80 bg-muted/40 flex items-center justify-between text-xs">
+              <span className="font-semibold text-muted-foreground text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles className="h-3 w-3 text-primary" />
+                {query ? `Resultados para "${query}"` : 'Serviços em Destaque'}
+              </span>
+              <span className="text-[10px] font-mono text-muted-foreground">
+                {searchResults.length} de {SERVICES.length}
+              </span>
+            </div>
+
+            {/* List of matching services */}
+            <div className="max-h-72 overflow-y-auto divide-y divide-border/40 p-1.5 space-y-0.5">
+              {searchResults.length > 0 ? (
+                searchResults.map((service, idx) => {
+                  const area = getAreaForService(service.id);
+                  const Icon = service.icon;
+                  const isItemActive = idx === selectedIndex;
+
+                  return (
+                    <button
+                      key={service.id}
+                      type="button"
+                      onClick={() => handleSelectService(service.id)}
+                      onMouseEnter={() => setSelectedIndex(idx)}
+                      className={`w-full p-2.5 rounded-xl text-left transition-all flex items-start justify-between gap-3 group ${
+                        isItemActive
+                          ? 'bg-primary/10 text-primary'
+                          : 'hover:bg-muted/70 text-foreground'
+                      }`}
+                    >
+                      <div className="flex items-start gap-2.5 min-w-0">
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
+                          isItemActive ? 'bg-primary text-primary-foreground' : area.colorClasses.iconBg
+                        }`}>
+                          <Icon className="h-4 w-4" />
+                        </div>
+
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-1.5 mb-0.5">
+                            <span className={`text-[9px] font-mono font-bold px-1.5 py-0.2 rounded border ${area.colorClasses.badge}`}>
+                              {area.shortTitle.split(' & ')[0]}
+                            </span>
+                          </div>
+                          <h4 className="text-xs font-bold leading-snug truncate group-hover:text-primary transition-colors">
+                            {service.title}
+                          </h4>
+                          <p className="text-[11px] text-muted-foreground line-clamp-1 font-normal mt-0.5">
+                            {service.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1 shrink-0 mt-1">
+                        {isItemActive && (
+                          <CornerDownLeft className="h-3 w-3 text-primary hidden sm:inline" />
+                        )}
+                        <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </div>
+                    </button>
+                  );
+                })
+              ) : (
+                <div className="p-6 text-center text-xs text-muted-foreground space-y-2">
+                  <Layers className="h-8 w-8 mx-auto text-muted-foreground/50 mb-1" />
+                  <p className="font-semibold text-foreground">
+                    Nenhum serviço correspondente
+                  </p>
+                  <p className="text-[11px] leading-relaxed">
+                    Tente buscar por normas como <strong>NR-13</strong>, ou áreas como <strong>ESG, Facilities, Segurança ou TI</strong>.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Footer with Catalog Redirect */}
+            <div className="p-2 border-t border-border/80 bg-muted/30 flex items-center justify-between text-xs">
+              <button
+                type="button"
+                onClick={handleGoToAllServices}
+                className="w-full py-1.5 px-3 rounded-lg text-primary hover:bg-primary/10 text-center font-bold text-xs transition-colors flex items-center justify-center gap-1"
+              >
+                <span>Explorar catálogo completo de 30 serviços</span>
+                <ChevronRight className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </div>
         )}
       </div>

@@ -7,7 +7,7 @@ import {
   ChevronRight, Download, Lock, Bell, MessageCircle, CheckCircle2,
   Leaf, BarChart3, FileText, Globe, Users, Target, Briefcase, ArrowLeft, ShieldCheck,
   Waves, Activity, FlaskConical, FileSpreadsheet, BookOpen, Wrench, Cpu, Construction, Lightbulb, AlertTriangle,
-  Droplets, Factory, Heart, Home, Building2, Sprout, Instagram, Linkedin, Search
+  Droplets, Factory, Heart, Home, Building2, Sprout, Instagram, Linkedin
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -23,7 +23,6 @@ import SEO from './components/SEO';
 import { SERVICES, DIFFERENTIALS, BLOG_POSTS, BRAZIL_STATES } from './constants';
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext';
 import { LanguageSelector } from './components/LanguageSelector';
-import { NavbarSearch } from './components/NavbarSearch';
 import ecosystemBg from './assets/images/ecosystem_panoramic_bg_1787333228456.jpg';
 import { HeroSection } from './components/HeroSection';
 import { EcosystemSection } from './components/EcosystemSection';
@@ -120,7 +119,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-4 xl:gap-5">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-6">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -140,11 +139,7 @@ const Navbar = () => {
               {link.name}
             </a>
           ))}
-
-          {/* Dynamic Catalog Search Bar */}
-          <NavbarSearch isDark={isOverDark} variant="desktop" />
-
-          <div className={`h-4 w-[1px] mx-0.5 transition-colors ${isOverDark ? 'bg-white/20' : 'bg-border'}`} />
+          <div className={`h-4 w-[1px] mx-1 transition-colors ${isOverDark ? 'bg-white/20' : 'bg-border'}`} />
           
           {/* Botão de Troca de Idioma com Bandeiras do Brasil, Espanha e Inglaterra */}
           <LanguageSelector variant="dropdown" isDark={isOverDark} />
@@ -170,21 +165,6 @@ const Navbar = () => {
           {/* Seletor rápido de idioma no topo mobile */}
           <LanguageSelector variant="dropdown" isDark={isOverDark} />
 
-          {/* Quick Search Button on Mobile Header */}
-          <button
-            type="button"
-            onClick={() => setMobileOpen(true)}
-            className={`p-2 rounded-xl flex items-center justify-center transition-colors min-h-[42px] min-w-[42px] focus:outline-none ${
-              isOverDark 
-                ? 'text-white bg-white/10 hover:bg-white/20 border border-white/15' 
-                : 'text-[#1A1A1A] bg-background/80 hover:bg-accent border border-border/60'
-            }`}
-            aria-label="Buscar serviços no catálogo"
-            title="Buscar serviços"
-          >
-            <Search className="h-4.5 w-4.5" />
-          </button>
-
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger render={
               <button 
@@ -209,12 +189,7 @@ const Navbar = () => {
               </div>
 
               {/* Drawer Body - Scrollable */}
-              <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
-                {/* Dynamic Search Bar inside Mobile Drawer */}
-                <div className="pt-1">
-                  <NavbarSearch variant="mobile" onSelect={() => setMobileOpen(false)} />
-                </div>
-
+              <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-5">
                 {/* Quick Area do Cliente Card */}
                 <Link 
                   to="/area-cliente" 

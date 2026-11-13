@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, MessageCircle, ShieldCheck, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '../i18n/LanguageContext';
+import { NavbarSearch } from './NavbarSearch';
 
 export const HeroSection: React.FC = () => {
   const { t } = useLanguage();
@@ -25,7 +26,7 @@ export const HeroSection: React.FC = () => {
     <>
       <section 
         id="inicio"
-        className="relative min-h-[84vh] lg:min-h-[88vh] flex flex-col justify-center pt-28 pb-12 sm:pt-32 sm:pb-14 lg:pt-36 lg:pb-16 overflow-hidden bg-white text-foreground"
+        className="relative z-30 min-h-[84vh] lg:min-h-[88vh] flex flex-col justify-center pt-28 pb-12 sm:pt-32 sm:pb-14 lg:pt-36 lg:pb-16 bg-white text-foreground"
       >
         {/* Fundo com iluminação sutil corporativa */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
@@ -104,8 +105,8 @@ export const HeroSection: React.FC = () => {
               </motion.div>
             </div>
 
-            {/* Coluna Direita: Imagem Visual em Destaque, Centralizada Verticalmente */}
-            <div className="relative flex justify-center lg:justify-end items-center">
+            {/* Coluna Direita: Imagem Visual em Destaque + Busca Rápida abaixo da imagem */}
+            <div className="relative flex flex-col justify-center items-center lg:items-end gap-4">
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -121,6 +122,16 @@ export const HeroSection: React.FC = () => {
 
                 {/* Brilho e profundidade sutis */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent pointer-events-none" />
+              </motion.div>
+
+              {/* Busca por serviços abaixo da imagem da seção hero */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.28 }}
+                className="w-full max-w-md sm:max-w-lg lg:max-w-[490px] xl:max-w-[530px] relative z-30"
+              >
+                <NavbarSearch variant="hero" />
               </motion.div>
             </div>
 
